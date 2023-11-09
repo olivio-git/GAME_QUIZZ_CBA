@@ -6,6 +6,7 @@ import DashboardPage from './components/DashboardPage';
 import DashboardLayout from './layouts/DashboardLayout';
 import HomeLayout from './layouts/HomeLayout';
 import GameInProgress from './components/GameInProgress';
+import GameStart from './components/GameStart';
 const code = false;
 function App() {
   const ProtectedRoutes = ({ children }) => {
@@ -17,10 +18,10 @@ function App() {
   }
   return (
     <Routes>
-      <Route path='/' element={
-        <HomeLayout />} >
+      <Route path='/' element={<HomeLayout />} >
         <Route path='/' element={<HomePage></HomePage>} ></Route>
-        <Route path='/gameprogress/:id' element={<GameInProgress></GameInProgress>} ></Route>
+        <Route path='/gameprogress/:id' element={<GameInProgress> 
+          </GameInProgress>} ></Route>
       </Route>
       <Route path='/dasboard' element={
         <ProtectedRoutes>
@@ -33,5 +34,6 @@ function App() {
     </Routes>
   )
 }
-
+ 
 export default App
+

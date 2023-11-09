@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
  
 const HomePage = () => {
   
-  const {data,addSelected}=useContext(DataContext); 
+  const {data,addCloseMenu}=useContext(DataContext); 
 
   const renderGames = () => {
     return (
@@ -14,8 +14,10 @@ const HomePage = () => {
         return (
           <div
             style={{ height: '250px' }}
-            className='w-3/6 sm:w-5/12 md:w-4/12 lg:w-3/12 xl:w-2/12 bg-white rounded-2xl dark:bg-gray-800 dark:border-gray-700 shadow-2xl h-24 relative'
-            key={g.id} 
+            className='w-3/6 sm:w-5/12 md:w-4/12 lg:w-3/12 xl:w-2/12 bg-white 
+            rounded-2xl dark:bg-gray-800 dark:border-gray-700 shadow-2xl h-24 relative hover:scale-105 transition ease-in-out delay-80'
+            key={g.id}
+            onClick={addCloseMenu}
           >
             <Link to={`/gameprogress/${g.id}`} >
             <img
