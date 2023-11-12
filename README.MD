@@ -1,0 +1,7 @@
+--FIRST COMMANDS
+BACKEND:npm install
+FRONTEND:npm install
+--START SERVER AND START APP WEB
+BACKEND:npm run dev
+FRONTEND:npm run dev
+--
