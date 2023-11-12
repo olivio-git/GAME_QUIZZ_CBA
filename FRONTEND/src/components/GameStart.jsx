@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import DataContext from '../context/dataContext';
 
 const GameStart = () => {
+    const {gameSelected}=useContext(DataContext);
     return (
         <div>
-            Hola start game
+            
         </div>
     );
 }

@@ -30,9 +30,21 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 const {
- 
+ Question,
+ Category,
+ Player,
+ Game
 } = sequelize.models;
- 
+
+Category.hasMany(Question);
+Question.belongsTo(Category);
+
+Game.belongsToMany(Question, { through: 'GameQuestion' });
+Question.belongsToMany(Game, { through: 'GameQuestion' });
+
+Game.belongsToMany(Player, { through: 'GamePlayer' });
+Player.belongsToMany(Game, { through: 'GamePlayer' });
+
 module.exports = {
     ...sequelize.models,
     conn: sequelize

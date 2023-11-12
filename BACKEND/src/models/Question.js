@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         answer: {
-            type: DataTypes.JSON,
+            type: DataTypes.ARRAY(DataTypes.JSON),
             allowNull: false
         },
         category:{

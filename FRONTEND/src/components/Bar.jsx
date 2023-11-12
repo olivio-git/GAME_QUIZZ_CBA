@@ -17,7 +17,7 @@ const Bar = ({ context }) => {
     };
     
     return (
-        <div className='col-span-2 flex flex-row rounded-2xl h-full p-4 gap-2'>
+        <div className='col-span-2 flex flex-row rounded-2xl h-full p-4 gap-2 w-full'>
             <div className='w-1/6 flex flex-col bg-white h-full rounded-2xl '>
                 <div className='flex justify-center items-center w-12/12 bg-white h-3/6 rounded-t-2xl border-b'>
                     <img src={Students} alt="Students" className={context!='home'?'w-[50px]':'w-[70px]'} />
