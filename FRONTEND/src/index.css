@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.gradient-blue{
+  background-image: linear-gradient(120deg, rgb(160, 235, 187) 0%, #8fd3f4 100%);
+}
