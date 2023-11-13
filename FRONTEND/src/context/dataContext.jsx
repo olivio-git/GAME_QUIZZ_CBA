@@ -9,7 +9,7 @@ export const DataContextProvider = ({ children }) => {
         name: '',
         players: []
     });
-    const [gameContext,setGameContext]=useState(null);
+    const [gameContext, setGameContext] = useState(null);
 
 
     const [gameInProgress, setGameInProgress] = useState(false); //para saber si mostrar partida o boton
@@ -84,8 +84,8 @@ export const DataContextProvider = ({ children }) => {
     const STATES_MODIFIC = {
         data, selected, addGameProgress, gameInProgress, gameSelected,
         addOpenMenu, menu, addCloseMenu, categorys, addCategorys, questions,
-        addQuestions, catSelect, addCatSet, addGameName, addGamePlayers, gameCreator, 
-        restartGameCreator,addGameContext ,gameContext
+        addQuestions, catSelect, addCatSet, addGameName, addGamePlayers, gameCreator,
+        restartGameCreator, addGameContext, gameContext
     };
     return (
         <DataContext.Provider value={STATES_MODIFIC}>

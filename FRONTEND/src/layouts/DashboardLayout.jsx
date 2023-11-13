@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-const DashboardLayout = () => { 
+const DashboardLayout = () => {
     return (
         <div className='flex h-screen w-full bg-red-100'>
             <Outlet></Outlet>

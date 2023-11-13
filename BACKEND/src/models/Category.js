@@ -1,16 +1,16 @@
-const {DataTypes,UUIDV4}=require('sequelize');
+const { DataTypes, UUIDV4 } = require('sequelize');
 
-module.exports=(sequelize)=>{
-    sequelize.define('Category',{
-        id_category:{
-        type:DataTypes.UUID,
-        primaryKey:true,
-        allowNull:false,
-        defaultValue:UUIDV4
+module.exports = (sequelize) => {
+    sequelize.define('Category', {
+        id_category: {
+            type: DataTypes.UUID,
+            primaryKey: true,
+            allowNull: false,
+            defaultValue: UUIDV4
         },
-        name_category:{
-            type:DataTypes.STRING,
-            allowNull:false
+        name_category: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     })
 }

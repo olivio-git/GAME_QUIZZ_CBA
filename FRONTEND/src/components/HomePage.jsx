@@ -3,10 +3,10 @@ import One from '../assets/ONE.avif';
 import Bar from './Bar';
 import DataContext from '../context/dataContext';
 import { Link } from 'react-router-dom';
- 
+
 const HomePage = () => {
-  
-  const {data,addCloseMenu}=useContext(DataContext); 
+
+  const { data, addCloseMenu } = useContext(DataContext);
 
   const renderGames = () => {
     return (
@@ -20,18 +20,18 @@ const HomePage = () => {
             onClick={addCloseMenu}
           >
             <Link to={`/gameprogress/${g.id}`} >
-            <img
-              src={g.image}
-              alt='One'
-              className='w-full h-full rounded-2xl'
-            />
-            <div className="absolute top-0 left-0 right-0 bottom-0 hover:cursor-pointer rounded-2xl 
+              <img
+                src={g.image}
+                alt='One'
+                className='w-full h-full rounded-2xl'
+              />
+              <div className="absolute top-0 left-0 right-0 bottom-0 hover:cursor-pointer rounded-2xl 
             flex items-center justify-center opacity-0 transition-opacity duration-300 bg-black bg-opacity-50 hover:opacity-100">
-              <div className="text-white text-center">
-                <h3 className="text-xl font-bold">{g.name}</h3>
-                <p>{g.description}</p>
+                <div className="text-white text-center">
+                  <h3 className="text-xl font-bold">{g.name}</h3>
+                  <p>{g.description}</p>
+                </div>
               </div>
-            </div>
             </Link>
           </div>
         );
