@@ -17,7 +17,7 @@ const addGame = async (req, res) => {
         const relations = await game.addPlayer(ids);
         result.push(relations);
     }
-    const obj={game:game,players:playersContext}
+    const obj = { game: game, players: playersContext }
     response(res, 200, obj);
 }
 

@@ -14,7 +14,7 @@ const {
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
     logging: false,
     native: false,
-}); 
+});
 const basename = path.basename(__filename);
 const modelDefiniers = [];
 
@@ -24,16 +24,16 @@ fs.readdirSync(path.join(__dirname, './models'))
         modelDefiniers.push(require(path.join(__dirname, '/models', file)));
     });
 modelDefiniers.forEach(model => model(sequelize));
- 
+
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
 const {
- Question,
- Category,
- Player,
- Game
+    Question,
+    Category,
+    Player,
+    Game
 } = sequelize.models;
 
 Category.hasMany(Question);

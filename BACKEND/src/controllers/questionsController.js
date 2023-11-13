@@ -1,34 +1,34 @@
-const {Question}=require('../db');
+const { Question } = require('../db');
 const { response } = require('../utils');
 
-const addQuestion = async(req,res) => {
-    const question=req.body;
+const addQuestion = async (req, res) => {
+    const question = req.body;
     await Question.create(question)
-    const result=await Question.findAll({where:{CategoryIdCategory:question.CategoryIdCategory}});
-    response(res,200,result);
+    const result = await Question.findAll({ where: { CategoryIdCategory: question.CategoryIdCategory } });
+    response(res, 200, result);
 }
-const deleteQuestion = async (req,res) => {
-    const id=req.params.id;
-    const iduser=req.query.iduser;
+const deleteQuestion = async (req, res) => {
+    const id = req.params.id;
+    const iduser = req.query.iduser;
     const question = await Question.findByPk(id);
     await question.destroy();
-    const result=await Question.findAll({where:{CategoryIdCategory:iduser}});
-    response(res,200,result);
+    const result = await Question.findAll({ where: { CategoryIdCategory: iduser } });
+    response(res, 200, result);
 }
-const getAllQuestions = async (req,res) => {
-    const result =  await findAllQuestions();
-    response(res,200,result);
+const getAllQuestions = async (req, res) => {
+    const result = await findAllQuestions();
+    response(res, 200, result);
 }
-const getAllQuestionsById = async (req,res) => {  
-    const id=req.params.id;
-    const result=await Question.findAll({where:{CategoryIdCategory:id}});
-    response(res,200,result);
+const getAllQuestionsById = async (req, res) => {
+    const id = req.params.id;
+    const result = await Question.findAll({ where: { CategoryIdCategory: id } });
+    response(res, 200, result);
 }
-const findAllQuestions = async () => { 
-    const result=await Question.findAll();
+const findAllQuestions = async () => {
+    const result = await Question.findAll();
     return result;
 }
-module.exports={
+module.exports = {
     addQuestion,
     deleteQuestion,
     getAllQuestions,

@@ -31,7 +31,7 @@ const GameStart = () => {
                                             type="radio"
                                             name="response"
                                             value={a.response}
-                                            checked={a.selected} 
+                                            checked={a.selected}
                                             onChange={() => handleResponseSelect(index)}
                                             className="mr-2"
                                         />
