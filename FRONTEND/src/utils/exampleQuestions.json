@@ -1,0 +1,883 @@
+[
+    {
+        "question": "What was the ancient Egyptian writing system called?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Hieratic script",
+                "correct": false
+            },
+            {
+                "response": "Phoenician alphabet",
+                "correct": false
+            },
+            {
+                "response": "Hieroglyphics",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "aff7cd91-5e7c-4388-987b-c16175805b4d"
+    },
+    
+    {
+        "question": "Which civilization built the Machu Picchu citadel in Peru?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The Incas",
+                "correct": true
+            },
+            {
+                "response": "Ancient Egyptians",
+                "correct": false
+            },
+            {
+                "response": "Vikings",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "aff7cd91-5e7c-4388-987b-c16175805b4d"
+    },
+    {
+        "question": "In which year did the Titanic sink after hitting an iceberg?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "1923",
+                "correct": false
+            },
+            {
+                "response": "1912",
+                "correct": true
+            },
+            {
+                "response": "1907",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "aff7cd91-5e7c-4388-987b-c16175805b4d"
+    },
+    {
+        "question": "In 1492, Christopher Columbus reached the Americas under the sponsorship of this country.",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "France",
+                "correct": false
+            },
+            {
+                "response": "England",
+                "correct": false
+            },
+            {
+                "response": "Spain",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "aff7cd91-5e7c-4388-987b-c16175805b4d"
+    },
+    {
+        "question": "What year did the Berlin Wall fall, leading to the reunification of East and West Germany?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "1989",
+                "correct": true
+            },
+            {
+                "response": "1969",
+                "correct": false
+            },
+            {
+                "response": "1985",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "aff7cd91-5e7c-4388-987b-c16175805b4d"
+    },
+    {
+        "question": "Which country was responsible for the construction of the Panama Canal?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The United States",
+                "correct": true
+            },
+            {
+                "response": "Mexico",
+                "correct": false
+            },
+            {
+                "response": "Brazil",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "ebe242d9-70e1-4724-abeb-70b3144bfa64"
+    },
+    {
+        "question": "Which war is also known as the War Between the States?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The Spanish-American War",
+                "correct": false
+            },
+            {
+                "response": "The Napoleonic Wars",
+                "correct": false
+            },
+            {
+                "response": "The American Civil War",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "ebe242d9-70e1-4724-abeb-70b3144bfa64"
+    },
+    {
+        "question": "What ancient city was buried by the eruption of Mount Vesuvius in 79 AD?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The Spanish-American War",
+                "correct": false
+            },
+            {
+                "response": "Pompeii",
+                "correct": true
+            },
+            {
+                "response": "The Napoleonic Wars",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "ebe242d9-70e1-4724-abeb-70b3144bfa64"
+    },
+    {
+        "question": "What ancient civilization built the pyramids of Giza?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Inca",
+                "correct": false
+            },
+            {
+                "response": "Maya",
+                "correct": false
+            },
+            {
+                "response": "Ancient Egypt",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "ebe242d9-70e1-4724-abeb-70b3144bfa64"
+    },
+    {
+        "question": "Which U.S. president served four terms in office, the only one to do so?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Franklin D. Roosevelt",
+                "correct": true
+            },
+            {
+                "response": "Thomas Jefferson",
+                "correct": false
+            },
+            {
+                "response": "Abraham Lincoln",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "ebe242d9-70e1-4724-abeb-70b3144bfa64"
+    },
+    {
+        "question": "What event led to the start of World War II in 1939?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The invasion of Poland by Germany.",
+                "correct": true
+            },
+            {
+                "response": "The signing of the Treaty of Versailles",
+                "correct": false
+            },
+            {
+                "response": "The Battle of Waterloo",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "d445d290-cb86-4204-b566-f04fb4c25058"
+    },
+    {
+        "question": "What was the name of the ship that carried the Pilgrims to America in 1620?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "HMS Victory",
+                "correct": false
+            },
+            {
+                "response": "The Mayflower Compact",
+                "correct": false
+            },
+            {
+                "response": "The Mayflower.",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "d445d290-cb86-4204-b566-f04fb4c25058"
+    },
+    {
+        "question": "Which ancient civilization is known for constructing the Terracotta Army in the tomb of Emperor Qin Shi Huang?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Ancient Greece",
+                "correct": false
+            },
+            {
+                "response": "Ancient China.",
+                "correct": true
+            },
+            {
+                "response": "The Roman Empire",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "d445d290-cb86-4204-b566-f04fb4c25058"
+    },
+    {
+        "question": "Who is known for leading the Cuban Revolution and becoming the country's communist leader?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Francisco Franco",
+                "correct": false
+            },
+            {
+                "response": "Ernesto 'Che' Guevara",
+                "correct": false
+            },
+            {
+                "response": "Fidel Castro",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "d445d290-cb86-4204-b566-f04fb4c25058"
+    },
+    {
+        "question": "Which Spanish conquistador led the expedition that resulted in the fall of the Aztec Empire?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Ferdinand Magellan",
+                "correct": false
+            },
+            {
+                "response": "Cristobal Colon",
+                "correct": false
+            },
+            {
+                "response": "Hernan Cortez",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "d445d290-cb86-4204-b566-f04fb4c25058"
+    },
+    {
+        "question": "What is the historical event that began on July 14, 1789, with the storming of the Bastille in Paris?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The French Revolution.",
+                "correct": true
+            },
+            {
+                "response": "The Renaissance",
+                "correct": false
+            },
+            {
+                "response": "The Glorious Revolution",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "8b438851-48d1-4bfa-afe4-24ea254c804d"
+    },
+    {
+        "question": "What is the name of the ancient city known for its iconic stone heads on Easter Island?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Atlantis",
+                "correct": false
+            },
+            {
+                "response": "Rapa Nui (Easter Island)",
+                "correct": true
+            },
+            {
+                "response": "Machu Picchu",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "8b438851-48d1-4bfa-afe4-24ea254c804d"
+    },
+    {
+        "question": "Where does the president of the United States reside?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The White House",
+                "correct": true
+            },
+            {
+                "response": "Buckingham Palace",
+                "correct": false
+            },
+            {
+                "response": "Elysee Palace",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "8b438851-48d1-4bfa-afe4-24ea254c804d"
+    },
+    {
+        "question": "The Statue of Liberty was given to the US by which country?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Italy",
+                "correct": false
+            },
+            {
+                "response": "France",
+                "correct": true
+            },
+            {
+                "response": "Germany",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "8b438851-48d1-4bfa-afe4-24ea254c804d"
+    },
+    {
+        "question": "Which is the oldest university in the USA?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Stanford University",
+                "correct": false
+            },
+            {
+                "response": "Harvard University",
+                "correct": true
+            },
+            {
+                "response": "Yale University",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "8b438851-48d1-4bfa-afe4-24ea254c804d"
+    },
+    {
+        "question": "Which was the first capital of the USA?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Philadelphia",
+                "correct": true
+            },
+            {
+                "response": "Washington",
+                "correct": false
+            },
+            {
+                "response": "Boston",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "29f34d65-66d8-48f1-bca8-86da4904097c"
+    },
+    {
+        "question": "What is the number of states in the USA?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "51",
+                "correct": false
+            },
+            {
+                "response": "52",
+                "correct": false
+            },
+            {
+                "response": "50",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "29f34d65-66d8-48f1-bca8-86da4904097c"
+    },
+    {
+        "question": "Which city is known as the Big Apple?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "New York",
+                "correct": true
+            },
+            {
+                "response": "Chicago",
+                "correct": false
+            },
+            {
+                "response": "Los Angeles",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "29f34d65-66d8-48f1-bca8-86da4904097c"
+    },
+    {
+        "question": "Which country did Bolivia gain independence from?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Brazil",
+                "correct": false
+            },
+            {
+                "response": "Spain",
+                "correct": true
+            },
+            {
+                "response": "Argentina",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "29f34d65-66d8-48f1-bca8-86da4904097c"
+    },
+    {
+        "question": "Who is the current president of Bolivia?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Evo Morales",
+                "correct": false
+            },
+            {
+                "response": "Hugo Chavez",
+                "correct": false
+            },
+            {
+                "response": "Luis Arce Catacora",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": "29f34d65-66d8-48f1-bca8-86da4904097c"
+    },
+    {
+        "question": "How many years did the 100 years war last?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "110 years",
+                "correct": false
+            },
+            {
+                "response": "116 years",
+                "correct": false
+            },
+            {
+                "response": "100 years",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "How many U.S. presidents have been assassinated?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Five",
+                "correct": true
+            },
+            {
+                "response": "Four",
+                "correct": false
+            },
+            {
+                "response": "Six",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "Which Civil Rights leader made the famous 'I have a dream' speech?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Malcolm X",
+                "correct": false
+            },
+            {
+                "response": "Nelson Mandela",
+                "correct": false
+            },
+            {
+                "response": "Martin Luther King",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "Who is the author of the national anthem of Bolivia?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Ludwig van Beethoven",
+                "correct": false
+            },
+            {
+                "response": "Simón Bolívar",
+                "correct": false
+            },
+            {
+                "response": "José Ignacio de Sanjinés",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "What color was the first flag of Bolivia?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Red, yellow and green",
+                "correct": false
+            },
+            {
+                "response": "Green, red and green",
+                "correct": false
+            },
+            {
+                "response": "Green, blue, red",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "What ancient wonder of the world was a monumental tomb built in Agra, India, and is a UNESCO World Heritage site?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The Colosseum",
+                "correct": false
+            },
+            {
+                "response": "The Parthenon",
+                "correct": false
+            },
+            {
+                "response": "The Taj Mahal",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "Which ancient civilization is credited with inventing the concept of democracy and is known for its city-state of Athens?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Ancient Rome",
+                "correct": false
+            },
+            {
+                "response": "Ancient Greece",
+                "correct": true
+            },
+            {
+                "response": "Ancient Egypt",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "What is the name of the ancient Egyptian queen known for her relationships with Julius Caesar and Mark Antony?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Nefirtiti",
+                "correct": false
+            },
+            {
+                "response": "Ateneas",
+                "correct": false
+            },
+            {
+                "response": "Cleopatra",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "What is the number of states in the United States?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "50 states",
+                "correct": true
+            },
+            {
+                "response": "52 states",
+                "correct": false
+            },
+            {
+                "response": "49 states",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "Which U.S. state is known as the 'Sunshine State'?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Texas",
+                "correct": false
+            },
+            {
+                "response": "California",
+                "correct": false
+            },
+            {
+                "response": "Florida",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "What was the name of the series of military campaigns by European Christians to reclaim the Holy Land from Islamic rule during the Middle Ages?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The Crusades",
+                "correct": true
+            },
+            {
+                "response": "The Reconquista",
+                "correct": false
+            },
+            {
+                "response": "The ",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "In which year did the Berlin Wall fall, leading to the reunification of East and West Germany?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "1995",
+                "correct": false
+            },
+            {
+                "response": "1985",
+                "correct": false
+            },
+            {
+                "response": "1989",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "What significant event in American history occurred on July 20, 1969, when Apollo 11 astronauts Neil Armstrong and Buzz Aldrin walked on the moon?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The Industrial Revolution",
+                "correct": false
+            },
+            {
+                "response": "The Louisiana Purchase",
+                "correct": false
+            },
+            {
+                "response": "The Moon landing",
+                "correct": true
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "Which is the oldest university in the USA?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "Harvard",
+                "correct": true
+            },
+            {
+                "response": "Yale",
+                "correct": false
+            },
+            {
+                "response": "Princeton",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    },
+    {
+        "question": "What is the historical event that began on July 14, 1789, with the storming of the Bastille in Paris?",
+        "category": "history",
+        "type": "",
+        "answer": [
+            {
+                "response": "The French Revolution.",
+                "correct": true
+            },
+            {
+                "response": "The Renaissance",
+                "correct": false
+            },
+            {
+                "response": "The Glorious Revolution",
+                "correct": false
+            }
+        ],
+        "difficulty": "easy",
+        "stage": "",
+        "CategoryIdCategory": ""
+    }
+]

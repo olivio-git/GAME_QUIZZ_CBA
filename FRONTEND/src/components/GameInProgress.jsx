@@ -4,11 +4,16 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import DataContext from '../context/dataContext';
 import GameStart from './GameStart';
 import toast from 'react-hot-toast';
-import { fetchPostGame } from '../utils/fetchBackend';
+import { fetchGetCategory, fetchPostGame } from '../utils/fetchBackend';
+import { KEY_LOCAL_STORAGE } from '../utils/emvironments';
 
 const GameInProgress = () => {
   const { id } = useParams();
-  const { data, selected, gameInProgress, addGameProgress, gameCreator, addGamePlayers, addGameName, restartGameCreator } = useContext(DataContext);
+  const {
+    data, selected,
+    gameInProgress,
+    addGameProgress,
+    gameCreator, addGamePlayers, addGameName, restartGameCreator, addGameContext,addCategorys } = useContext(DataContext);
   const [game, setGame] = useState(null);
   const [gameSrc, setGameSrc] = useState(null);
   const navigate = useNavigate();
@@ -37,11 +42,17 @@ const GameInProgress = () => {
       success: 'Operation Success!.',
       error: 'Operation Error!.',
     })
-      .then((r) => {
+      .then(async (r) => { //r = response
         setTemPlayer('');
         restartGameCreator();
         setGameModal(false);
         addGameProgress(true);
+
+        await localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(r.data.data)); //cargar al localstorage como string
+        const res = await localStorage.getItem(KEY_LOCAL_STORAGE); //recuperando
+        const jsonparse = await JSON.parse(res); //convirtiendo a json
+        addGameContext(jsonparse);
+
 
         //r.data.data = {game: {name}, players: [1,2,3,4,5]}
         //localstorage.setItem('game', r.data.data)
@@ -115,6 +126,22 @@ const GameInProgress = () => {
   const handleStartGame = () => {
     addGameProgress(true)
   };
+  const categoryFetch = async () => {
+    await fetchGetCategory(addCategorys);
+}
+  const updateGlobalContext = async () => {
+    const data = await localStorage.getItem(KEY_LOCAL_STORAGE);
+    if(data){
+      const jsonparse= await JSON.parse(data);
+      addGameContext(jsonparse);
+      addGameProgress(true);
+      await categoryFetch();
+      
+    }
+  }
+  useEffect(()=>{
+    updateGlobalContext();
+  },[])
   useEffect(() => {
     const handleUpdate = async () => {
       const response = await selected(id);
@@ -129,7 +156,7 @@ const GameInProgress = () => {
       <div className='col-span-1 flex p-4 rounded-2xl h-full'>
         {game ? renderHeadSelected() : 'Cargando datos...'}
       </div>
-      <div className='col-span-3 row-span-4 flex p-4 rounded-2xl justify-center items-center h-full'>
+      <div className='flex w-full col-span-3 row-span-4 flex p-4 rounded-2xl justify-center h-full'>
         {
           renderButtonGame()
         }
