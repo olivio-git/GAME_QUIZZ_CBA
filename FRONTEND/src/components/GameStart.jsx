@@ -18,7 +18,7 @@ const GameStart = () => {
         return (
             <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                 <div className="bg-white w-1/2 p-8 rounded-2xl shadow-lg">
-                    <h1 className="text-2xl font-bold mb-4">
+                    <h1 className="text-2xl font-bold ">
                         {questionGameIn.question}
                     </h1>
                     <div className="mb-4">
@@ -55,8 +55,8 @@ const GameStart = () => {
 
 
     return (
-        <div className='grid grid-cols-3 grid-rows-5 w-full gap-1'>
-            <div className='grid grid-cols-3 col-span-3 border bg-white border-none rounded-2xl p-2 shadow shadow-2xl'>
+        <div className='grid grid-cols-3 grid-rows-5 w-full '>
+            <div className='grid grid-cols-3 col-span-3 border bg-white border-none rounded-2xl shadow shadow-2xl'>
                 <div className="flex justify-center items-center col-span-1   border-r-4 ">
                     <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
                         GAME: <span className='text-blue-900'>{gameContext.game.name}</span>
@@ -64,7 +64,7 @@ const GameStart = () => {
                 </div>
                 <div className="flex justify-center items-center col-span-1  pl-2">
 
-                    <div className='w-2/12 justify-center items-center '>
+                    <div className='w-2/12 justify-center items-center  '>
                         <h1 className="text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
                             Players
                         </h1>
@@ -99,7 +99,7 @@ const GameStart = () => {
 
                 </div>
             </div>
-            <div className='col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 justify-center gap-2 rounded-2xl  '>
+            <div className='col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 justify-center py-2 gap-2 rounded-2xl  '>
                 {
                     categorys && categorys.map((c) => {
                         return (
@@ -115,9 +115,9 @@ const GameStart = () => {
                     })
                 }
                 {
-                    categorys && categorys.map((c, index) => {
+                      categorys.map((c, index) => { //imprime categorya 1*5 2*5 3*5 4*5 5*5 
                         return (
-                            <div key={c.index} className='col-span-1  row-span-5 grid grid-rows-5 gap-2 '>
+                            <div key={index} className='col-span-1  row-span-5 grid grid-rows-5 gap-2 '>
                                 {
                                     dataQuestions.map((q, ind) => {
                                         if (q.CategoryIdCategory == categorys[index].id_category) {
