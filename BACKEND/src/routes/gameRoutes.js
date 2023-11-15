@@ -1,9 +1,9 @@
-const express =require('express');
+const express = require('express');
 const { addGame } = require('../controllers/gameController');
 const { catchedAsync } = require('../utils');
 
-const router=express();
+const router = express();
 
-router.post('/',catchedAsync(addGame));
+router.post('/', catchedAsync(addGame));
 
-module.exports=router;
+module.exports = router;

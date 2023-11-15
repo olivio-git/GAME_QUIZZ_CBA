@@ -14,7 +14,7 @@ const HEAD_PROPERTYS_QUESTION = [
     'Ident', 'Question', 'Category', 'Difficulty', " "
 ]
 const DashboardPage = () => {
-    const { categorys, addCategorys, questions, addQuestions,catSelect, addCatSet } = useContext(DataContext);
+    const { categorys, addCategorys, questions, addQuestions, catSelect, addCatSet } = useContext(DataContext);
     const [selected, setSelected] = useState(null);
     const [modalCat, setModalCat] = useState(false);
     const [modalQuest, setModalQuest] = useState(false);
@@ -44,7 +44,7 @@ const DashboardPage = () => {
             });
     };
     const handleDeleteQuestion = (id) => {
-        toast.promise(fetchDeleteQuestion(id,catSelect.id_category), {
+        toast.promise(fetchDeleteQuestion(id, catSelect.id_category), {
             loading: 'Loading Operation',
             success: 'Operation Success!.',
             error: 'Operation Error!.',
@@ -82,7 +82,7 @@ const DashboardPage = () => {
                         className={`bg-white ${selected && selected.id_category == c.id_category ? 'bg-blue-200' : ''}`}
                     >
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {index + 1 + " "} 
+                            {index + 1 + " "}
                         </th>
                         <td className={`px-6 py-4`}>
                             {c.name_category}
@@ -110,7 +110,7 @@ const DashboardPage = () => {
     const renderBodyQuestions = () => {
 
         return (
-            questions.map((q,index) => {
+            questions.map((q, index) => {
                 return (
                     <motion.tr
                         key={q.id_question}
@@ -120,16 +120,16 @@ const DashboardPage = () => {
                         className="bg-white"
                     >
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {index+1}
+                            {index + 1}
                         </th>
                         <td className="px-6 py-4">
                             {q.question}
                         </td>
                         <td className="px-6 py-4">
                             {
-                                q.answer.map((a)=>{
-                                    return(
-                                        <p className={`${a.correct?"text-green-500":"text-red-400"}`} key={a.value}>{a.value}</p>  
+                                q.answer.map((a) => {
+                                    return (
+                                        <p className={`${a.correct ? "text-green-500" : "text-red-400"}`} key={a.value}>{a.value}</p>
                                     )
                                 })
                             }
@@ -138,7 +138,7 @@ const DashboardPage = () => {
                             {q.difficulty}
                         </td>
                         <td className="px-6 py-4">
-                        <button onClick={() => handleDeleteQuestion(q.id_question)} className='hover:bg-red-200 rounded-2xl'>
+                            <button onClick={() => handleDeleteQuestion(q.id_question)} className='hover:bg-red-200 rounded-2xl'>
                                 <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20" fill='red'>
                                     <path d="M21,4H17.9A5.009,5.009,0,0,0,13,0H11A5.009,5.009,0,0,0,6.1,4H3A1,1,0,0,0,3,6H4V19a5.006,5.006,0,0,0,5,5h6a5.006,5.006,0,0,0,5-5V6h1a1,1,0,0,0,0-2ZM11,2h2a3.006,3.006,0,0,1,2.829,2H8.171A3.006,3.006,0,0,1,11,2Zm7,17a3,3,0,0,1-3,3H9a3,3,0,0,1-3-3V6H18Z" /><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18Z" />
                                     <path d="M14,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z" />
@@ -215,14 +215,14 @@ const DashboardPage = () => {
     }
     useEffect(() => {
         fetchGetCategory(addCategorys);
-    }, []) 
+    }, [])
     useEffect(() => {
         selected ?
             setQuestion({
                 ...question,
                 CategoryIdCategory: selected.id_category
-            }) : null; 
-        selected ?fetchGetQuestions(addQuestions,selected.id_category):null;
+            }) : null;
+        selected ? fetchGetQuestions(addQuestions, selected.id_category) : null;
     }, [selected])
     const renderModalCategorys = () => {
         return (
@@ -298,7 +298,7 @@ const DashboardPage = () => {
                                 <option value="medium">Medium</option>
                                 <option value="hard">Hard</option>
                             </select>
-                        </div> 
+                        </div>
                         <button type='submit' className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"  >
                             Save
                         </button>
@@ -354,7 +354,7 @@ const DashboardPage = () => {
                                 <path d="m12 0a12 12 0 1 0 12 12 12.013 12.013 0 0 0 -12-12zm0 22a10 10 0 1 1 10-10 10.011 10.011 0 0 1 -10 10zm5-10a1 1 0 0 1 -1 1h-3v3a1 1 0 0 1 -2 0v-3h-3a1 1 0 0 1 0-2h3v-3a1 1 0 0 1 2 0v3h3a1 1 0 0 1 1 1z" />
                             </svg>
                         </button>
-                    </div>  
+                    </div>
                     <div className="relative overflow-x-auto h-full">
                         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                             <thead className="text-xs text-gray-700 uppercase  bg-white ">
@@ -373,7 +373,7 @@ const DashboardPage = () => {
                             </tbody>
                         </table>
                     </div>
-                </div> 
+                </div>
             </div>
             {
                 //saco mi modal category

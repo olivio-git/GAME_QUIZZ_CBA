@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
- 
-const Menu = () => { 
+
+const Menu = () => {
     return (
         <div className="absolute left-1/2 z-10 mt-5 ml-0 flex w-80 max-w-max px-4">
             <div className="w-80 max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">

@@ -17,7 +17,7 @@ server.use(cors({
 }))
 server.use(morgan('dev'));
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-server.use(bodyParser.json({limit:"50mb"}));
+server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use((req, res, next) => {
     res.header('access-control-allow-origin', '*');
@@ -28,8 +28,8 @@ server.use((req, res, next) => {
     res.header('server-time', now);
     next();
 });
- 
-server.use('/api',router);
+
+server.use('/api', router);
 
 server.use((err, req, res, next) => {
     const status = err.status || 500;
@@ -38,4 +38,4 @@ server.use((err, req, res, next) => {
     res.status(status).send(message);
 });
 
-module.exports =server;
+module.exports = server;
