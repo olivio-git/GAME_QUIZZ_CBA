@@ -4,7 +4,11 @@ import Students from '../assets/students.png'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Menu from './Menu';
 import DataContext from '../context/dataContext';
-import { KEY_LOCAL_STORAGE } from '../utils/emvironments';
+import {
+    KEY_LOCAL_STORAGE,
+    KEY_LOCAL_STORAGE_ROUNDS,
+    KEY_LOCAL_STORAGE_TURNS,
+    KEY_LOCAL_STORAGE_POINTS} from "../utils/emvironments";
 const Bar = ({ context }) => {
 const {addOpenMenu, menu , addGameContext,addGameProgress,addCategorys}=useContext(DataContext);
     const navigate = useNavigate();
@@ -13,6 +17,9 @@ const {addOpenMenu, menu , addGameContext,addGameProgress,addCategorys}=useConte
             const shouldNavigate = window.confirm('Estás seguro de volver al inicio?');
             if (shouldNavigate) {
                 navigate('/');
+                localStorage.removeItem(KEY_LOCAL_STORAGE_ROUNDS);
+                localStorage.removeItem(KEY_LOCAL_STORAGE_TURNS);
+                localStorage.removeItem(KEY_LOCAL_STORAGE_POINTS);
                 addGameContext(null);
                 addGameProgress(false);
                 addCategorys([]);
