@@ -247,68 +247,141 @@ const DashboardPage = () => {
     }
     const renderModalQuestions = () => {
         return (
-            <div className="fixed inset-0 flex items-center justify-center z-50 bg-[rgba(45,45,45,.8)]">
-                <div className="bg-white w-1/2 p-4 rounded-2xl shadow">
-                    <h2 className="text-xl font-bold mb-4">Create Questions</h2>
-                    <form onSubmit={handleSubmitQuestions}>
-                        <div className="relative z-0 w-full mb-6 group">
-                            <input value={question.question} onChange={handleChange} type="text" name="question" id="question" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                            <label htmlFor="question" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Question</label>
-                        </div>
-                        <div className="flex items-center gap-2 relative z-0 w-full mb-6 group">
-                            <div className='w-5/12'>
-                                <input value={tempQuest.value} onChange={(e) => setTempQuest({ ...tempQuest, value: e.target.value })} type="text" name="answer" id="answer" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                                <label htmlFor="answer" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Answer</label>
-                            </div>
-                            <div className='w-3/12'>
-                                <input id="default-checkbox" checked={tempQuest.correct} onChange={(e) => setTempQuest({ ...tempQuest, correct: e.target.checked })} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                <label htmlFor="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Correct Answer</label>
-                            </div>
-                            <div className='w-4-12'>
-                                <button onClick={handleSetAnswer} type='button' className="flex items-center gap-2 justify-center  text-white rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  >
-                                    {"Answer "}
-                                    <svg id="Layer_1" height="20" viewBox="0 0 24 24" width="20" fill='white' xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m12 0a12 12 0 1 0 12 12 12.013 12.013 0 0 0 -12-12zm0 22a10 10 0 1 1 10-10 10.011 10.011 0 0 1 -10 10zm5-10a1 1 0 0 1 -1 1h-3v3a1 1 0 0 1 -2 0v-3h-3a1 1 0 0 1 0-2h3v-3a1 1 0 0 1 2 0v3h3a1 1 0 0 1 1 1z" /></svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="flex relative gap-2 z-0 w-full mb-6 group overflow-x-auto">
-                            {
-                                question.answer && question.answer.map((q) => {
-                                    return (
-                                        <div
-                                            key={q.value}
-                                            className={`m-w-3/5   p-1 rounded shadow ${q.correct ? 'bg-green-200' : 'bg-red-200'}`}
-                                        >
-                                            {q.value}
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                        <div className="relative z-0 w-4/12 mb-6 group">
-                            <label htmlFor="difficulty" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Difficulty</label>
-                            <select
-                                id='difficulty'
-                                name="difficulty"
-                                onChange={handleChange}
-                                value={question.difficulty}
-                                className="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                            >
-                                <option value="easy">Easy</option>
-                                <option value="medium">Medium</option>
-                                <option value="hard">Hard</option>
-                            </select>
-                        </div>
-                        <button type='submit' className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"  >
-                            Save
-                        </button>
-                        <button type='button' onClick={() => setModalQuest(false)} className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"  >
-                            Cancel
-                        </button>
-                    </form>
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-[rgba(45,45,45,.8)]">
+            <div className="bg-white w-1/2 p-4 rounded-2xl shadow">
+              <h2 className="text-xl font-bold mb-4">Create Questions</h2>
+              <form onSubmit={handleSubmitQuestions}>
+                <div className="relative z-0 w-full mb-6 group">
+                  <input
+                    value={question.question}
+                    onChange={handleChange}
+                    type="text"
+                    name="question"
+                    id="question"
+                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required
+                  />
+                  <label
+                    htmlFor="question"
+                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Question
+                  </label>
                 </div>
+                <div className="flex items-center gap-2 relative z-0 w-full mb-6 group">
+                  <div className="w-5/12">
+                    <input
+                      value={tempQuest.value}
+                      onChange={(e) =>
+                        setTempQuest({ ...tempQuest, value: e.target.value })
+                      }
+                      type="text"
+                      name="answer"
+                      id="answer"
+                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" "
+                    />
+                    <label
+                      htmlFor="answer"
+                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Answer
+                    </label>
+                  </div>
+                  <div className="w-3/12">
+                    <input
+                      id="default-checkbox"
+                      checked={tempQuest.correct}
+                      onChange={(e) =>
+                        setTempQuest({
+                          ...tempQuest,
+                          correct: e.target.checked,
+                        })
+                      }
+                      type="checkbox"
+                      value=""
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      htmlFor="default-checkbox"
+                      className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Correct Answer
+                    </label>
+                  </div>
+                  <div className="w-4-12">
+                    <button
+                      onClick={handleSetAnswer}
+                      type="button"
+                      className="flex items-center gap-2 text-gray-300 justify-center  rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    >
+                      {"Answer "}
+                      <svg
+                        id="Layer_1"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        fill="white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        data-name="Layer 1"
+                      >
+                        <path d="m12 0a12 12 0 1 0 12 12 12.013 12.013 0 0 0 -12-12zm0 22a10 10 0 1 1 10-10 10.011 10.011 0 0 1 -10 10zm5-10a1 1 0 0 1 -1 1h-3v3a1 1 0 0 1 -2 0v-3h-3a1 1 0 0 1 0-2h3v-3a1 1 0 0 1 2 0v3h3a1 1 0 0 1 1 1z" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div className="flex relative gap-2 z-0 w-full mb-6 group overflow-x-auto">
+                  {question.answer &&
+                    question.answer.map((q) => {
+                      return (
+                        <div
+                          key={q.value}
+                          className={`m-w-3/5   p-1 rounded shadow ${
+                            q.correct ? "bg-green-200" : "bg-red-200"
+                          }`}
+                        >
+                          {q.value}
+                        </div>
+                      );
+                    })}
+                </div>
+                <div className="relative z-0 w-4/12 mb-6 group">
+                  <label
+                    htmlFor="difficulty"
+                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Difficulty
+                  </label>
+                  <select
+                    id="difficulty"
+                    name="difficulty"
+                    onChange={handleChange}
+                    value={question.difficulty}
+                    className="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                  >
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setModalQuest(false)}
+                  className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                >
+                  Cancel
+                </button>
+              </form>
             </div>
-        )
+          </div>
+        );
     }
     return (
         <div className='grid grid-cols-1 grid-rows-4 gap-4 p-4 h-screen gradient-blue w-full'>

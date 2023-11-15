@@ -10,8 +10,9 @@ export const DataContextProvider = ({ children }) => {
         players: []
     });
     const [gameContext, setGameContext] = useState(null);
+    //states game start 
 
-
+    
     const [gameInProgress, setGameInProgress] = useState(false); //para saber si mostrar partida o boton
     const [questions, setQuestions] = useState([]);//mis estado big
     const [categorys, setCategorys] = useState([]);//mis estado big
