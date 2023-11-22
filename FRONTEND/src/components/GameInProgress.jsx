@@ -4,16 +4,24 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import DataContext from '../context/dataContext';
 import GameStart from './GameStart';
 import toast from 'react-hot-toast';
-import { fetchGetCategory, fetchPostGame } from '../utils/fetchBackend';
+import { FetchAllQuestionsBd, fetchGetCategory, fetchPostGame } from '../utils/fetchBackend';
 import { KEY_LOCAL_STORAGE } from '../utils/emvironments';
 
 const GameInProgress = () => {
   const { id } = useParams();
   const {
-    data, selected,
+    data,
+    selected,
     gameInProgress,
     addGameProgress,
-    gameCreator, addGamePlayers, addGameName, restartGameCreator, addGameContext,addCategorys } = useContext(DataContext);
+    gameCreator,
+    addGamePlayers,
+    addGameName,
+    restartGameCreator,
+    addGameContext,
+    addCategorys,
+    addDataQuestions,
+  } = useContext(DataContext);
   const [game, setGame] = useState(null);
   const [gameSrc, setGameSrc] = useState(null);
   const navigate = useNavigate();
@@ -177,15 +185,27 @@ const GameInProgress = () => {
     await fetchGetCategory(addCategorys);
 }
   const updateGlobalContext = async () => {
+    console.log("object");
     const data = await localStorage.getItem(KEY_LOCAL_STORAGE);
     if(data){
       const jsonparse= await JSON.parse(data);
       addGameContext(jsonparse);
+      await updateDataQuestions();
       addGameProgress(true);
       await categoryFetch();
-      
     }
   }
+  const updateDataQuestions = async () => {
+    return toast
+      .promise(FetchAllQuestionsBd(), {
+        loading: "Loading Operation",
+        success: "Uploaded Information.",
+        error: "Operation Error!.",
+      })
+      .then((r) => {
+        addDataQuestions(r.data.data);
+      });
+  };
   useEffect(()=>{
     updateGlobalContext();
   },[])

@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import One from '../assets/ONE.avif';
+import React, { useContext } from 'react'; 
 import Bar from './Bar';
 import DataContext from '../context/dataContext';
 import { Link } from 'react-router-dom';
