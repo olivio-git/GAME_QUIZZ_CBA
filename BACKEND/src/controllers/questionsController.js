@@ -1,12 +1,28 @@
 const { Question, Category } = require("../db");
 const { response  } = require('../utils');
 
+// const addQuestion = async (req, res) => {
+//     const question = req.body;
+//     await Question.create(question)
+//     const result = await Question.findAll({ where: { CategoryIdCategory: question.CategoryIdCategory } });
+//     response(res, 200, result);
+// };
+
 const addQuestion = async (req, res) => {
-    const question = req.body;
-    await Question.create(question)
-    const result = await Question.findAll({ where: { CategoryIdCategory: question.CategoryIdCategory } });
-    response(res, 200, result);
+  const questions = req.body;
+  await Promise.all(
+      questions.map(async (question) => {
+          await Question.create(question);
+      })
+  );
+  const result = await Question.findAll({
+      where: { CategoryIdCategory: questions[0].CategoryIdCategory }, 
+  });
+
+  response(res, 200, result);
 };
+
+
 const deleteQuestion = async (req, res) => {
     const id = req.params.id;
     const iduser = req.query.iduser;

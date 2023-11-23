@@ -19,7 +19,7 @@
         ],
         "difficulty": "easy",
         "stage": "",
-        "CategoryIdCategory": "222f97f4-31ae-4476-972a-14c7bc160663"
+        "CategoryIdCategory": " "
     },
     {
         "question": "Which civilization built the Machu Picchu citadel in Peru?",
@@ -41,7 +41,7 @@
         ],
         "difficulty": "easy",
         "stage": "",
-        "CategoryIdCategory": "222f97f4-31ae-4476-972a-14c7bc160663"
+        "CategoryIdCategory": " "
     },
     {
         "question": "In which year did the Titanic sink after hitting an iceberg?",
@@ -63,7 +63,7 @@
         ],
         "difficulty": "easy",
         "stage": "",
-        "CategoryIdCategory": "222f97f4-31ae-4476-972a-14c7bc160663"
+        "CategoryIdCategory": " "
     },
     {
         "question": "In 1492, Christopher Columbus reached the Americas under the sponsorship of this country.",
@@ -85,7 +85,7 @@
         ],
         "difficulty": "easy",
         "stage": "",
-        "CategoryIdCategory": "222f97f4-31ae-4476-972a-14c7bc160663"
+        "CategoryIdCategory": " "
     },
     {
         "question": "What year did the Berlin Wall fall, leading to the reunification of East and West Germany?",
@@ -107,7 +107,7 @@
         ],
         "difficulty": "easy",
         "stage": "",
-        "CategoryIdCategory": "222f97f4-31ae-4476-972a-14c7bc160663"
+        "CategoryIdCategory": " "
     },
     {
         "question": "Which country was responsible for the construction of the Panama Canal?",
