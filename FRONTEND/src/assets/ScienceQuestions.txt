@@ -1,0 +1,523 @@
+[
+    {
+        "question": "Which planet is the largest in our solar system?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Mars", "correct": false},
+            {"value": "Venus", "correct": false},
+            {"value": "Jupiter", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the smallest planet in our solar system?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Mercury", "correct": true},
+            {"value": "Saturn", "correct": false},
+            {"value": "Neptune", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the process by which plants make their own food using sunlight?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Aerobic respiration", "correct": false},
+            {"value": "Photosynthesis", "correct": true},
+            {"value": "Geothermal conversion", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the closest star to Earth?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Alpha Centauri", "correct": false},
+            {"value": "Sirius", "correct": false},
+            {"value": "The Sun", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the force that causes objects to fall to the ground?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Gravity", "correct": true},
+            {"value": "Electromagnetic force", "correct": false},
+            {"value": "Gravitational force", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the study of celestial objects such as stars, planets, and galaxies?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Botany", "correct": false},
+            {"value": "Astronomy", "correct": true},
+            {"value": "Geology", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which gas do plants use from the air to perform photosynthesis?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Carbon dioxide", "correct": true},
+            {"value": "Helium", "correct": false},
+            {"value": "Neon", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the smallest unit of an element, consisting of protons, neutrons, and electrons?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Quark", "correct": false},
+            {"value": "An atom", "correct": true},
+            {"value": "Photon", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the process by which rocks, minerals, and soil are gradually worn away by natural forces?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Erosion", "correct": true},
+            {"value": "Volcanic eruption", "correct": false},
+            {"value": "Fossilization", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the largest organ in the human body?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Lungs", "correct": false},
+            {"value": "The skin", "correct": true},
+            {"value": "Small intestine", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the powerhouse of the cell and produces ATP?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Nucleus", "correct": false},
+            {"value": "Mitochondria", "correct": true},
+            {"value": "Endoplasmic reticulum", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which gas do humans inhale for respiration?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Oxygen", "correct": true},
+            {"value": "Carbon dioxide", "correct": false},
+            {"value": "Nitrogen", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which planet is known as the 'Red Planet'?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Venus", "correct": false},
+            {"value": "Mars", "correct": true},
+            {"value": "Jupiter", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "This unit is used to measure the intensity of earthquakes.",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Seismograph", "correct": false},
+            {"value": "Richter scale", "correct": true},
+            {"value": "Thermometer", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the study of the Earth's rocks, minerals, and the processes that shape the Earth's surface?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Biology", "correct": false},
+            {"value": "Geology", "correct": true},
+            {"value": "Meteorology", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the largest mammal in the world?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The elephant", "correct": false},
+            {"value": "The blue whale", "correct": true},
+            {"value": "The giraffe", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the basic unit of life?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Cell", "correct": true},
+            {"value": "DNA", "correct": false},
+            {"value": "Atom", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the chemical symbol for sodium?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "So", "correct": false},
+            {"value": "Na", "correct": true},
+            {"value": "Sm", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the process by which living organisms produce offspring of the same kind?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Evolution", "correct": false},
+            {"value": "Adaptation", "correct": false},
+            {"value": "Reproduction", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which marine mammal is known for its playful behavior, often seen leaping out of the water and performing acrobatics?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The Shark", "correct": false},
+            {"value": "The Dolphin", "correct": true},
+            {"value": "The Whale", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the branch of physics that deals with the study of motion and the forces that cause it?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Acoustic", "correct": false},
+            {"value": "Mechanics", "correct": true},
+            {"value": "Relativity", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What kind of animal is a snake?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Bird", "correct": false},
+            {"value": "Reptile", "correct": true},
+            {"value": "Mammal", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "How many hearts does an octopus have?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "8", "correct": false},
+            {"value": "1", "correct": false},
+            {"value": "3", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "How many colors are in the rainbow?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "7", "correct": true},
+            {"value": "8", "correct": false},
+            {"value": "5", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which is the most abundant element in the universe?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Oxygen", "correct": false},
+            {"value": "Hydrogen", "correct": true},
+            {"value": "Sodium", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Diamond", "correct": true},
+            {"value": "Pyrite", "correct": false},
+            {"value": "Topaz", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What does DNA stand for?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Deoxyribonucleic mass", "correct": false},
+            {"value": "Deoxyribonucleic acid", "correct": true},
+            {"value": "Dextrose acid", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "On what continent will you not find bees?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Europe", "correct": false},
+            {"value": "Asia", "correct": false},
+            {"value": "Antarctica", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the heaviest organ in the human body?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The heart", "correct": false},
+            {"value": "The liver", "correct": true},
+            {"value": "The stomach", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "How many bones are in the human body?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "156", "correct": false},
+            {"value": "209", "correct": false},
+            {"value": "206", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which planet in our solar system is known for its prominent rings?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Jupiter", "correct": false},
+            {"value": "Saturn", "correct": true},
+            {"value": "Mars", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which gas is most abundant in Earth's atmosphere?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Helium", "correct": false},
+            {"value": "Carbon", "correct": false},
+            {"value": "Nitrogen", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the primary function of red blood cells in the human body?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Oxygen transport", "correct": true},
+            {"value": "Defence against microbial attack", "correct": false},
+            {"value": "Transport vitamins", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the study of the Earth's atmosphere and its interactions with the planet's surface and living organisms?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Astrology", "correct": false},
+            {"value": "Meteorology", "correct": true},
+            {"value": "Astronomy", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which mammal is often referred to as the 'sea cow' and is known for its herbivorous diet and slow-moving nature?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Seal", "correct": false},
+            {"value": "Manatee", "correct": true},
+            {"value": "Sirenia", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the name for a group of wolves led by a dominant male and female, often associated with social hunting?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Herd", "correct": false},
+            {"value": "Flock", "correct": false},
+            {"value": "Pack", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the process by which some animals, like reptiles and amphibians, shed their outer skin to allow for growth?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Changing skin", "correct": false},
+            {"value": "Molting", "correct": true},
+            {"value": "Shedding", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which insect is known for its powerful jaws and is often associated with building complex underground colonies?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Bee", "correct": false},
+            {"value": "Spider", "correct": false},
+            {"value": "Ant", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "Which large primate species is known for its distinctive reddish-brown fur and is native to Borneo and Sumatra?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Orangutan", "correct": true},
+            {"value": "Gorilla", "correct": false},
+            {"value": "Chimpanzee", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    },
+    {
+        "question": "What is the term for the adaptation of an animal's behavior and physiology to changes in temperature and light over the course of a day?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Physiological adaptations", "correct": false},
+            {"value": "Circadian Rhythm", "correct": true},
+            {"value": "Hibernation", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+    }
+]
+

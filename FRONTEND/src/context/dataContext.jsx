@@ -20,8 +20,8 @@ export const DataContextProvider = ({ children }) => {
   const [data, setData] = useState([
     {
       id: 1,
-      name: "Quizz",
-      description: "Logic Master",
+      name: "MASTER MIND",
+      description: "Jeopardy",
       image: IMAGE_CLOUDFRONT_QUIZZ,
     },
   ]);
