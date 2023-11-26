@@ -3,14 +3,21 @@ import DataContext from "../context/dataContext";
 import { FetchAllQuestionsBd, fetchGetCategory } from "../utils/fetchBackend";
 import Confetti from "react-confetti";
 import SuccessSound from "../assets/success.mp4";
+import ErrorSound from "../assets/error.mp4";
+import CounterSound from "../assets/countertwo.mp4";
+
+
 import { motion } from "framer-motion";
 
 // import dataQuestions from "../utils/exampleQuestions.json";
 import {
   KEY_LOCAL_STORAGE_POINTS,
   KEY_LOCAL_STORAGE_ROUNDS,
+  KEY_LOCAL_STORAGE_TURN,
   KEY_LOCAL_STORAGE_TURNS,
   KEY_LOCAL_STORAGE_USEDQUESTIONS,
+  VALUE_INTERVAL_COUNTER,
+  VALUE_ROUNDS_LOCAL,
 } from "../utils/emvironments";
 import { useLocalStorageState } from "../utils/useLocalStorageState";
 import axios from "axios";
@@ -23,11 +30,16 @@ const GameStart = () => {
   //temp
   const [error, setError] = useState(false); //Para poder mostrar el error de pregunta no respondida
   const [success, setSuccess] = useState(false); //Para poder mostrar alertas success
-  const [usedRadioButton, setUsedRadioButton] = useState(false);
-  const [counter, setCounter] = useState(0); //Para poner contador de vuelta atrás
-  const successSound = new Audio(SuccessSound); //Sonido de audio para Sucess
+  const [counterSoundState, setCounterSoundState] = useState(false);
 
-  //
+  const [usedRadioButton, setUsedRadioButton] = useState(false); //Validar si el boton fue presionado
+  // const [playerInGame, setCounter] = useState(0); //Para poner contador de vuelta atrás
+  const successSound = new Audio(SuccessSound); //Sonido de audio para Sucess
+  const errorSound = new Audio(ErrorSound); //Sonido de audio para Sucess
+  const countSound = new Audio(CounterSound); //Sonido de audio para Counter
+
+  const [counter, setCounter] = useState(VALUE_INTERVAL_COUNTER); //counter
+  const [intervalId, setIntervalId] = useState(null); //interval
   const {
     gameContext,
     categorys,
@@ -40,6 +52,13 @@ const GameStart = () => {
     KEY_LOCAL_STORAGE_ROUNDS,
     Array.from({ length: 5 }, (_, i) => i + 1)
   );
+  const [turnIndexSave, SetTurnIndexSave] = useLocalStorageState(
+    KEY_LOCAL_STORAGE_TURN,
+    { 
+      round: 0, 
+      player: 0 
+    }
+  );
   const [currentTurn, setCurrentTurn] = useLocalStorageState(
     KEY_LOCAL_STORAGE_TURNS,
     { round: 0, player: 0 }
@@ -50,23 +69,47 @@ const GameStart = () => {
   );
 
   const [questionUsedValids, setQuestionUsedValids] = useLocalStorageState(
-    KEY_LOCAL_STORAGE_USEDQUESTIONS,[]
+    KEY_LOCAL_STORAGE_USEDQUESTIONS,
+    []
   );
-
   const updateQuestionsLocalStorage = (value) => {
     setQuestionUsedValids((prevQuestions) => [...prevQuestions, value]);
-  }
-  const nextTurn = () => { //Actualizar estado de turnos
+  };
+   useEffect(() => {
+     // Verificar el final del juego después de cada actualización de turno
+     if (
+       currentTurn.round === VALUE_ROUNDS_LOCAL &&
+       currentTurn.player === gameContext.players.length-1
+     ) {
+       // Realizar cualquier acción necesaria cuando el juego finaliza
+       // Por ejemplo, mostrar un mensaje, finalizar el juego, etc.
+       console.log("Juego finalizado");
+     }
+   }, [currentTurn]);
+  const nextTurn = () => {
+    if (
+      currentTurn.round == VALUE_ROUNDS_LOCAL &&
+      currentTurn.player == gameContext.players.length
+    ) {
+      return;
+    }
     setCurrentTurn((prevTurn) => {
-      const nextPlayer = (prevTurn.player + 1) % gameContext.players.length;
+      //  2===2
+      const nextPlayer = (prevTurn.player + 1) % gameContext.players.length; //0+1  2 % 3
       if (nextPlayer === 0) {
-        return { round: (prevTurn.round + 1) % rounds.length, player: 0 };
+        console.log(
+          `Ronda: ${(prevTurn.round + 1) % rounds.length}, Jugador: 0`
+        ); // Agregar este registro
+        return { round: (prevTurn.round + 1) % rounds.length, player: 0 }; //saltando de turno
       }
+      // console.log(`Ronda: ${prevTurn.round}, Jugador: ${nextPlayer}`); // Agregar este registro
       return { ...prevTurn, player: nextPlayer };
     });
   };
+
   //
-  const updatePlayerPoints = (playerIndex, pointsToAdd) => { //Actualizar puntaje
+  const updatePlayerPoints = (playerIndex, pointsToAdd) => {
+    //Actualizar puntaje
     setPlayerPoints((prevPoints) => {
       const newPoints = [...prevPoints];
       newPoints[playerIndex] += pointsToAdd;
@@ -74,47 +117,87 @@ const GameStart = () => {
     });
   };
 
-  const checkResponse = (c) => {
+  const checkResponse = () => {
+    countSound.pause();
     setUsedRadioButton();
-    if (questionCheck.correct) {
-      updatePlayerPoints(currentTurn.player, 10);
+    if (questionCheck && questionCheck.correct) {
+      if (currentTurn.round == 0 || currentTurn.round == 1) {
+        updatePlayerPoints(currentTurn.player, 100);
+      }
+      if (currentTurn.round == 2 || currentTurn.round == 3) {
+        updatePlayerPoints(currentTurn.player, 200);
+      }
+      if (currentTurn.round == 4) {
+        updatePlayerPoints(currentTurn.player, 100);
+      }
       setSuccess(true);
       setUsedRadioButton(true);
       successSound.play();
-      setTimeout(() => {
+       setTimeout(() => {
+        SetTurnIndexSave();
         setQuestionCheck(null);
         setUsedRadioButton(false);
         setSuccess(false);
         nextTurn();
         setModalQuestion(false);
+        setCounter(VALUE_INTERVAL_COUNTER);
         successSound.pause();
       }, 3000);
     } else {
       setError(true);
       setUsedRadioButton(true);
       setQuestionCheck(null);
+      errorSound.play();
       setTimeout(() => {
         setUsedRadioButton(false);
         setError(false);
         nextTurn();
+        setCounter(VALUE_INTERVAL_COUNTER);
         setModalQuestion(false);
+        errorSound.pause();
       }, 3000);
     }
   };
 
   //Aqui corte
-
   const stateRender = (question) => {
     setQuestinGameIn(question);
     updateQuestionsLocalStorage(question);
     setModalQuestion(true);
+    countSound.play();
   };
   useEffect(() => {
     // updateDataQuestions();
   }, []);
+  useEffect(() => {
+    if (modalQuestion) {
+      const id = setInterval(() => {
+        setCounter((prevCounter) => prevCounter - 1);
+      }, 1000);
+      setIntervalId(id);
+    }
+
+    // Limpiar el intervalo cuando el componente se desmonta o cuando el modal se cierra
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [modalQuestion]);
+  useEffect(() => {
+    // Mostrar alerta cuando el contador llega a cero 
+    if (counter === 0) {
+      checkResponse();
+      setModalQuestion(false);
+      clearInterval(intervalId); // Detener el intervalo
+    }
+  }, [counter, intervalId]);
   const renderPrevCheckQuestion = () => {
     return (
       <div>
+        <p className="font-bold text-red-800">{counter}</p>
+        <audio className="hidden" controls>
+          <source src={CounterSound} type="audio/mpeg" />
+        </audio>
+        {/* <p>{modalQuestion?"true":"false"}</p> */}
         <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
           Turno actual: {gameContext.players[currentTurn.player].name_player},
           Ronda: {rounds[currentTurn.round]}
@@ -149,15 +232,11 @@ const GameStart = () => {
             <audio className="hidden" controls>
               <source src={SuccessSound} type="audio/mpeg" />
             </audio>
+            <audio className="hidden" controls>
+              <source src={ErrorSound} type="audio/mpeg" />
+            </audio>
           </div>
-          {/* {error ? (
-            <h1 className="text-red-700 text-2xl">Wrong Answer</h1>
-          ) : null}
-          {success ? (
-              <h1 className="text-green-700 text-2xl">Correct Answer +10</h1>
-          ) : null} */}
         </div>
-        {/* <button onClick={nextTurn}>Siguiente turno</button>; */}
         {!usedRadioButton && questionCheck ? (
           <button
             disabled={!setQuestionCheck}
@@ -191,12 +270,13 @@ const GameStart = () => {
       <div className="bg-red-800 text-white p-4 rounded-lg">
         <i className="fas fa-times-circle text-4xl mb-2"></i>
         <h2 className="text-2xl mb-2">¡Error!</h2>
-        <p>La respuesta no es correcta.</p>
+        <p>{questionCheck?"La respuesta no es correcta.":"Debe seleccionar una respuesta."}</p>
       </div>
     );
   };
 
   useEffect(() => {});
+
   const renderModalQuestion = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -213,121 +293,189 @@ const GameStart = () => {
 
   return (
     <div className="grid grid-cols-3 grid-rows-5 w-full h-full">
-      <div className="grid grid-cols-3 col-span-3 border bg-white border-none rounded-2xl shadow shadow-2xl">
-        <div className="flex justify-center items-center col-span-1   border-r-4 ">
-          <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
-            STARTING GAME:{" "}
-            <span className="text-blue-900">{gameContext.game.name}</span>
-          </h1>
-        </div>
-        <div className="flex justify-center items-center col-span-1  pl-2">
-          <div className="w-2/12 justify-center items-center  ">
-            <h1 className="text-sm font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
-              Players
-            </h1>
+      {/* <p>{modalQuestion ? "true" : "false"}</p> */}
+      {/* {JSON.stringify(currentTurn.round  )}
+      {JSON.stringify(currentTurn.player  )}
+      {JSON.stringify(gameContext.players.length)} */}
+      {currentTurn.round == 4 && // 2
+      currentTurn.player == gameContext.players.length ? ( // [0,1] //1 0,1
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white w-1/3 h-[80%] p-8 rounded-2xl shadow-lg">
+            <div className="flex gap-1 justify-center bg-red-100 p-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="Filled"
+                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                fill="yellow"
+              >
+                <path d="M1.327,12.4,4.887,15,3.535,19.187A3.178,3.178,0,0,0,4.719,22.8a3.177,3.177,0,0,0,3.8-.019L12,20.219l3.482,2.559a3.227,3.227,0,0,0,4.983-3.591L19.113,15l3.56-2.6a3.227,3.227,0,0,0-1.9-5.832H16.4L15.073,2.432a3.227,3.227,0,0,0-6.146,0L7.6,6.568H3.231a3.227,3.227,0,0,0-1.9,5.832Z" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="Filled"
+                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                fill="yellow"
+              >
+                <path d="M1.327,12.4,4.887,15,3.535,19.187A3.178,3.178,0,0,0,4.719,22.8a3.177,3.177,0,0,0,3.8-.019L12,20.219l3.482,2.559a3.227,3.227,0,0,0,4.983-3.591L19.113,15l3.56-2.6a3.227,3.227,0,0,0-1.9-5.832H16.4L15.073,2.432a3.227,3.227,0,0,0-6.146,0L7.6,6.568H3.231a3.227,3.227,0,0,0-1.9,5.832Z" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="Filled"
+                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                fill="rgba(45,45,45,0.3)"
+              >
+                <path d="M1.327,12.4,4.887,15,3.535,19.187A3.178,3.178,0,0,0,4.719,22.8a3.177,3.177,0,0,0,3.8-.019L12,20.219l3.482,2.559a3.227,3.227,0,0,0,4.983-3.591L19.113,15l3.56-2.6a3.227,3.227,0,0,0-1.9-5.832H16.4L15.073,2.432a3.227,3.227,0,0,0-6.146,0L7.6,6.568H3.231a3.227,3.227,0,0,0-1.9,5.832Z" />
+              </svg>
+            </div>
+            <div>
+              <h1>Target: Olivio</h1>
+              <h2>Score: 80</h2>
+            </div>
+            <button>Save</button>
+            <button>Close</button>
           </div>
-          <div className="w-10/12 justify-center items-center">
-            {gameContext.players &&
-              gameContext.players.map((g, index) => {
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-3 col-span-3 border bg-white border-none rounded-2xl shadow shadow-2xl">
+            <div className="flex justify-center items-center col-span-1   border-r-4 ">
+              <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+                GAME:
+                <span className="text-blue-900">{gameContext.game.name}</span>
+              </h1>
+            </div>
+            <div className="flex col-span-1 py-1 pl-2 overflow-y-auto">
+              <div className="w-2/12 justify-center items-center  ">
+                <h1 className="text-sm font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+                  Players
+                </h1>
+              </div>
+              <div className="w-10/12 justify-center items-center">
+                {gameContext.players &&
+                  gameContext.players.map((g, index) => {
+                    return (
+                      <div key={index} className="flex px-12 rounded-2xl">
+                        <p className="font-bold text-sm  text-teal-600">
+                          <span
+                            className={`${
+                              gameContext.players[index].name_player ===
+                              gameContext.players[currentTurn.player]
+                                .name_player
+                                ? "bg-green-100 rounded text-white"
+                                : "text - blue - 800"
+                            } `}
+                          >
+                            {index + 1 + " "}
+                            {gameContext.players[index].name_player}
+                            {" : "}
+                            {playerPoints[index]}
+                            {" Fails: "}{" 0"}
+                          </span>
+                        </p>
+                      </div>
+                    );
+                  })}
+              </div>
+              {/* <div className="w-10/12">
+                {gameContext.players &&
+                  gameContext.players.map((g, index) => {
+                    return (
+                      <p className="text-sm " key={index}>
+                        {playerPoints[index]}
+                      </p>
+                    );
+                  })}
+              </div> */}
+            </div>
+            <div className="flex justify-center items-center col-span-1  border-l-4 pl-2">
+              <div className="w-2/12 justify-center items-center">
+                <h1 className="text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+                  Round:
+                  <span className="text-red-400">
+                    {rounds[currentTurn.round]}
+                    <span className="text-green-500">{"+100"}</span>
+                  </span>
+                </h1>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 justify-center py-2 gap-2 rounded-2xl  ">
+            {categorys &&
+              categorys.map((c) => {
                 return (
-                  <div key={index} className="flex px-12   rounded-2xl">
-                    <p className="font-bold text-sm  text-teal-600">
-                      <span className="text-blue-800">{index + 1 + " "}</span>
-                      {gameContext.players[index].name_player}
-                    </p>
+                  <div key={c.id_category} className="col-span-1 row-span-1">
+                    <button
+                      type="button"
+                      className="w-full  h-full bg-white rounded-2xl shadow"
+                    >
+                      <h1 className="text-4xl font-extrabold leading-none text-red-400 md:text-2xl lg:text-2xl ">
+                        {c.name_category}
+                      </h1>
+                    </button>
                   </div>
                 );
               })}
-          </div>
-          <div className="w-10/12">
-            {gameContext.players &&
-              gameContext.players.map((g, index) => {
-                return (
-                  <p className="text-sm " key={index}>
-                    {playerPoints[index]}
-                  </p>
-                );
-              })}
-          </div>
-        </div>
-        <div className="flex justify-center items-center col-span-1  border-l-4 pl-2">
-          <div className="w-2/12 justify-center items-center">
-            <h1 className="text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
-              Round:
-              <span className="text-yellow-400">
-                {rounds[currentTurn.round]}
-              </span>
-            </h1>
-          </div>
-        </div>
-      </div>
-      <div className="col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 justify-center py-2 gap-2 rounded-2xl  ">
-        {categorys &&
-          categorys.map((c) => {
-            return (
-              <div key={c.id_category} className="col-span-1 row-span-1">
-                <button
-                  type="button"
-                  className="w-full  h-full bg-white rounded-2xl shadow"
-                >
-                  <h1 className="text-4xl font-extrabold leading-none text-red-400 md:text-2xl lg:text-2xl ">
-                    {c.name_category}
-                  </h1>
-                </button>
-              </div>
-            );
-          })}
-        {categorys.map((c, index) => {
-          // Filtrar las preguntas disponibles que no han sido usadas desde el localstorage
-          const availableQuestions = dataQuestions.filter(
-            (q) =>
-              q.CategoryIdCategory === categorys[index].id_category &&
-              !questionUsedValids.some(
-                (usedQ) => usedQ.id_question === q.id_question
-              )
-          );
+            {categorys.map((c, index) => {
+              // Filtrar las preguntas disponibles que no han sido usadas desde el localstorage
+              const availableQuestions = dataQuestions.filter(
+                (q) =>
+                  q.CategoryIdCategory === categorys[index].id_category &&
+                  !questionUsedValids.some(
+                    (usedQ) => usedQ.id_question === q.id_question
+                  )
+              );
 
-          // Tomar solo las primeras 5 preguntas disponibles siempre
-          const renderedQuestions = availableQuestions.slice(0, 5);
+              // Aleatorizar las preguntas disponibles
+              const randomizedQuestions = [...availableQuestions].sort(
+                () => Math.random() - 0.5
+              );
 
-          return (
-            <div
-              key={index}
-              className="col-span-1  row-span-5 grid grid-rows-5 gap-2 "
-            >
-              {renderedQuestions.map((q, ind) => (
-                <motion.div
-                  key={ind + 1}
-                  onClick={() => stateRender(q)}
-                  className="flex items-center justify-center
-          font-bold text-gray-600 bg-white row-span-1 rounded-2xl shadow-2xl 
-          cursor-pointer hover:bg-green-400 hover:text-white hover:shadow-lg"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.1 }}
+              // Tomar solo las primeras 5 preguntas disponibles siempre
+              const renderedQuestions = randomizedQuestions.slice(0, 5);
+
+              return (
+                <div
+                  key={index}
+                  className="col-span-1  row-span-5 grid grid-rows-5 gap-2 "
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    id="Layer_1"
-                    data-name="Layer 1"
-                    viewBox="0 0 24 24"
-                    width="35"
-                    fill="purple"
-                    height="35"
-                  >
-                    <path d="M12,19c-.829,0-1.5-.672-1.5-1.5,0-1.938,1.352-3.709,3.909-5.118,1.905-1.05,2.891-3.131,2.51-5.301-.352-2.003-1.997-3.648-4-4-1.445-.254-2.865,.092-4.001,.974-1.115,.867-1.816,2.164-1.922,3.559-.063,.825-.785,1.445-1.609,1.382-.826-.063-1.445-.783-1.382-1.609,.17-2.237,1.29-4.315,3.073-5.7C8.89,.278,11.149-.275,13.437,.126c3.224,.566,5.871,3.213,6.437,6.437,.597,3.399-1.018,6.794-4.017,8.447-1.476,.813-2.357,1.744-2.357,2.49,0,.828-.671,1.5-1.5,1.5Zm-1.5,3.5c0,.828,.672,1.5,1.5,1.5s1.5-.672,1.5-1.5-.672-1.5-1.5-1.5-1.5,.672-1.5,1.5Z" />
-                  </svg>
-                </motion.div>
-              ))}
-            </div>
-          );
-        })}
-        {/* {JSON.stringify(usedRadioButton)}; */}
-        {/* {JSON.stringify(questionGameIn)};{JSON.stringify(questionCheck)}; */}
-        {/* {JSON.stringify(questionGameIn)};{JSON.stringify(questionUsedValids)}; */}
-        {modalQuestion ? renderModalQuestion() : null}
-        {console.log(questionUsedValids)}
-      </div>
+                  {renderedQuestions.map((q, ind) => (
+                    <motion.div
+                      key={ind + 1}
+                      onClick={() => stateRender(q)}
+                      className={`flex items-center justify-center 
+                  font-bold text-gray-600 bg-white row-span-1 rounded-2xl shadow-2xl 
+                  cursor-pointer hover:bg-green-400 hover:text-white hover:shadow-lg`}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.1 }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        id="Layer_1"
+                        data-name="Layer 1"
+                        viewBox="0 0 24 24"
+                        width="35"
+                        fill="purple"
+                        height="35"
+                      >
+                        <path d="M12,19c-.829,0-1.5-.672-1.5-1.5,0-1.938,1.352-3.709,3.909-5.118,1.905-1.05,2.891-3.131,2.51-5.301-.352-2.003-1.997-3.648-4-4-1.445-.254-2.865,.092-4.001,.974-1.115,.867-1.816,2.164-1.922,3.559-.063,.825-.785,1.445-1.609,1.382-.826-.063-1.445-.783-1.382-1.609,.17-2.237,1.29-4.315,3.073-5.7C8.89,.278,11.149-.275,13.437,.126c3.224,.566,5.871,3.213,6.437,6.437,.597,3.399-1.018,6.794-4.017,8.447-1.476,.813-2.357,1.744-2.357,2.49,0,.828-.671,1.5-1.5,1.5Zm-1.5,3.5c0,.828,.672,1.5,1.5,1.5s1.5-.672,1.5-1.5-.672-1.5-1.5-1.5-1.5,.672-1.5,1.5Z" />
+                      </svg>
+                    </motion.div>
+                  ))}
+                </div>
+              );
+            })}
+            {modalQuestion ? renderModalQuestion() : null}
+            {/* {console.log(questionUsedValids)} */}
+          </div>
+        </>
+      )}
     </div>
   );
 };
