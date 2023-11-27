@@ -5,15 +5,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Hieratic script",
+                "value": "Hieratic script",
                 "correct": false
             },
             {
-                "response": "Phoenician alphabet",
+                "value": "Phoenician alphabet",
                 "correct": false
             },
             {
-                "response": "Hieroglyphics",
+                "value": "Hieroglyphics",
                 "correct": true
             }
         ],
@@ -27,15 +27,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The Incas",
+                "value": "The Incas",
                 "correct": true
             },
             {
-                "response": "Ancient Egyptians",
+                "value": "Ancient Egyptians",
                 "correct": false
             },
             {
-                "response": "Vikings",
+                "value": "Vikings",
                 "correct": false
             }
         ],
@@ -49,15 +49,15 @@
         "type": "",
         "answer": [
             {
-                "response": "1923",
+                "value": "1923",
                 "correct": false
             },
             {
-                "response": "1912",
+                "value": "1912",
                 "correct": true
             },
             {
-                "response": "1907",
+                "value": "1907",
                 "correct": false
             }
         ],
@@ -71,15 +71,15 @@
         "type": "",
         "answer": [
             {
-                "response": "France",
+                "value": "France",
                 "correct": false
             },
             {
-                "response": "England",
+                "value": "England",
                 "correct": false
             },
             {
-                "response": "Spain",
+                "value": "Spain",
                 "correct": true
             }
         ],
@@ -93,15 +93,15 @@
         "type": "",
         "answer": [
             {
-                "response": "1989",
+                "value": "1989",
                 "correct": true
             },
             {
-                "response": "1969",
+                "value": "1969",
                 "correct": false
             },
             {
-                "response": "1985",
+                "value": "1985",
                 "correct": false
             }
         ],
@@ -115,15 +115,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The United States",
+                "value": "The United States",
                 "correct": true
             },
             {
-                "response": "Mexico",
+                "value": "Mexico",
                 "correct": false
             },
             {
-                "response": "Brazil",
+                "value": "Brazil",
                 "correct": false
             }
         ],
@@ -137,15 +137,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The Spanish-American War",
+                "value": "The Spanish-American War",
                 "correct": false
             },
             {
-                "response": "The Napoleonic Wars",
+                "value": "The Napoleonic Wars",
                 "correct": false
             },
             {
-                "response": "The American Civil War",
+                "value": "The American Civil War",
                 "correct": true
             }
         ],
@@ -159,15 +159,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The Spanish-American War",
+                "value": "The Spanish-American War",
                 "correct": false
             },
             {
-                "response": "Pompeii",
+                "value": "Pompeii",
                 "correct": true
             },
             {
-                "response": "The Napoleonic Wars",
+                "value": "The Napoleonic Wars",
                 "correct": false
             }
         ],
@@ -181,15 +181,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Inca",
+                "value": "Inca",
                 "correct": false
             },
             {
-                "response": "Maya",
+                "value": "Maya",
                 "correct": false
             },
             {
-                "response": "Ancient Egypt",
+                "value": "Ancient Egypt",
                 "correct": true
             }
         ],
@@ -203,15 +203,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Franklin D. Roosevelt",
+                "value": "Franklin D. Roosevelt",
                 "correct": true
             },
             {
-                "response": "Thomas Jefferson",
+                "value": "Thomas Jefferson",
                 "correct": false
             },
             {
-                "response": "Abraham Lincoln",
+                "value": "Abraham Lincoln",
                 "correct": false
             }
         ],
@@ -225,15 +225,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The invasion of Poland by Germany.",
+                "value": "The invasion of Poland by Germany.",
                 "correct": true
             },
             {
-                "response": "The signing of the Treaty of Versailles",
+                "value": "The signing of the Treaty of Versailles",
                 "correct": false
             },
             {
-                "response": "The Battle of Waterloo",
+                "value": "The Battle of Waterloo",
                 "correct": false
             }
         ],
@@ -247,15 +247,15 @@
         "type": "",
         "answer": [
             {
-                "response": "HMS Victory",
+                "value": "HMS Victory",
                 "correct": false
             },
             {
-                "response": "The Mayflower Compact",
+                "value": "The Mayflower Compact",
                 "correct": false
             },
             {
-                "response": "The Mayflower.",
+                "value": "The Mayflower.",
                 "correct": true
             }
         ],
@@ -269,15 +269,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Ancient Greece",
+                "value": "Ancient Greece",
                 "correct": false
             },
             {
-                "response": "Ancient China.",
+                "value": "Ancient China.",
                 "correct": true
             },
             {
-                "response": "The Roman Empire",
+                "value": "The Roman Empire",
                 "correct": false
             }
         ],
@@ -291,15 +291,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Francisco Franco",
+                "value": "Francisco Franco",
                 "correct": false
             },
             {
-                "response": "Ernesto 'Che' Guevara",
+                "value": "Ernesto 'Che' Guevara",
                 "correct": false
             },
             {
-                "response": "Fidel Castro",
+                "value": "Fidel Castro",
                 "correct": true
             }
         ],
@@ -313,15 +313,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Ferdinand Magellan",
+                "value": "Ferdinand Magellan",
                 "correct": false
             },
             {
-                "response": "Cristobal Colon",
+                "value": "Cristobal Colon",
                 "correct": false
             },
             {
-                "response": "Hernan Cortez",
+                "value": "Hernan Cortez",
                 "correct": true
             }
         ],
@@ -335,15 +335,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The French Revolution.",
+                "value": "The French Revolution.",
                 "correct": true
             },
             {
-                "response": "The Renaissance",
+                "value": "The Renaissance",
                 "correct": false
             },
             {
-                "response": "The Glorious Revolution",
+                "value": "The Glorious Revolution",
                 "correct": false
             }
         ],
@@ -357,15 +357,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Atlantis",
+                "value": "Atlantis",
                 "correct": false
             },
             {
-                "response": "Rapa Nui (Easter Island)",
+                "value": "Rapa Nui (Easter Island)",
                 "correct": true
             },
             {
-                "response": "Machu Picchu",
+                "value": "Machu Picchu",
                 "correct": false
             }
         ],
@@ -379,15 +379,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The White House",
+                "value": "The White House",
                 "correct": true
             },
             {
-                "response": "Buckingham Palace",
+                "value": "Buckingham Palace",
                 "correct": false
             },
             {
-                "response": "Elysee Palace",
+                "value": "Elysee Palace",
                 "correct": false
             }
         ],
@@ -401,15 +401,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Italy",
+                "value": "Italy",
                 "correct": false
             },
             {
-                "response": "France",
+                "value": "France",
                 "correct": true
             },
             {
-                "response": "Germany",
+                "value": "Germany",
                 "correct": false
             }
         ],
@@ -423,15 +423,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Stanford University",
+                "value": "Stanford University",
                 "correct": false
             },
             {
-                "response": "Harvard University",
+                "value": "Harvard University",
                 "correct": true
             },
             {
-                "response": "Yale University",
+                "value": "Yale University",
                 "correct": false
             }
         ],
@@ -445,15 +445,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Philadelphia",
+                "value": "Philadelphia",
                 "correct": true
             },
             {
-                "response": "Washington",
+                "value": "Washington",
                 "correct": false
             },
             {
-                "response": "Boston",
+                "value": "Boston",
                 "correct": false
             }
         ],
@@ -467,15 +467,15 @@
         "type": "",
         "answer": [
             {
-                "response": "51",
+                "value": "51",
                 "correct": false
             },
             {
-                "response": "52",
+                "value": "52",
                 "correct": false
             },
             {
-                "response": "50",
+                "value": "50",
                 "correct": true
             }
         ],
@@ -489,15 +489,15 @@
         "type": "",
         "answer": [
             {
-                "response": "New York",
+                "value": "New York",
                 "correct": true
             },
             {
-                "response": "Chicago",
+                "value": "Chicago",
                 "correct": false
             },
             {
-                "response": "Los Angeles",
+                "value": "Los Angeles",
                 "correct": false
             }
         ],
@@ -511,15 +511,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Brazil",
+                "value": "Brazil",
                 "correct": false
             },
             {
-                "response": "Spain",
+                "value": "Spain",
                 "correct": true
             },
             {
-                "response": "Argentina",
+                "value": "Argentina",
                 "correct": false
             }
         ],
@@ -533,15 +533,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Evo Morales",
+                "value": "Evo Morales",
                 "correct": false
             },
             {
-                "response": "Hugo Chavez",
+                "value": "Hugo Chavez",
                 "correct": false
             },
             {
-                "response": "Luis Arce Catacora",
+                "value": "Luis Arce Catacora",
                 "correct": true
             }
         ],
@@ -555,15 +555,15 @@
         "type": "",
         "answer": [
             {
-                "response": "110 years",
+                "value": "110 years",
                 "correct": false
             },
             {
-                "response": "116 years",
+                "value": "116 years",
                 "correct": false
             },
             {
-                "response": "100 years",
+                "value": "100 years",
                 "correct": true
             }
         ],
@@ -577,15 +577,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Five",
+                "value": "Five",
                 "correct": true
             },
             {
-                "response": "Four",
+                "value": "Four",
                 "correct": false
             },
             {
-                "response": "Six",
+                "value": "Six",
                 "correct": false
             }
         ],
@@ -599,15 +599,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Malcolm X",
+                "value": "Malcolm X",
                 "correct": false
             },
             {
-                "response": "Nelson Mandela",
+                "value": "Nelson Mandela",
                 "correct": false
             },
             {
-                "response": "Martin Luther King",
+                "value": "Martin Luther King",
                 "correct": true
             }
         ],
@@ -621,15 +621,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Ludwig van Beethoven",
+                "value": "Ludwig van Beethoven",
                 "correct": false
             },
             {
-                "response": "Simón Bolívar",
+                "value": "Simón Bolívar",
                 "correct": false
             },
             {
-                "response": "José Ignacio de Sanjinés",
+                "value": "José Ignacio de Sanjinés",
                 "correct": true
             }
         ],
@@ -643,15 +643,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Red, yellow and green",
+                "value": "Red, yellow and green",
                 "correct": false
             },
             {
-                "response": "Green, red and green",
+                "value": "Green, red and green",
                 "correct": false
             },
             {
-                "response": "Green, blue, red",
+                "value": "Green, blue, red",
                 "correct": true
             }
         ],
@@ -665,15 +665,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The Colosseum",
+                "value": "The Colosseum",
                 "correct": false
             },
             {
-                "response": "The Parthenon",
+                "value": "The Parthenon",
                 "correct": false
             },
             {
-                "response": "The Taj Mahal",
+                "value": "The Taj Mahal",
                 "correct": true
             }
         ],
@@ -687,15 +687,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Ancient Rome",
+                "value": "Ancient Rome",
                 "correct": false
             },
             {
-                "response": "Ancient Greece",
+                "value": "Ancient Greece",
                 "correct": true
             },
             {
-                "response": "Ancient Egypt",
+                "value": "Ancient Egypt",
                 "correct": false
             }
         ],
@@ -709,15 +709,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Nefirtiti",
+                "value": "Nefirtiti",
                 "correct": false
             },
             {
-                "response": "Ateneas",
+                "value": "Ateneas",
                 "correct": false
             },
             {
-                "response": "Cleopatra",
+                "value": "Cleopatra",
                 "correct": true
             }
         ],
@@ -731,15 +731,15 @@
         "type": "",
         "answer": [
             {
-                "response": "50 states",
+                "value": "50 states",
                 "correct": true
             },
             {
-                "response": "52 states",
+                "value": "52 states",
                 "correct": false
             },
             {
-                "response": "49 states",
+                "value": "49 states",
                 "correct": false
             }
         ],
@@ -753,15 +753,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Texas",
+                "value": "Texas",
                 "correct": false
             },
             {
-                "response": "California",
+                "value": "California",
                 "correct": false
             },
             {
-                "response": "Florida",
+                "value": "Florida",
                 "correct": true
             }
         ],
@@ -775,15 +775,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The Crusades",
+                "value": "The Crusades",
                 "correct": true
             },
             {
-                "response": "The Reconquista",
+                "value": "The Reconquista",
                 "correct": false
             },
             {
-                "response": "The ",
+                "value": "The ",
                 "correct": false
             }
         ],
@@ -797,15 +797,15 @@
         "type": "",
         "answer": [
             {
-                "response": "1995",
+                "value": "1995",
                 "correct": false
             },
             {
-                "response": "1985",
+                "value": "1985",
                 "correct": false
             },
             {
-                "response": "1989",
+                "value": "1989",
                 "correct": true
             }
         ],
@@ -819,15 +819,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The Industrial Revolution",
+                "value": "The Industrial Revolution",
                 "correct": false
             },
             {
-                "response": "The Louisiana Purchase",
+                "value": "The Louisiana Purchase",
                 "correct": false
             },
             {
-                "response": "The Moon landing",
+                "value": "The Moon landing",
                 "correct": true
             }
         ],
@@ -841,15 +841,15 @@
         "type": "",
         "answer": [
             {
-                "response": "Harvard",
+                "value": "Harvard",
                 "correct": true
             },
             {
-                "response": "Yale",
+                "value": "Yale",
                 "correct": false
             },
             {
-                "response": "Princeton",
+                "value": "Princeton",
                 "correct": false
             }
         ],
@@ -863,15 +863,15 @@
         "type": "",
         "answer": [
             {
-                "response": "The French Revolution.",
+                "value": "The French Revolution.",
                 "correct": true
             },
             {
-                "response": "The Renaissance",
+                "value": "The Renaissance",
                 "correct": false
             },
             {
-                "response": "The Glorious Revolution",
+                "value": "The Glorious Revolution",
                 "correct": false
             }
         ],
