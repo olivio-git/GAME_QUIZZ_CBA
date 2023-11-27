@@ -325,21 +325,47 @@ const GameStart = () => {
     return gameContext.players[playerPoints.indexOf(Math.max(...playerPoints))]
       .name_player;
   }; 
+  const renderOrd =  () =>{
+    let tempValues=[];
+    gameContext.players.map((g, index) => {
+      tempValues.push({
+        name: gameContext.players[index].name_player,
+        point: playerPoints[index],
+      });
+    })
+    const playersCopy = [...tempValues];
+    playersCopy.sort((a, b) => b.point - a.point);
+    return (
+      <h2 className="text-xl font-semibold text-gray-600 ml-4"> 
+        {gameContext.players &&
+          gameContext.players.map((g, index) => {
+            return (
+              <div key={index} className="flex px-12 rounded-2xl">
+                <p className="font-bold text-sm">
+                  <span className="">
+                    {index + 1 + " "}
+                    {playersCopy[index].name}
+                    {"  Points: "}
+                    {playersCopy[index].point}
+                  </span>
+                </p>
+              </div>
+            );
+          })}
+      </h2>
+    );
+  }
   const renderWinner = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
         <div className="flex justify-center items-center flex-col bg-white w-1/3 h-[80%] p-8 rounded-2xl shadow-lg">
           <div className="flex flex-col items-center justify-center w-full mb-4">
-            <h1 className="text-2xl font-bold text-gray-700">
-              WINNER: {winnerPlayer()}
-            </h1>
-            <h2 className="text-xl font-semibold text-gray-600 ml-4">
-              SCORE: {winnerPointsIndex()}
-            </h2>
+            <h1 className="text-2xl font-bold text-gray-700">Scoreboard</h1>
+            {renderOrd()}
           </div>
           <div className="flex px-12 justify-between w-full mt-8">
             <button
-              onClick={() =>{
+              onClick={() => {
                 navigate("/");
                 removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
                 removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
@@ -367,7 +393,7 @@ const GameStart = () => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Save
+              Save and exit
             </button>
             <button
               onClick={() => navigate("/")}
@@ -387,7 +413,7 @@ const GameStart = () => {
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-              Close
+              Cancel
             </button>
           </div>
         </div>
