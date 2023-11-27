@@ -9,3 +9,6 @@ export const dateFormat = (fechaOriginal) => {
     const segundos = fecha.getSeconds();
     return `${dia}/${mes}/${año} ${hora}:${minutos}:${segundos}`;
 };
+export const removeItemsLocalStorage = (pk) => {
+    localStorage.removeItem(pk);
+}
