@@ -182,7 +182,8 @@
         "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
     },
     {
-        "question": "Which Spanish conquistador led the expedition that resulted in the fall of the Aztec Empire?",
+        "question": "Which Spanish conquistador led the expedition that resulted in 
+        the fall of the Aztec Empire?",
         "category": "",
         "type": "",
         "answer": [
@@ -195,7 +196,8 @@
         "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
     },
     {
-        "question": "What is the historical event that began on July 14, 1789, with the storming of the Bastille in Paris?",
+        "question": "What is the historical event that began on July 14, 1789, 
+        with the storming of the Bastille in Paris?",
         "category": "",
         "type": "",
         "answer": [
@@ -416,7 +418,8 @@
         "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
     },
     {
-        "question": "What is the name of the ancient Egyptian queen known for her relationships with Julius Caesar and Mark Antony?",
+        "question": "What is the name of the ancient Egyptian queen known 
+        for her relationships with Julius Caesar and Mark Antony?",
         "category": "",
         "type": "",
         "answer": [
@@ -429,7 +432,9 @@
         "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
     },
     {
-        "question": "Located on the banks of the Tiber River, this city is the capital of Italy and is known for its rich history, art, and architecture. What is the name of this city?",
+        "question": "Located on the banks of the Tiber River, this city is the 
+        capital of Italy and is known for its rich history, art, and architecture. 
+        What is the name of this city?",
         "category": "",
         "type": "",
         "answer": [
