@@ -5,7 +5,7 @@ import './index.css'
 import { BrowserRouter } from "react-router-dom"
 import { DataContextProvider } from './context/dataContext.jsx';
 import axios from 'axios';
-// axios.defaults.baseURL = "https://www.webpage.cba.org.bo/api";
+//axios.defaults.baseURL = "https://www.webpage.cba.org.bo/api";
 axios.defaults.baseURL = "http://localhost:3001/api";
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
