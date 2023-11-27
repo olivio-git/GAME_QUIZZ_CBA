@@ -1,0 +1,522 @@
+[
+{
+    "question": "Who was the leader of the civil rights movement in the United States and is famous for his 'I Have a Dream' speech?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Martin Luther King Jr", "correct": true},
+        {"value": "Morgan Freeman", "correct": false},
+        {"value": "Nelson Mandela", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Which European explorer is credited with discovering America in 1492?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Christopher Columbus", "correct": true},
+        {"value": "Nicolaus Copernicus", "correct": false},
+        {"value": "Amerigo Vespucci", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the scientist that formulated the theory of relativity?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Isaac Newton", "correct": false},
+        {"value": "Albert Einstein", "correct": true},
+        {"value": "Robert Oppenheimer", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first President of the United States?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Harry Truman", "correct": false},
+        {"value": "George Washington", "correct": true},
+        {"value": "George Bush", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Which South African anti-apartheid revolutionary and politician became the country's first black president?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Nelson Mandela", "correct": true},
+        {"value": "Morgan Freeman", "correct": false},
+        {"value": "Barack Obama", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who is the current Prime Minister of Canada?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Boris Johnson", "correct": false},
+        {"value": "Pierre Trudeau", "correct": false},
+        {"value": "Justin Trudeau", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the Argentine revolutionary leader who played a key role in the independence of several South American countries, including Argentina, Chile, and Peru?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Manuel Belgrano", "correct": false},
+        {"value": "José De San Martín", "correct": true},
+        {"value": "Martín Miguel De Güemes", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Which Venezuelan military leader played a crucial role in liberating several South American countries from Spanish rule and is known as 'El Libertador' (The Liberator)?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Simón Bolívar", "correct": true},
+        {"value": "Antonio José De Sucre", "correct": false},
+        {"value": "José De San Martín", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the Peruvian author and activist who wrote the famous novel 'The Feast of the Goat' and won the Nobel Prize in Literature in 2010?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Mario Vargas Llosa", "correct": true},
+        {"value": "César Vallejo", "correct": false},
+        {"value": "José María Arguedas", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who is the founder of Microsoft Corporation?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Steve Jobs", "correct": false},
+        {"value": "Bill Gates", "correct": true},
+        {"value": "Paul Allen", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first Emperor of the Roman Empire?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Marcus Aurelius", "correct": false},
+        {"value": "Augustus Caesar", "correct": true},
+        {"value": "Antoninus Pius", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Which U.S. president issued the Emancipation Proclamation in 1863?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Abraham Lincoln", "correct": true},
+        {"value": "George Washington", "correct": false},
+        {"value": "George Bush", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the most glorious queen in English history?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Elizabeth III", "correct": false},
+        {"value": "Elizabeth I", "correct": true},
+        {"value": "Elizabeth II", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the famous Chinese philosopher and teacher known for his philosophy of Confucianism?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Confucius", "correct": true},
+        {"value": "Lao-Tse", "correct": false},
+        {"value": "Mencio", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who discovered penicillin, the first widely used antibiotic?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Alexander Fleming", "correct": true},
+        {"value": "Charles Darwin", "correct": false},
+        {"value": "George Cuvier", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first woman to fly in space?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Svetlana Savitskaya", "correct": false},
+        {"value": "Valentina Tereshkova", "correct": true},
+        {"value": "Sally Ride", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who is known for developing the theory of evolution by natural selection?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Stephen Gould", "correct": false},
+        {"value": "Thomas Huxley", "correct": false},
+        {"value": "Charles Darwin", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who developed the theory of relativity?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Charles Darwin", "correct": false},
+        {"value": "Isaac Newton", "correct": false},
+        {"value": "Albert Einstein", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who is the founder of Facebook?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Bill Gates", "correct": false},
+        {"value": "Mark Zuckerberg", "correct": true},
+        {"value": "Steve Jobs", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who is the inventor of the telephone?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Alexander Graham Bell", "correct": true},
+        {"value": "Thomas Edison", "correct": false},
+        {"value": "Alexander Fleming", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who is known for his role as the lead vocalist of the rock band The Beatles?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "John Lennon", "correct": true},
+        {"value": "Paul McCartney", "correct": false},
+        {"value": "Ringo Starr", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first person to walk on the moon?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Pete Conrad", "correct": false},
+        {"value": "Buzz Aldrin", "correct": false},
+        {"value": "Neil Armstrong", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who is the founder of Tesla, Inc. and SpaceX, and is known for his work in electric vehicles and space exploration?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Elon Musk", "correct": true},
+        {"value": "Bill Gates", "correct": false},
+        {"value": "Mark Zuckerberg", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first woman to serve as the President of Argentina?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Cristina Kirchner", "correct": false},
+        {"value": "Isabel Perón", "correct": true},
+        {"value": "Dilma Rousseff", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the Spanish painter known for works such as 'Guernica' and 'The Weeping Woman'?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Leonardo Da Vinci", "correct": false},
+        {"value": "Giacomo Airland", "correct": false},
+        {"value": "Pablo Picasso", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "She was the first female Prime Minister of India.",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Indira Gandhi", "correct": true},
+        {"value": "Margaret Thatcher", "correct": false},
+        {"value": "Liz Truss", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "She’s the famous lady with a mysterious smile in the painting that hangs in the Louvre Museum.",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Mona Lisa", "correct": true},
+        {"value": "Venus De Milo", "correct": false},
+        {"value": "Last Supper", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first woman to win a Nobel Prize (1903)?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Marie Ressa", "correct": false},
+        {"value": "Irene Curie", "correct": false},
+        {"value": "Marie Curie", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first woman in space?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Valentina Tereshkova", "correct": true},
+        {"value": "Svetlana Savitskaya", "correct": false},
+        {"value": "Sally Ride", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first Black president of the USA?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Martin Luther King", "correct": false},
+        {"value": "Barack Obama", "correct": true},
+        {"value": "Abraham Lincoln", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "What is the name of the Austrian man who helped found the principles of psychoanalysis?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Sigmund Freud", "correct": true},
+        {"value": "Jacques Lacan", "correct": false},
+        {"value": "Donald Winnicott", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "What is the name of the African-American woman who broke the law by not wanting to sit at the back of a bus?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Martin Luther King", "correct": false},
+        {"value": "Claudette Colvin", "correct": false},
+        {"value": "Rosa Parks", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "What is the name of the pilot who disappeared mysteriously over the Pacific Ocean?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Amy Johnson", "correct": false},
+        {"value": "Kart Hultgreen", "correct": false},
+        {"value": "Amelia Earhart", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was known by the nickname 'Andean Rockefeller' in Bolivia?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Carlos Aramayo", "correct": false},
+        {"value": "Simon Patiño", "correct": true},
+        {"value": "Mauricio Hochschild", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who sent Christopher Columbus to explore the New World?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "King Ferdinand Of Spain", "correct": true},
+        {"value": "Charles V", "correct": false},
+        {"value": "Fernando VII", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was Pope throughout the 1990s?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "John Paul II", "correct": true},
+        {"value": "Gregory I", "correct": false},
+        {"value": "Leo I", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who is the President of France?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Charles De Gaulle", "correct": false},
+        {"value": "Alain Poher", "correct": false},
+        {"value": "Emmanuel Macron", "correct": true}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was shot by the Taliban for going to school?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Jalaluddin Haqqani", "correct": false},
+        {"value": "Malala Yousafzai", "correct": true},
+        {"value": "Abdul Ghani", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who implemented the extension of voting rights to indigenous people in Bolivia?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Antonio José De Sucre", "correct": false},
+        {"value": "Víctor Paz Estenssoro", "correct": true},
+        {"value": "Eustaquio Méndez", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+},
+{
+    "question": "Who was the first Mexican artist whose work reached the Louvre Museum in Paris?",
+    "category": "",
+    "type": "",
+    "answer": [
+        {"value": "Sor Juana Inés De La Cruz", "correct": false},
+        {"value": "Frida Kahlo", "correct": true},
+        {"value": "Carmen Mondragon", "correct": false}
+    ],
+    "difficulty": "",
+    "stage": "",
+    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+}
+]

@@ -1,0 +1,528 @@
+[
+    {
+        "question": "What was the ancient Egyptian writing system called?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Hieratic script", "correct": false},
+            {"value": "Sumerian", "correct": false},
+            {"value": "Hieroglyphics", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which civilization built one of the most famous citadels in Peru?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The Incas", "correct": true},
+            {"value": "The Mayas", "correct": false},
+            {"value": "The Aztecs", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "In which year did the Titanic sink after hitting an iceberg?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "1923", "correct": false},
+            {"value": "1912", "correct": true},
+            {"value": "1907", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "In 1492, Christopher Columbus reached the Americas under the sponsorship of this country.",
+        "category": "Pao",
+        "type": "",
+        "answer": [
+            {"value": "France", "correct": false},
+            {"value": "Portugal", "correct": false},
+            {"value": "Spain", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "When did the first world war start? (Pao)",
+        "category": "Pao",
+        "type": "",
+        "answer": [
+            {"value": "July 28th, 1914", "correct": true},
+            {"value": "July 18th, 1914", "correct": false},
+            {"value": "July 28th, 1419", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which country was responsible for the construction of the Panama Canal? (Pao)",
+        "category": "Pao",
+        "type": "",
+        "answer": [
+            {"value": "The United States", "correct": true},
+            {"value": "China", "correct": false},
+            {"value": "Panama", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which war is also known as the War Between the States? (Pao)",
+        "category": "Pao",
+        "type": "",
+        "answer": [
+            {"value": "The Spanish-American War", "correct": false},
+            {"value": "The Napoleonic War", "correct": false},
+            {"value": "The American Civil War", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What ancient city was buried by the eruption of Mount Vesuvius in 79 AD?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Rome", "correct": false},
+            {"value": "Pompeii", "correct": true},
+            {"value": "Venice", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What ancient civilization built the pyramids of Giza?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Babylonians", "correct": false},
+            {"value": "Persian", "correct": false},
+            {"value": "Egyptian", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which U.S. president served four terms in office, the only one to do so?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Franklin D. Roosevelt", "correct": false},
+            {"value": "Thomas Jefferson", "correct": true},
+            {"value": "Abraham Lincoln", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What event led to the start of World War II in 1939?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The invasion of Poland", "correct": true},
+            {"value": "Germany civil war", "correct": false},
+            {"value": "The Battle of Waterloo", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What was the name of the ship that carried the Pilgrims to America in 1620?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The Millflower", "correct": false},
+            {"value": "The Mayflour", "correct": false},
+            {"value": "The Mayflower", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which ancient civilization is known for constructing the Terracotta Army in the tomb of Emperor Qin Shi Huang?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Ancient Taiwan", "correct": false},
+            {"value": "Ancient China", "correct": true},
+            {"value": "Ancient Japan", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Who is known for leading the Cuban Revolution and becoming the country's communist leader?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Raul Castro", "correct": false},
+            {"value": "Ernesto 'Che' Guevara", "correct": false},
+            {"value": "Fidel Castro", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which Spanish conquistador led the expedition that resulted in 
+        the fall of the Aztec Empire?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Francisco Pizarro", "correct": false},
+            {"value": "Cristobal Colon", "correct": false},
+            {"value": "Hernan Cortez", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What is the historical event that began on July 14, 1789, 
+        with the storming of the Bastille in Paris?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The French Revolution", "correct": true},
+            {"value": "The Renaissance", "correct": false},
+            {"value": "The Glorious Revolution", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What is the name of the ancient city known for its iconic stone heads?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Atlantis", "correct": false},
+            {"value": "Easter Island", "correct": true},
+            {"value": "Machu Picchu", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Where does the president of the United States reside?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The White House", "correct": true},
+            {"value": "Buckingham Palace", "correct": false},
+            {"value": "The Pentagon", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "The Statue of Liberty was given to the US by which country?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Italy", "correct": false},
+            {"value": "France", "correct": true},
+            {"value": "Germany", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which is the oldest university in the USA?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Stanford University", "correct": false},
+            {"value": "Harvard University", "correct": true},
+            {"value": "Yale University", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which was the first capital of the USA?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Philadelphia", "correct": true},
+            {"value": "Washington", "correct": false},
+            {"value": "Boston", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What is the number of states in the USA?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "51", "correct": false},
+            {"value": "52", "correct": false},
+            {"value": "50", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which city is known as the Big Apple?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "New York", "correct": true},
+            {"value": "Chicago", "correct": false},
+            {"value": "Los Angeles", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which country did Bolivia gain independence from?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Brazil", "correct": false},
+            {"value": "Spain", "correct": true},
+            {"value": "Argentina", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Who is the current president of Nicaragua?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Nayib Bukele", "correct": false},
+            {"value": "Guillermo Lasso", "correct": false},
+            {"value": "Daniel Ortega", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "How many years did the 100 years war last?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "110 years", "correct": false},
+            {"value": "116 years", "correct": true},
+            {"value": "100 years", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "How many U.S. presidents have been assassinated?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Five", "correct": false},
+            {"value": "Four", "correct": true},
+            {"value": "Six", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "When did the second world war finish?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "1954", "correct": false},
+            {"value": "1495", "correct": false},
+            {"value": "1945", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Who is the author of the national anthem of Bolivia?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Ludwig van Beethoven", "correct": false},
+            {"value": "José Ignacio Santos", "correct": false},
+            {"value": "José Ignacio de Sanjinés", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What color was the first flag of Bolivia?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Red, yellow and green", "correct": false},
+            {"value": "Green, red and green", "correct": true},
+            {"value": "Green, blue, red", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What ancient wonder of the world was a monumental tomb built in Agra and is a UNESCO World Heritage site?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Harmandir Sahib Golden Temple", "correct": false},
+            {"value": "Hanging Garden of Babylon", "correct": false},
+            {"value": "The Taj Mahal", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which ancient civilization is credited with inventing the concept of democracy?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Ancient Rome", "correct": false},
+            {"value": "Ancient Greece", "correct": true},
+            {"value": "Ancient Egypt", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What is the name of the ancient Egyptian queen known 
+        for her relationships with Julius Caesar and Mark Antony?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Nefertiti", "correct": false},
+            {"value": "Atenas", "correct": false},
+            {"value": "Cleopatra", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Located on the banks of the Tiber River, this city is the 
+        capital of Italy and is known for its rich history, art, and architecture. 
+        What is the name of this city?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Verona", "correct": false},
+            {"value": "Rome", "correct": true},
+            {"value": "Florencia", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Which U.S. state is known as the 'Sunshine State'?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Texas", "correct": false},
+            {"value": "California", "correct": false},
+            {"value": "Florida", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What was the name of the series of military campaigns by European Christians to reclaim the Holy Land from Islamic rule during the Middle Ages?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The Crusades", "correct": true},
+            {"value": "The Reconquista", "correct": false},
+            {"value": "The Inquisition", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "In which year did the Berlin Wall fall, leading to the reunification of East and West Germany?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "1995", "correct": false},
+            {"value": "1985", "correct": false},
+            {"value": "1989", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "What significant event in American history occurred on July 20, 1969?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "The Industrial Revolution", "correct": false},
+            {"value": "The Louisiana Purchase", "correct": false},
+            {"value": "The Moon landing", "correct": true}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Shared by the United States and Canada, this massive freshwater lake is part of the Great Lakes and is the second-largest by volume. What is the name of this lake?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Lake Michigan", "correct": true},
+            {"value": "Lake Huron", "correct": false},
+            {"value": "Lake Powell", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    },
+    {
+        "question": "Launched in 2004, this social networking platform was initially limited to Harvard University students before expanding to other universities and eventually the general public. What is the name of this platform?",
+        "category": "",
+        "type": "",
+        "answer": [
+            {"value": "Twitter", "correct": false},
+            {"value": "Facebook", "correct": true},
+            {"value": "Instagram", "correct": false}
+        ],
+        "difficulty": "",
+        "stage": "",
+        "CategoryIdCategory": "94b6d4ad-23be-4615-8c31-83800110389c"
+    }
+]
+
