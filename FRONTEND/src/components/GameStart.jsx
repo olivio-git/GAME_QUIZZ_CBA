@@ -410,7 +410,7 @@ const GameStart = () => {
 
   return (
     <div className="grid grid-cols-3 grid-rows-5 w-full h-full">
-      {/* <p>{modalQuestion ? "true" : "false"}</p> */}
+      {/* <p>{modalQuestion ? "true" :   "false"}</p> */}
       {/* {JSON.stringify(currentTurn.round  )}
       {JSON.stringify(currentTurn.player  )}
       {JSON.stringify(gameContext.players.length)} */}
