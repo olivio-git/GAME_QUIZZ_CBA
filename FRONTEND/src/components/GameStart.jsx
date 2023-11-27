@@ -10,14 +10,14 @@ import { motion } from "framer-motion";
 
 // import dataQuestions from "../utils/exampleQuestions.json";
 import {
-    KEY_LOCAL_STORAGE,
-    KEY_LOCAL_STORAGE_ROUNDS,
-    KEY_LOCAL_STORAGE_TURNS,
-    KEY_LOCAL_STORAGE_POINTS, 
-    KEY_LOCAL_STORAGE_USEDQUESTIONS,
-    KEY_LOCAL_STORAGE_TURN,
-    VALUE_ROUNDS_LOCAL,
-    VALUE_INTERVAL_COUNTER
+  KEY_LOCAL_STORAGE,
+  KEY_LOCAL_STORAGE_ROUNDS,
+  KEY_LOCAL_STORAGE_TURNS,
+  KEY_LOCAL_STORAGE_POINTS,
+  KEY_LOCAL_STORAGE_USEDQUESTIONS,
+  KEY_LOCAL_STORAGE_TURN,
+  VALUE_ROUNDS_LOCAL,
+  VALUE_INTERVAL_COUNTER
 } from "../utils/emvironments";
 import { useLocalStorageState } from "../utils/useLocalStorageState";
 import axios from "axios";
@@ -26,7 +26,7 @@ import { useNavigate } from "react-router-dom";
 import { removeItemsLocalStorage } from "../utils/functions";
 
 const GameStart = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //
   const [modalQuestion, setModalQuestion] = useState(false); //Estado del modal
   const [questionGameIn, setQuestinGameIn] = useState(null); //La pregunta con la que estamos jugando
@@ -36,11 +36,13 @@ const GameStart = () => {
   const [success, setSuccess] = useState(false); //Para poder mostrar alertas success
   const [counterSoundState, setCounterSoundState] = useState(false);
   //btn try
-  const [tap,setTap]=useState(false); //click boton
+  const [tap, setTap] = useState(false); //click boton
   //sound interval
-  const [soundInt,setSoundInt]=useState(false);
+  const [soundInt, setSoundInt] = useState(false);
   // const audioRef = useRef(CounterSound);
   const audioRef = useRef(new Audio(CounterSound));
+  //for fails
+  
 
   const [usedRadioButton, setUsedRadioButton] = useState(false); //Validar si el boton fue presionado
   // const [playerInGame, setCounter] = useState(0); //Para poner contador de vuelta atrás
@@ -56,7 +58,7 @@ const GameStart = () => {
     addCategorys,
     dataQuestions,
     addDataQuestions,
-    addGameContext,addGameProgress
+    addGameContext, addGameProgress
   } = useContext(DataContext);
   //logic
   const [rounds, setRounds] = useLocalStorageState(
@@ -121,23 +123,43 @@ const GameStart = () => {
       return newPoints;
     });
   };
-
+  //console.log(counter)
   const checkResponse = () => {
     // setSoundInt(false);
     // audioRef.current.pause();
     clearInterval(intervalId); // Detener el intervalo
 
+    //LIMBERFUNCTIONS
+    function calculatePoints(round, counter) {
+      let points;
+
+      if (round === 0 || round === 1) {
+        points = calculatePointsForRound(counter, 100, 85, 70, 60);
+      } else if (round === 2 || round === 3) {
+        points = calculatePointsForRound(counter, 200, 185, 170, 160);
+      } else if (round === 4) {
+        points = calculatePointsForRound(counter, 300, 285, 270, 260);
+      }
+      return points;
+    }
+
+    function calculatePointsForRound(counter, points15, points12, points10, pointsDefault) {
+      if (counter >= 15) {
+        return points15;
+      } else if (counter >= 12) {
+        return points12;
+      } else if (counter >= 10) {
+        return points10;
+      } else {
+        return pointsDefault;
+      }
+    }
+
     setUsedRadioButton();
     if (questionCheck && questionCheck.correct) {
-      if (currentTurn.round == 0 || currentTurn.round == 1) {
-        updatePlayerPoints(currentTurn.player, 100);
-      }
-      if (currentTurn.round == 2 || currentTurn.round == 3) {
-        updatePlayerPoints(currentTurn.player, 200);
-      }
-      if (currentTurn.round == 4) {
-        updatePlayerPoints(currentTurn.player, 300);
-      }
+      const points = calculatePoints(currentTurn.round, counter);
+      updatePlayerPoints(currentTurn.player, points);
+
       setSuccess(true);
       setUsedRadioButton(true);
       successSound.play();
@@ -301,9 +323,8 @@ const GameStart = () => {
                   return (
                     <p
                       key={q.value}
-                      className={`m-w-3/5   p-1 rounded shadow ${
-                        q.correct ? "bg-green-200" : "bg-red-200"
-                      }`}
+                      className={`m-w-3/5   p-1 rounded shadow ${q.correct ? "bg-green-200" : "bg-red-200"
+                        }`}
                     >
                       {q.value}
                     </p>
@@ -317,14 +338,14 @@ const GameStart = () => {
     );
   };
 
-  useEffect(() => {});
+  useEffect(() => { });
   const winnerPointsIndex = () => {
     return Math.max(...playerPoints);
   };
   const winnerPlayer = () => {
     return gameContext.players[playerPoints.indexOf(Math.max(...playerPoints))]
       .name_player;
-  }; 
+  };
   const renderWinner = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
@@ -339,7 +360,7 @@ const GameStart = () => {
           </div>
           <div className="flex px-12 justify-between w-full mt-8">
             <button
-              onClick={() =>{
+              onClick={() => {
                 navigate("/");
                 removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
                 removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
@@ -419,7 +440,7 @@ const GameStart = () => {
       {/* {JSON.stringify(questionGameIn)} */}
       {/* {JSON.stringify(questionCheck)} */}
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
-      turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
+        turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
         renderWinner()
       ) : (
         <>
@@ -443,13 +464,12 @@ const GameStart = () => {
                       <div key={index} className="flex px-12 rounded-2xl">
                         <p className="font-bold text-sm  text-teal-600">
                           <span
-                            className={`${
-                              gameContext.players[index].name_player ===
+                            className={`${gameContext.players[index].name_player ===
                               gameContext.players[currentTurn.player]
                                 .name_player
-                                ? "bg-green-100 rounded text-white"
-                                : "text - blue - 800"
-                            } `}
+                              ? "bg-black rounded text-white"
+                              : "text - blue - 800"
+                              } `}
                           >
                             {index + 1 + " "}
                             {gameContext.players[index].name_player}
@@ -475,19 +495,23 @@ const GameStart = () => {
               </div> */}
             </div>
             <div className="flex justify-center items-center col-span-1  border-l-4 pl-2">
-              <div className="w-2/12 justify-center items-center">
+              <div className="w-12/12 justify-center items-center">
                 <h1 className="text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
                   Round:
                   <span className="text-red-400">
                     {rounds[currentTurn.round]}
                     <span className="text-green-500">
                       {currentTurn.round == 0 || currentTurn.round == 1
-                        ? "+100"
+                        ? " + 100 points before 15s"
                         : currentTurn.round == 2 || currentTurn.round == 3
-                        ? "+200"
-                        : "+300"}
+                          ? " + 200 points before 15s"
+                          : " + 300 points before 15s"}
                     </span>
-                  </span>
+                  </span> <br />
+                </h1>
+                <h1 className="text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+                  Rules:
+                  <span className="text-red-500"> Be as fast as possible!</span>
                 </h1>
               </div>
             </div>
