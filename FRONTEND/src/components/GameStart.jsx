@@ -6,7 +6,6 @@ import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
 import CounterSound from "../assets/countertwo.mp4";
 
-
 import { motion } from "framer-motion";
 
 // import dataQuestions from "../utils/exampleQuestions.json";
@@ -22,8 +21,11 @@ import {
 import { useLocalStorageState } from "../utils/useLocalStorageState";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const GameStart = () => {
+  const navigate=useNavigate();
+  //
   const [modalQuestion, setModalQuestion] = useState(false); //Estado del modal
   const [questionGameIn, setQuestinGameIn] = useState(null); //La pregunta con la que estamos jugando
   const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta
@@ -54,9 +56,9 @@ const GameStart = () => {
   );
   const [turnIndexSave, SetTurnIndexSave] = useLocalStorageState(
     KEY_LOCAL_STORAGE_TURN,
-    { 
-      round: 0, 
-      player: 0 
+    {
+      round: 1,
+      player: 1,
     }
   );
   const [currentTurn, setCurrentTurn] = useLocalStorageState(
@@ -75,24 +77,18 @@ const GameStart = () => {
   const updateQuestionsLocalStorage = (value) => {
     setQuestionUsedValids((prevQuestions) => [...prevQuestions, value]);
   };
-   useEffect(() => {
-     // Verificar el final del juego después de cada actualización de turno
-     if (
-       currentTurn.round === VALUE_ROUNDS_LOCAL &&
-       currentTurn.player === gameContext.players.length-1
-     ) {
-       // Realizar cualquier acción necesaria cuando el juego finaliza
-       // Por ejemplo, mostrar un mensaje, finalizar el juego, etc.
-       console.log("Juego finalizado");
-     }
-   }, [currentTurn]);
-  const nextTurn = () => {
+  useEffect(() => {
+    // Verificar el final del juego después de cada actualización de turno
     if (
-      currentTurn.round == VALUE_ROUNDS_LOCAL &&
-      currentTurn.player == gameContext.players.length
+      currentTurn.round === VALUE_ROUNDS_LOCAL &&
+      currentTurn.player === gameContext.players.length - 1
     ) {
-      return;
+      // Realizar cualquier acción necesaria cuando el juego finaliza
+      // Por ejemplo, mostrar un mensaje, finalizar el juego, etc.
+      console.log("Juego finalizado");
     }
+  }, [currentTurn]);
+  const nextTurn = () => {
     setCurrentTurn((prevTurn) => {
       //  2===2
       const nextPlayer = (prevTurn.player + 1) % gameContext.players.length; //0+1  2 % 3
@@ -128,13 +124,19 @@ const GameStart = () => {
         updatePlayerPoints(currentTurn.player, 200);
       }
       if (currentTurn.round == 4) {
-        updatePlayerPoints(currentTurn.player, 100);
+        updatePlayerPoints(currentTurn.player, 300);
       }
       setSuccess(true);
       setUsedRadioButton(true);
       successSound.play();
-       setTimeout(() => {
-        SetTurnIndexSave();
+      setTimeout(() => {
+        SetTurnIndexSave((prev) => {
+          return {
+            ...prev,
+            round: currentTurn.round + 1,
+            player: currentTurn.player + 1,
+          };
+        });
         setQuestionCheck(null);
         setUsedRadioButton(false);
         setSuccess(false);
@@ -149,6 +151,13 @@ const GameStart = () => {
       setQuestionCheck(null);
       errorSound.play();
       setTimeout(() => {
+        SetTurnIndexSave((prev) => {
+          return {
+            ...prev,
+            round: currentTurn.round + 1,
+            player: currentTurn.player + 1,
+          };
+        });
         setUsedRadioButton(false);
         setError(false);
         nextTurn();
@@ -183,7 +192,7 @@ const GameStart = () => {
     };
   }, [modalQuestion]);
   useEffect(() => {
-    // Mostrar alerta cuando el contador llega a cero 
+    // Mostrar alerta cuando el contador llega a cero
     if (counter === 0) {
       checkResponse();
       setModalQuestion(false);
@@ -270,13 +279,84 @@ const GameStart = () => {
       <div className="bg-red-800 text-white p-4 rounded-lg">
         <i className="fas fa-times-circle text-4xl mb-2"></i>
         <h2 className="text-2xl mb-2">¡Error!</h2>
-        <p>{questionCheck?"La respuesta no es correcta.":"Debe seleccionar una respuesta."}</p>
+        <p>
+          {questionCheck
+            ? "La respuesta no es correcta."
+            : "Debe seleccionar una respuesta."}
+        </p>
       </div>
     );
   };
 
   useEffect(() => {});
-
+  const winnerPointsIndex = () => {
+    return Math.max(...playerPoints);
+  };
+  const winnerPlayer = () => {
+    return gameContext.players[playerPoints.indexOf(Math.max(...playerPoints))]
+      .name_player;
+  };
+  const removeItemsLocalStorage = (pk) => {
+    localStorage.removeItem(pk);
+  };
+  const renderWinner = () => {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
+        <div className="flex justify-center items-center flex-col bg-white w-1/3 h-[80%] p-8 rounded-2xl shadow-lg">
+          <div className="flex flex-col items-center justify-center w-full mb-4">
+            <h1 className="text-2xl font-bold text-gray-700">
+              WINNER: {winnerPlayer()}
+            </h1>
+            <h2 className="text-xl font-semibold text-gray-600 ml-4">
+              SCORE: {winnerPointsIndex()}
+            </h2>
+          </div>
+          <div className="flex px-12 justify-between w-full mt-8">
+            <button
+              onClick={() => navigate("/")}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="h-5 w-5 mr-2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              Save
+            </button>
+            <button
+              onClick={() => navigate("/")}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 flex items-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="h-5 w-5 mr-2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
   const renderModalQuestion = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -297,50 +377,9 @@ const GameStart = () => {
       {/* {JSON.stringify(currentTurn.round  )}
       {JSON.stringify(currentTurn.player  )}
       {JSON.stringify(gameContext.players.length)} */}
-      {currentTurn.round == 4 && // 2
-      currentTurn.player == gameContext.players.length ? ( // [0,1] //1 0,1
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white w-1/3 h-[80%] p-8 rounded-2xl shadow-lg">
-            <div className="flex gap-1 justify-center bg-red-100 p-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                id="Filled"
-                viewBox="0 0 24 24"
-                width="50"
-                height="50"
-                fill="yellow"
-              >
-                <path d="M1.327,12.4,4.887,15,3.535,19.187A3.178,3.178,0,0,0,4.719,22.8a3.177,3.177,0,0,0,3.8-.019L12,20.219l3.482,2.559a3.227,3.227,0,0,0,4.983-3.591L19.113,15l3.56-2.6a3.227,3.227,0,0,0-1.9-5.832H16.4L15.073,2.432a3.227,3.227,0,0,0-6.146,0L7.6,6.568H3.231a3.227,3.227,0,0,0-1.9,5.832Z" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                id="Filled"
-                viewBox="0 0 24 24"
-                width="50"
-                height="50"
-                fill="yellow"
-              >
-                <path d="M1.327,12.4,4.887,15,3.535,19.187A3.178,3.178,0,0,0,4.719,22.8a3.177,3.177,0,0,0,3.8-.019L12,20.219l3.482,2.559a3.227,3.227,0,0,0,4.983-3.591L19.113,15l3.56-2.6a3.227,3.227,0,0,0-1.9-5.832H16.4L15.073,2.432a3.227,3.227,0,0,0-6.146,0L7.6,6.568H3.231a3.227,3.227,0,0,0-1.9,5.832Z" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                id="Filled"
-                viewBox="0 0 24 24"
-                width="50"
-                height="50"
-                fill="rgba(45,45,45,0.3)"
-              >
-                <path d="M1.327,12.4,4.887,15,3.535,19.187A3.178,3.178,0,0,0,4.719,22.8a3.177,3.177,0,0,0,3.8-.019L12,20.219l3.482,2.559a3.227,3.227,0,0,0,4.983-3.591L19.113,15l3.56-2.6a3.227,3.227,0,0,0-1.9-5.832H16.4L15.073,2.432a3.227,3.227,0,0,0-6.146,0L7.6,6.568H3.231a3.227,3.227,0,0,0-1.9,5.832Z" />
-              </svg>
-            </div>
-            <div>
-              <h1>Target: Olivio</h1>
-              <h2>Score: 80</h2>
-            </div>
-            <button>Save</button>
-            <button>Close</button>
-          </div>
-        </div>
+      {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
+      turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
+        renderWinner()
       ) : (
         <>
           <div className="grid grid-cols-3 col-span-3 border bg-white border-none rounded-2xl shadow shadow-2xl">
@@ -375,7 +414,8 @@ const GameStart = () => {
                             {gameContext.players[index].name_player}
                             {" : "}
                             {playerPoints[index]}
-                            {" Fails: "}{" 0"}
+                            {" Fails: "}
+                            {" 0"}
                           </span>
                         </p>
                       </div>
@@ -399,7 +439,13 @@ const GameStart = () => {
                   Round:
                   <span className="text-red-400">
                     {rounds[currentTurn.round]}
-                    <span className="text-green-500">{"+100"}</span>
+                    <span className="text-green-500">
+                      {currentTurn.round == 0 || currentTurn.round == 1
+                        ? "+100"
+                        : currentTurn.round == 2 || currentTurn.round == 3
+                        ? "+200"
+                        : "+300"}
+                    </span>
                   </span>
                 </h1>
               </div>
