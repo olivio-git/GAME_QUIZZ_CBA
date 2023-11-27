@@ -9,13 +9,13 @@ import {
     KEY_LOCAL_STORAGE_TURNS,
     KEY_LOCAL_STORAGE_POINTS,
     IMAGE_CLOUDFRONT_STUDENTS,
-    KEY_LOCAL_STORAGE_USEDQUESTIONS} from "../utils/emvironments";
+    KEY_LOCAL_STORAGE_USEDQUESTIONS,
+    KEY_LOCAL_STORAGE_TURN} from "../utils/emvironments";
+import { removeItemsLocalStorage } from '../utils/functions';
 const Bar = ({ context }) => {
 const {addOpenMenu, menu , addGameContext,addGameProgress,addCategorys}=useContext(DataContext);
     const navigate = useNavigate();
-    const removeItemsLocalStorage = (pk) => {
-        localStorage.removeItem(pk);
-    }
+    
     const handleNavigate = () => {
         if (context != "home") {
             const shouldNavigate = window.confirm('Estás seguro de volver al inicio?');
@@ -23,6 +23,7 @@ const {addOpenMenu, menu , addGameContext,addGameProgress,addCategorys}=useConte
                 navigate('/');
                 removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
                 removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
+                removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
                 removeItemsLocalStorage(KEY_LOCAL_STORAGE_POINTS);
                 removeItemsLocalStorage(KEY_LOCAL_STORAGE_USEDQUESTIONS);
                 addGameContext(null);

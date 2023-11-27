@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import DataContext from "../context/dataContext";
 import { FetchAllQuestionsBd, fetchGetCategory } from "../utils/fetchBackend";
 import Confetti from "react-confetti";
@@ -10,18 +10,20 @@ import { motion } from "framer-motion";
 
 // import dataQuestions from "../utils/exampleQuestions.json";
 import {
-  KEY_LOCAL_STORAGE_POINTS,
-  KEY_LOCAL_STORAGE_ROUNDS,
-  KEY_LOCAL_STORAGE_TURN,
-  KEY_LOCAL_STORAGE_TURNS,
-  KEY_LOCAL_STORAGE_USEDQUESTIONS,
-  VALUE_INTERVAL_COUNTER,
-  VALUE_ROUNDS_LOCAL,
+    KEY_LOCAL_STORAGE,
+    KEY_LOCAL_STORAGE_ROUNDS,
+    KEY_LOCAL_STORAGE_TURNS,
+    KEY_LOCAL_STORAGE_POINTS, 
+    KEY_LOCAL_STORAGE_USEDQUESTIONS,
+    KEY_LOCAL_STORAGE_TURN,
+    VALUE_ROUNDS_LOCAL,
+    VALUE_INTERVAL_COUNTER
 } from "../utils/emvironments";
 import { useLocalStorageState } from "../utils/useLocalStorageState";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { removeItemsLocalStorage } from "../utils/functions";
 
 const GameStart = () => {
   const navigate=useNavigate();
@@ -29,10 +31,16 @@ const GameStart = () => {
   const [modalQuestion, setModalQuestion] = useState(false); //Estado del modal
   const [questionGameIn, setQuestinGameIn] = useState(null); //La pregunta con la que estamos jugando
   const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta
-  //temp
+  //temp  
   const [error, setError] = useState(false); //Para poder mostrar el error de pregunta no respondida
   const [success, setSuccess] = useState(false); //Para poder mostrar alertas success
   const [counterSoundState, setCounterSoundState] = useState(false);
+  //btn try
+  const [tap,setTap]=useState(false); //click boton
+  //sound interval
+  const [soundInt,setSoundInt]=useState(false);
+  // const audioRef = useRef(CounterSound);
+  const audioRef = useRef(new Audio(CounterSound));
 
   const [usedRadioButton, setUsedRadioButton] = useState(false); //Validar si el boton fue presionado
   // const [playerInGame, setCounter] = useState(0); //Para poner contador de vuelta atrás
@@ -48,6 +56,7 @@ const GameStart = () => {
     addCategorys,
     dataQuestions,
     addDataQuestions,
+    addGameContext,addGameProgress
   } = useContext(DataContext);
   //logic
   const [rounds, setRounds] = useLocalStorageState(
@@ -114,7 +123,10 @@ const GameStart = () => {
   };
 
   const checkResponse = () => {
-    countSound.pause();
+    // setSoundInt(false);
+    // audioRef.current.pause();
+    clearInterval(intervalId); // Detener el intervalo
+
     setUsedRadioButton();
     if (questionCheck && questionCheck.correct) {
       if (currentTurn.round == 0 || currentTurn.round == 1) {
@@ -142,15 +154,15 @@ const GameStart = () => {
         setSuccess(false);
         nextTurn();
         setModalQuestion(false);
-        setCounter(VALUE_INTERVAL_COUNTER);
+        setCounter(25);
         successSound.pause();
       }, 3000);
     } else {
       setError(true);
       setUsedRadioButton(true);
-      setQuestionCheck(null);
       errorSound.play();
       setTimeout(() => {
+        setQuestionCheck(null);
         SetTurnIndexSave((prev) => {
           return {
             ...prev,
@@ -173,7 +185,8 @@ const GameStart = () => {
     setQuestinGameIn(question);
     updateQuestionsLocalStorage(question);
     setModalQuestion(true);
-    countSound.play();
+    // setSoundInt(true);
+    // audioRef.current.play();
   };
   useEffect(() => {
     // updateDataQuestions();
@@ -195,7 +208,7 @@ const GameStart = () => {
     // Mostrar alerta cuando el contador llega a cero
     if (counter === 0) {
       checkResponse();
-      setModalQuestion(false);
+      setCounter(25);
       clearInterval(intervalId); // Detener el intervalo
     }
   }, [counter, intervalId]);
@@ -203,9 +216,9 @@ const GameStart = () => {
     return (
       <div>
         <p className="font-bold text-red-800">{counter}</p>
-        <audio className="hidden" controls>
+        {/* <audio ref={audioRef} className="hidden" controls>
           <source src={CounterSound} type="audio/mpeg" />
-        </audio>
+        </audio> */}
         {/* <p>{modalQuestion?"true":"false"}</p> */}
         <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
           Turno actual: {gameContext.players[currentTurn.player].name_player},
@@ -266,7 +279,7 @@ const GameStart = () => {
   };
   const renderModalSuccess = () => {
     return (
-      <div className="bg-green-800 text-white p-4 rounded-lg">
+      <div className="flex flex-col items-center justify-center  text-green-500 p-4 rounded-lg">
         <i className="fas fa-check-circle text-4xl mb-2"></i>
         <h2 className="text-2xl mb-2">¡Correcto!</h2>
         <p>Has respondido correctamente a la pregunta.</p>
@@ -276,12 +289,28 @@ const GameStart = () => {
   };
   const renderModalError = () => {
     return (
-      <div className="bg-red-800 text-white p-4 rounded-lg">
+      <div className="flex flex-col items-center justify-center text-red-500 p-4 rounded-lg">
         <i className="fas fa-times-circle text-4xl mb-2"></i>
         <h2 className="text-2xl mb-2">¡Error!</h2>
         <p>
           {questionCheck
-            ? "La respuesta no es correcta."
+            ? <div>
+              <p>La respuesta no es correcta.</p>
+              {
+                questionGameIn.answer.map((q) => {
+                  return (
+                    <p
+                      key={q.value}
+                      className={`m-w-3/5   p-1 rounded shadow ${
+                        q.correct ? "bg-green-200" : "bg-red-200"
+                      }`}
+                    >
+                      {q.value}
+                    </p>
+                  );
+                })
+              }
+            </div>
             : "Debe seleccionar una respuesta."}
         </p>
       </div>
@@ -295,10 +324,7 @@ const GameStart = () => {
   const winnerPlayer = () => {
     return gameContext.players[playerPoints.indexOf(Math.max(...playerPoints))]
       .name_player;
-  };
-  const removeItemsLocalStorage = (pk) => {
-    localStorage.removeItem(pk);
-  };
+  }; 
   const renderWinner = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
@@ -313,7 +339,18 @@ const GameStart = () => {
           </div>
           <div className="flex px-12 justify-between w-full mt-8">
             <button
-              onClick={() => navigate("/")}
+              onClick={() =>{
+                navigate("/");
+                removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
+                removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
+                removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
+                removeItemsLocalStorage(KEY_LOCAL_STORAGE_POINTS);
+                removeItemsLocalStorage(KEY_LOCAL_STORAGE_USEDQUESTIONS);
+                removeItemsLocalStorage(KEY_LOCAL_STORAGE);
+                addGameContext(null);
+                addGameProgress(false);
+                addCategorys([]);
+              }}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
             >
               <svg
@@ -373,10 +410,14 @@ const GameStart = () => {
 
   return (
     <div className="grid grid-cols-3 grid-rows-5 w-full h-full">
-      {/* <p>{modalQuestion ? "true" : "false"}</p> */}
+      {/* <p>{modalQuestion ? "true" :   "false"}</p> */}
       {/* {JSON.stringify(currentTurn.round  )}
       {JSON.stringify(currentTurn.player  )}
       {JSON.stringify(gameContext.players.length)} */}
+      {/* {renderModalSuccess()} */}
+      {/* {JSON.stringify(counter)} */}
+      {/* {JSON.stringify(questionGameIn)} */}
+      {/* {JSON.stringify(questionCheck)} */}
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
       turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
         renderWinner()

@@ -7,7 +7,7 @@ export const KEY_LOCAL_STORAGE_USEDQUESTIONS = "questions";
 export const KEY_LOCAL_STORAGE_TURN = "turnSave";
 
 export const VALUE_ROUNDS_LOCAL = 5;
-export const VALUE_INTERVAL_COUNTER = 17;
+export const VALUE_INTERVAL_COUNTER = 25;
 
 // export const KEY_LOCAL_STORAGE_TURN = "turnSave";
 
