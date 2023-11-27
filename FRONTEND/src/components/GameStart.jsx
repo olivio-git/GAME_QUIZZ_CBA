@@ -26,8 +26,17 @@ import { useNavigate } from "react-router-dom";
 import { removeItemsLocalStorage } from "../utils/functions";
 
 const GameStart = () => {
+  const {
+    gameContext,
+    categorys,
+    addCategorys,
+    dataQuestions,
+    addDataQuestions,
+    addGameContext,
+    addGameProgress,
+  } = useContext(DataContext);
   const navigate=useNavigate();
-  //
+  // 
   const [modalQuestion, setModalQuestion] = useState(false); //Estado del modal
   const [questionGameIn, setQuestinGameIn] = useState(null); //La pregunta con la que estamos jugando
   const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta
@@ -50,14 +59,7 @@ const GameStart = () => {
 
   const [counter, setCounter] = useState(VALUE_INTERVAL_COUNTER); //counter
   const [intervalId, setIntervalId] = useState(null); //interval
-  const {
-    gameContext,
-    categorys,
-    addCategorys,
-    dataQuestions,
-    addDataQuestions,
-    addGameContext,addGameProgress
-  } = useContext(DataContext);
+  
   //logic
   const [rounds, setRounds] = useLocalStorageState(
     KEY_LOCAL_STORAGE_ROUNDS,
@@ -316,8 +318,10 @@ const GameStart = () => {
       </div>
     );
   };
-
-  useEffect(() => {});
+   
+  useEffect(() => { 
+    // FetchAllQuestionsBd(addDataQuestions);
+  });
   const winnerPointsIndex = () => {
     return Math.max(...playerPoints);
   };

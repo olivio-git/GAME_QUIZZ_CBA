@@ -43,9 +43,9 @@ const GameInProgress = () => {
     setTemPlayer('');
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    toast.promise(fetchPostGame(gameCreator), {
+    await toast.promise(fetchPostGame(gameCreator), {
       loading: 'Loading Operation',
       success: 'Operation Success!.',
       error: 'Operation Error!.',
@@ -65,6 +65,8 @@ const GameInProgress = () => {
         //r.data.data = {game: {name}, players: [1,2,3,4,5]}
         //localstorage.setItem('game', r.data.data)
       });
+    await updateGlobalContext();
+
   }
 
   const renderModalGame = () => {
@@ -184,9 +186,8 @@ const GameInProgress = () => {
   };
   const categoryFetch = async () => {
     await fetchGetCategory(addCategorys);
-}
-  const updateGlobalContext = async () => {
-    console.log("object");
+  };
+  const updateGlobalContext = async () => { 
     const data = await localStorage.getItem(KEY_LOCAL_STORAGE);
     if(data){
       const jsonparse= await JSON.parse(data);
@@ -195,17 +196,9 @@ const GameInProgress = () => {
       addGameProgress(true);
       await categoryFetch();
     }
-  }
+  };
   const updateDataQuestions = async () => {
-    return toast
-      .promise(FetchAllQuestionsBd(), {
-        loading: "Loading Operation",
-        success: "Uploaded Information.",
-        error: "Operation Error!.",
-      })
-      .then((r) => {
-        addDataQuestions(r.data.data);
-      });
+    await FetchAllQuestionsBd(addDataQuestions);
   };
   useEffect(()=>{
     updateGlobalContext();

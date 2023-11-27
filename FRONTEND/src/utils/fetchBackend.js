@@ -32,9 +32,11 @@ export const fetchDeleteQuestion = async (props, id) => {
 export const fetchDeleteQuestions = async (id) => {
     return await axios.delete(`/questions/${id}`);
 }
-export const FetchAllQuestionsBd = async () => {
-    return await axios.get('questions/as');
-}
+export const FetchAllQuestionsBd = async (fn) => {
+  const response = await axios.get("questions/as");
+  console.log(response);
+  fn(response.data.data);
+};
 //
 export const fetchPostGame = async (obj) => {
     return await axios.post('/game/', obj);
