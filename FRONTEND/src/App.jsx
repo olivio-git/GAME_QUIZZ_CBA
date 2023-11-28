@@ -9,13 +9,14 @@ import GameInProgress from './components/GameInProgress';
 import GameStart from './components/GameStart';
 import { Toaster } from 'react-hot-toast';
 import DataContext from './context/dataContext';
-import { fetchGetCategory, fetchGetGameSaveEnd } from './utils/fetchBackend';
+import { FetchAllQuestionsBd, fetchGetCategory, fetchGetGameSaveEnd } from './utils/fetchBackend';
 import History from './components/History';
 
 const code = true;
 
 function App() {
-  const { addGameQuestions, addCategorys } = useContext(DataContext);
+  const { addGameQuestions, addCategorys, addDataQuestions } =
+    useContext(DataContext);
   const ProtectedRoutes = ({ children }) => {
     if (code) {
       return children;
@@ -23,8 +24,11 @@ function App() {
       return <Navigate to="/" />;
     }
   }
-
+  const handleQuest = async () => {
+     await FetchAllQuestionsBd(addDataQuestions);
+  }
   useEffect(() => {
+    handleQuest();
     fetchGetGameSaveEnd(addGameQuestions);
     fetchGetCategory(addCategorys);
   }, [])
