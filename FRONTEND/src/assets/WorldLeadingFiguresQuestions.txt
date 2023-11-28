@@ -10,7 +10,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Which European explorer is credited with discovering America in 1492?",
@@ -23,7 +23,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the scientist that formulated the theory of relativity?",
@@ -36,7 +36,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first President of the United States?",
@@ -49,7 +49,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Which South African anti-apartheid revolutionary and politician became the country's first black president?",
@@ -62,7 +62,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who is the current Prime Minister of Canada?",
@@ -75,7 +75,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the Argentine revolutionary leader who played a key role in the independence of several South American countries, including Argentina, Chile, and Peru?",
@@ -88,7 +88,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Which Venezuelan military leader played a crucial role in liberating several South American countries from Spanish rule and is known as 'El Libertador' (The Liberator)?",
@@ -101,7 +101,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the Peruvian author and activist who wrote the famous novel 'The Feast of the Goat' and won the Nobel Prize in Literature in 2010?",
@@ -114,7 +114,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who is the founder of Microsoft Corporation?",
@@ -127,7 +127,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first Emperor of the Roman Empire?",
@@ -140,7 +140,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Which U.S. president issued the Emancipation Proclamation in 1863?",
@@ -153,7 +153,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the most glorious queen in English history?",
@@ -166,7 +166,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the famous Chinese philosopher and teacher known for his philosophy of Confucianism?",
@@ -179,7 +179,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who discovered penicillin, the first widely used antibiotic?",
@@ -192,7 +192,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first woman to fly in space?",
@@ -205,7 +205,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who is known for developing the theory of evolution by natural selection?",
@@ -218,7 +218,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who developed the theory of relativity?",
@@ -231,7 +231,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who is the founder of Facebook?",
@@ -244,7 +244,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who is the inventor of the telephone?",
@@ -257,7 +257,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who is known for his role as the lead vocalist of the rock band The Beatles?",
@@ -270,7 +270,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first person to walk on the moon?",
@@ -283,7 +283,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who is the founder of Tesla, Inc. and SpaceX, and is known for his work in electric vehicles and space exploration?",
@@ -296,7 +296,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first woman to serve as the President of Argentina?",
@@ -309,7 +309,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the Spanish painter known for works such as 'Guernica' and 'The Weeping Woman'?",
@@ -322,7 +322,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "She was the first female Prime Minister of India.",
@@ -335,7 +335,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "She’s the famous lady with a mysterious smile in the painting that hangs in the Louvre Museum.",
@@ -348,7 +348,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first woman to win a Nobel Prize (1903)?",
@@ -361,7 +361,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first woman in space?",
@@ -374,7 +374,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first Black president of the USA?",
@@ -387,7 +387,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "What is the name of the Austrian man who helped found the principles of psychoanalysis?",
@@ -400,7 +400,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "What is the name of the African-American woman who broke the law by not wanting to sit at the back of a bus?",
@@ -413,7 +413,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "What is the name of the pilot who disappeared mysteriously over the Pacific Ocean?",
@@ -426,7 +426,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was known by the nickname 'Andean Rockefeller' in Bolivia?",
@@ -439,7 +439,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who sent Christopher Columbus to explore the New World?",
@@ -452,7 +452,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was Pope throughout the 1990s?",
@@ -465,7 +465,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who is the President of France?",
@@ -478,7 +478,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was shot by the Taliban for going to school?",
@@ -491,7 +491,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who implemented the extension of voting rights to indigenous people in Bolivia?",
@@ -504,7 +504,7 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 },
 {
     "question": "Who was the first Mexican artist whose work reached the Louvre Museum in Paris?",
@@ -517,6 +517,6 @@
     ],
     "difficulty": "",
     "stage": "",
-    "CategoryIdCategory": "5a9e3ffa-0d15-4486-b083-facc1bf960f1"
+    "CategoryIdCategory": "319aee49-44a1-45c2-8210-224450a16f89"
 }
 ]

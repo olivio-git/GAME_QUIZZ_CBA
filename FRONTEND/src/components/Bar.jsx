@@ -33,6 +33,7 @@ const {addOpenMenu, menu , addGameContext,addGameProgress,addCategorys}=useConte
             }
         }
     };
+    
 
     return (
       <div className="col-span-2 flex flex-row rounded-2xl h-full p-4 gap-2 w-full">

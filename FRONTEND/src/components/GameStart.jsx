@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import DataContext from "../context/dataContext";
-import { FetchAllQuestionsBd, fetchGetCategory } from "../utils/fetchBackend";
+import { FetchAllQuestionsBd, fetchGetCategory, fetchPostGameSaveEnd } from "../utils/fetchBackend";
 import Confetti from "react-confetti";
 import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
-import CounterSound from "../assets/countertwo.mp4";
+import CounterSound from "../assets/25segundos.mp3";
 
 import { motion } from "framer-motion";
 
@@ -50,14 +50,12 @@ const GameStart = () => {
   const [soundInt, setSoundInt] = useState(false);
   // const audioRef = useRef(CounterSound);
   const audioRef = useRef(new Audio(CounterSound));
-  //for fails
-  
-
   const [usedRadioButton, setUsedRadioButton] = useState(false); //Validar si el boton fue presionado
   // const [playerInGame, setCounter] = useState(0); //Para poner contador de vuelta atrás
   const successSound = new Audio(SuccessSound); //Sonido de audio para Sucess
   const errorSound = new Audio(ErrorSound); //Sonido de audio para Sucess
   const countSound = new Audio(CounterSound); //Sonido de audio para Counter
+  let puntos;
 
   const [counter, setCounter] = useState(VALUE_INTERVAL_COUNTER); //counter
   const [intervalId, setIntervalId] = useState(null); //interval
@@ -107,7 +105,7 @@ const GameStart = () => {
       const nextPlayer = (prevTurn.player + 1) % gameContext.players.length; //0+1  2 % 3
       if (nextPlayer === 0) {
         console.log(
-          `Ronda: ${(prevTurn.round + 1) % rounds.length}, Jugador: 0`
+          `Round: ${(prevTurn.round + 1) % rounds.length}, Player: 0`
         ); // Agregar este registro
         return { round: (prevTurn.round + 1) % rounds.length, player: 0 }; //saltando de turno
       }
@@ -125,12 +123,14 @@ const GameStart = () => {
       return newPoints;
     });
   };
+  
   //console.log(counter)
   const checkResponse = () => {
     // setSoundInt(false);
     // audioRef.current.pause();
     clearInterval(intervalId); // Detener el intervalo
-
+    audioRef.current.currentTime = 0;
+    audioRef.current.pause();
     //LIMBERFUNCTIONS
     function calculatePoints(round, counter) {
       let points;
@@ -160,6 +160,8 @@ const GameStart = () => {
     setUsedRadioButton();
     if (questionCheck && questionCheck.correct) {
       const points = calculatePoints(currentTurn.round, counter);
+      puntos=points;
+      console.log(puntos)
       updatePlayerPoints(currentTurn.player, points);
 
       setSuccess(true);
@@ -180,6 +182,7 @@ const GameStart = () => {
         setModalQuestion(false);
         setCounter(25);
         successSound.pause();
+        puntos=0;
       }, 3000);
     } else {
       setError(true);
@@ -209,8 +212,8 @@ const GameStart = () => {
     setQuestinGameIn(question);
     updateQuestionsLocalStorage(question);
     setModalQuestion(true);
-    // setSoundInt(true);
-    // audioRef.current.play();
+    setSoundInt(true);
+    audioRef.current.play();
   };
   useEffect(() => {
     // updateDataQuestions();
@@ -245,8 +248,8 @@ const GameStart = () => {
         </audio> */}
         {/* <p>{modalQuestion?"true":"false"}</p> */}
         <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
-          Turno actual: {gameContext.players[currentTurn.player].name_player},
-          Ronda: {rounds[currentTurn.round]}
+          Current Shift: {gameContext.players[currentTurn.player].name_player},
+          Round:{rounds[currentTurn.round]}
         </h1>
         <h1 className="text-2xl font-bold ">{questionGameIn.question}</h1>
         <div className="mb-4">
@@ -305,8 +308,8 @@ const GameStart = () => {
     return (
       <div className="flex flex-col items-center justify-center  text-green-500 p-4 rounded-lg">
         <i className="fas fa-check-circle text-4xl mb-2"></i>
-        <h2 className="text-2xl mb-2">¡Correcto!</h2>
-        <p>Has respondido correctamente a la pregunta.</p>
+        <h2 className="text-2xl mb-2">Correct!</h2>
+        <p>You answered the question correctly.</p>
         {success ? <Confetti></Confetti> : null}
       </div>
     );
@@ -315,11 +318,11 @@ const GameStart = () => {
     return (
       <div className="flex flex-col items-center justify-center text-red-500 p-4 rounded-lg">
         <i className="fas fa-times-circle text-4xl mb-2"></i>
-        <h2 className="text-2xl mb-2">¡Error!</h2>
+        <h2 className="text-2xl mb-2">Error!</h2>
         <p>
           {questionCheck
             ? <div>
-              <p>La respuesta no es correcta.</p>
+              <p>The answer is not correct.</p>
               {
                 questionGameIn.answer.map((q) => {
                   return (
@@ -334,7 +337,7 @@ const GameStart = () => {
                 })
               }
             </div>
-            : "Debe seleccionar una respuesta."}
+            : "You must select an answer."}
         </p>
       </div>
     );
@@ -348,8 +351,8 @@ const GameStart = () => {
     return gameContext.players[playerPoints.indexOf(Math.max(...playerPoints))]
       .name_player;
   };
-  const renderOrd =  () =>{
-    let tempValues=[];
+  const renderOrd = () => {
+    let tempValues = [];
     gameContext.players.map((g, index) => {
       tempValues.push({
         name: gameContext.players[index].name_player,
@@ -359,7 +362,7 @@ const GameStart = () => {
     const playersCopy = [...tempValues];
     playersCopy.sort((a, b) => b.point - a.point);
     return (
-      <h2 className="text-xl font-semibold text-gray-600 ml-4"> 
+      <h2 className="text-xl font-semibold text-gray-600 ml-4">
         {gameContext.players &&
           gameContext.players.map((g, index) => {
             return (
@@ -378,6 +381,44 @@ const GameStart = () => {
       </h2>
     );
   }
+  //handleSubmitGameSave
+  const handleSubmitGameSave = async () => {
+    let tempValues = [];
+    gameContext.players.map((g, index) => {
+      tempValues.push({
+        name: gameContext.players[index].name_player,
+        point: playerPoints[index],
+      });
+    });
+    const playersCopy = [...tempValues];
+    playersCopy.sort((a, b) => b.point - a.point);
+
+    await toast
+      .promise(
+        fetchPostGameSaveEnd({
+          idGame: gameContext.game.id_game,
+          idQuestions: questionUsedValids,
+          top: playersCopy
+        }),
+        {
+          loading: "Loading Operation",
+          success: "Operation Success!.",
+          error: "Operation Error!.",
+        }
+      )
+      .then((response) => {
+        removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
+        removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
+        removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
+        removeItemsLocalStorage(KEY_LOCAL_STORAGE_POINTS);
+        removeItemsLocalStorage(KEY_LOCAL_STORAGE_USEDQUESTIONS);
+        removeItemsLocalStorage(KEY_LOCAL_STORAGE);
+        addGameContext(null);
+        addGameProgress(false);
+        addCategorys([]);
+        navigate("/");
+      });
+  }
   const renderWinner = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
@@ -386,20 +427,10 @@ const GameStart = () => {
             <h1 className="text-2xl font-bold text-gray-700">Scoreboard</h1>
             {renderOrd()}
           </div>
+          {/* {JSON.stringify(gameContext.game)} */}
           <div className="flex px-12 justify-between w-full mt-8">
             <button
-              onClick={() => {
-                navigate("/");
-                removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
-                removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
-                removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
-                removeItemsLocalStorage(KEY_LOCAL_STORAGE_POINTS);
-                removeItemsLocalStorage(KEY_LOCAL_STORAGE_USEDQUESTIONS);
-                removeItemsLocalStorage(KEY_LOCAL_STORAGE);
-                addGameContext(null);
-                addGameProgress(false);
-                addCategorys([]);
-              }}
+              onClick={handleSubmitGameSave}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
             >
               <svg
@@ -458,15 +489,7 @@ const GameStart = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 grid-rows-5 w-full h-full">
-      {/* <p>{modalQuestion ? "true" :   "false"}</p> */}
-      {/* {JSON.stringify(currentTurn.round  )}
-      {JSON.stringify(currentTurn.player  )}
-      {JSON.stringify(gameContext.players.length)} */}
-      {/* {renderModalSuccess()} */}
-      {/* {JSON.stringify(counter)} */}
-      {/* {JSON.stringify(questionGameIn)} */}
-      {/* {JSON.stringify(questionCheck)} */}
+    <div className="grid grid-cols-3 grid-rows-5 w-full h-full"> 
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
         turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
         renderWinner()

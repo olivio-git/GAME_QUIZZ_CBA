@@ -10,6 +10,10 @@ export const DataContextProvider = ({ children }) => {
   const [gameContext, setGameContext] = useState(null);
   //states game start
   const [dataQuestions, setDataQuestions] = useState(null);
+  //dataGameQuestions
+  const [gameQuestions, setGameQuestions] = useState(null);
+  //history
+  const [stateModalHistory, setStateModalHistory] = useState(false);
 
   const [gameInProgress, setGameInProgress] = useState(false); //para saber si mostrar partida o boton
   const [questions, setQuestions] = useState([]); //mis estado big
@@ -25,6 +29,9 @@ export const DataContextProvider = ({ children }) => {
       image: IMAGE_CLOUDFRONT_QUIZZ,
     },
   ]);
+  const addGameQuestions = (obj) => {
+    setGameQuestions(obj);
+  };
   const selected = (id) => {
     const game = data.find((ob) => ob.id == id); //FILTRAR JUEGO Y RETORNO
     setGameSelected(game);
@@ -97,6 +104,10 @@ export const DataContextProvider = ({ children }) => {
     gameContext,
     dataQuestions,
     addDataQuestions,
+    addGameQuestions,
+    gameQuestions,
+    stateModalHistory,
+    setStateModalHistory,
   };
   return (
     <DataContext.Provider value={STATES_MODIFIC}>
