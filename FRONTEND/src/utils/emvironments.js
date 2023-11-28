@@ -13,6 +13,6 @@ export const VALUE_INTERVAL_COUNTER = 25;
 
 
 
-export const IMAGE_CLOUDFRONT_QUIZZ = "https://d2vp3r12siobk2.cloudfront.net/ONE.avif";
-export const IMAGE_CLOUDFRONT_STUDENTS = "https://d2vp3r12siobk2.cloudfront.net/students.png";
+export const IMAGE_CLOUDFRONT_QUIZZ = "https://i.ibb.co/8zc0Bn3/logo1.jpg";
+export const IMAGE_CLOUDFRONT_STUDENTS = "https://i.ibb.co/8sK1MQz/logo2.jpg";
 
