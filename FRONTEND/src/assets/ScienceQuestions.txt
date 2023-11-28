@@ -10,7 +10,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the smallest planet in our solar system?",
@@ -23,7 +23,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the process by which plants make their own food using sunlight?",
@@ -36,7 +36,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the closest star to Earth?",
@@ -49,7 +49,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the force that causes objects to fall to the ground?",
@@ -62,7 +62,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the study of celestial objects such as stars, planets, and galaxies?",
@@ -75,7 +75,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which gas do plants use from the air to perform photosynthesis?",
@@ -88,7 +88,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the smallest unit of an element, consisting of protons, neutrons, and electrons?",
@@ -101,7 +101,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the process by which rocks, minerals, and soil are gradually worn away by natural forces?",
@@ -114,7 +114,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the largest organ in the human body?",
@@ -127,7 +127,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the powerhouse of the cell and produces ATP?",
@@ -140,7 +140,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which gas do humans inhale for respiration?",
@@ -153,7 +153,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which planet is known as the 'Red Planet'?",
@@ -166,7 +166,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "This unit is used to measure the intensity of earthquakes.",
@@ -179,7 +179,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the study of the Earth's rocks, minerals, and the processes that shape the Earth's surface?",
@@ -192,7 +192,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the largest mammal in the world?",
@@ -205,7 +205,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the basic unit of life?",
@@ -218,7 +218,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the chemical symbol for sodium?",
@@ -231,7 +231,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the process by which living organisms produce offspring of the same kind?",
@@ -244,7 +244,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which marine mammal is known for its playful behavior, often seen leaping out of the water and performing acrobatics?",
@@ -257,7 +257,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the branch of physics that deals with the study of motion and the forces that cause it?",
@@ -270,7 +270,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What kind of animal is a snake?",
@@ -283,7 +283,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "How many hearts does an octopus have?",
@@ -296,7 +296,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "How many colors are in the rainbow?",
@@ -309,7 +309,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which is the most abundant element in the universe?",
@@ -322,7 +322,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the hardest natural substance on Earth?",
@@ -335,7 +335,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What does DNA stand for?",
@@ -348,7 +348,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "On what continent will you not find bees?",
@@ -361,7 +361,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the heaviest organ in the human body?",
@@ -374,7 +374,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "How many bones are in the human body?",
@@ -387,7 +387,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which planet in our solar system is known for its prominent rings?",
@@ -400,7 +400,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which gas is most abundant in Earth's atmosphere?",
@@ -413,7 +413,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the primary function of red blood cells in the human body?",
@@ -426,7 +426,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the study of the Earth's atmosphere and its interactions with the planet's surface and living organisms?",
@@ -439,7 +439,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which mammal is often referred to as the 'sea cow' and is known for its herbivorous diet and slow-moving nature?",
@@ -452,7 +452,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the name for a group of wolves led by a dominant male and female, often associated with social hunting?",
@@ -465,7 +465,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the process by which some animals, like reptiles and amphibians, shed their outer skin to allow for growth?",
@@ -478,7 +478,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which insect is known for its powerful jaws and is often associated with building complex underground colonies?",
@@ -491,7 +491,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "Which large primate species is known for its distinctive reddish-brown fur and is native to Borneo and Sumatra?",
@@ -504,7 +504,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     },
     {
         "question": "What is the term for the adaptation of an animal's behavior and physiology to changes in temperature and light over the course of a day?",
@@ -517,7 +517,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "87a06d0a-9195-469d-ac55-ce5d8a8dbb8a"
+        "CategoryIdCategory": "0d3db0f9-bc97-4c4b-8f4c-8f99922d96d2"
     }
 ]
 

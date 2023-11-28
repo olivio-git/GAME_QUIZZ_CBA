@@ -10,7 +10,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Which famous band is known for songs like 'Hey Jude' and 'Let It Be'?",
@@ -23,7 +23,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who played the character of Iron Man/Tony Stark in the Marvel Cinematic Universe films?",
@@ -36,7 +36,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who is the author of the 'Harry Potter' book series?",
@@ -49,7 +49,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who is the Canadian singer and songwriter known for hits like 'Sorry' and 'Love Yourself'?",
@@ -62,7 +62,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Which actress starred as Katniss Everdeen in 'The Hunger Games' film series?",
@@ -75,7 +75,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What is the famous dance style associated with Michael Jackson and his hit song 'Thriller' and 'Billy Jean?",
@@ -88,7 +88,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who is the creator of the 'Star Wars' film franchise?",
@@ -101,7 +101,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who played the character of Jack Dawson in the movie 'Titanic'?",
@@ -114,7 +114,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "This animated film features a lion cub named Simba and his journey to reclaim his throne.",
@@ -127,7 +127,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What is the name of the fictional spy created by Ian Fleming?",
@@ -140,7 +140,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who portrayed the character of Captain Jack Sparrow in the 'Pirates of the Caribbean' film series?",
@@ -153,7 +153,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who is the director of the 'Jurassic Park' film series?",
@@ -166,7 +166,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Which animated film features a snowman named Olaf and a princess named Anna?",
@@ -179,7 +179,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What is the name of the fictional wizarding newspaper in the 'Harry Potter' series?",
@@ -192,7 +192,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who directed the film 'Avatar'?",
@@ -205,7 +205,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who is known for his role as the Terminator in the 'Terminator' film series?",
@@ -218,7 +218,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who is known for his role as Han Solo in the 'Star Wars' film series?",
@@ -231,7 +231,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who is known for his role as the lead vocalist of the rock band Queen?",
@@ -244,7 +244,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "How many Oscars did the movie Titanic win?",
@@ -257,7 +257,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Which Avenger is the only one who could calm Hulk down?",
@@ -270,7 +270,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who was the first woman ever inducted into the Rock and Roll Hall of Fame?",
@@ -283,7 +283,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "How many Harry Potter books and movies are there?",
@@ -296,7 +296,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What are the names of the Sanderson sisters from Hocus Pocus?",
@@ -309,7 +309,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What did Mandalorian fans name 'The Child' in the Disney+ series?",
@@ -322,7 +322,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "The Lord of the Rings films are based on a novel written by which author?",
@@ -335,7 +335,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "How many Academy Awards did the 'Lord of the Rings' series win?",
@@ -348,7 +348,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "In 'K-Pop' what does the K stand for?",
@@ -361,7 +361,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Where were The Lord of the Rings movies filmed?",
@@ -374,7 +374,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "In Mean Girls, Cady moves to Illinois from which continent?",
@@ -387,7 +387,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What was Freddie Mercury's real name?",
@@ -400,7 +400,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Which classical composer was deaf?",
@@ -413,7 +413,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What pop singer is known as 'The Material Girl'?",
@@ -426,7 +426,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What musician won the Nobel Prize for Literature in 2016?",
@@ -439,7 +439,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What country is Shakira originally from?",
@@ -452,7 +452,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Who was the first character to speak in the first Star Wars movie?",
@@ -465,7 +465,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "What was the first feature-length animated movie ever released?",
@@ -478,7 +478,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Miranda Bailey and Richard Webber are characters in which TV show?",
@@ -491,7 +491,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Lannister and Stark are two major families on which TV show?",
@@ -504,7 +504,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     },
     {
         "question": "Which TV character is known for saying 'Bazinga!'?",
@@ -517,7 +517,7 @@
         ],
         "difficulty": "",
         "stage": "",
-        "CategoryIdCategory": "cbc8e5a5-456a-4d56-99c2-09d981a2f482"
+        "CategoryIdCategory": "4c5202f8-a52c-4c23-a2f2-64994637861c"
     }
 ]
 

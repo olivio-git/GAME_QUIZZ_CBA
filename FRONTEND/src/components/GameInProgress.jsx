@@ -1,11 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Bar from './Bar';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import DataContext from '../context/dataContext';
-import GameStart from './GameStart';
-import toast from 'react-hot-toast';
-import { FetchAllQuestionsBd, fetchGetCategory, fetchPostGame } from '../utils/fetchBackend';
-import { KEY_LOCAL_STORAGE } from '../utils/emvironments';
+import React, { useContext, useEffect, useState } from "react";
+import Bar from "./Bar";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import DataContext from "../context/dataContext";
+import GameStart from "./GameStart";
+import toast from "react-hot-toast";
+import {
+  FetchAllQuestionsBd,
+  fetchGetCategory,
+  fetchGetGameSaveEnd,
+  fetchPostGame,
+} from "../utils/fetchBackend";
+import { KEY_LOCAL_STORAGE } from "../utils/emvironments";
 
 const GameInProgress = () => {
   const { id } = useParams();
@@ -21,15 +26,19 @@ const GameInProgress = () => {
     addGameContext,
     addCategorys,
     addDataQuestions,
+    addGameQuestions,
+    gameQuestions,
+    stateModalHistory,
+    setStateModalHistory,
   } = useContext(DataContext);
   const [game, setGame] = useState(null);
   const [gameSrc, setGameSrc] = useState(null);
   const navigate = useNavigate();
   const [gameModal, setGameModal] = useState(false);
-  const [temPlayer, setTemPlayer] = useState('');
+  const [temPlayer, setTemPlayer] = useState("");
   const renderHeadSelected = () => {
     return (
-      <div className='w-full bg-white rounded-2xl'>
+      <div className="w-full bg-white rounded-2xl">
         <div className="flex flex-col justify-center items-center text-black gap-5">
           <h3 className="text-3xl font-bold">{game.name}</h3>
           <p className="text-lg">{game.description}</p>
@@ -39,34 +48,47 @@ const GameInProgress = () => {
   };
 
   const addPlayer = () => {
-    addGamePlayers(temPlayer);
-    setTemPlayer('');
-  }
+    if (temPlayer != "") {
+      addGamePlayers(temPlayer);
+      setTemPlayer("");
+      return;
+    }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.promise(fetchPostGame(gameCreator), {
-      loading: 'Loading Operation',
-      success: 'Operation Success!.',
-      error: 'Operation Error!.',
-    })
-      .then(async (r) => { //r = response
-        setTemPlayer('');
+        await updateGlobalContext(); 
+    
+    await toast
+      .promise(fetchPostGame(gameCreator), {
+        loading: "Loading Operation",
+        success: "Operation Success!.",
+        error: "Operation Error!.",
+      })
+      .then(async (r) => {
+        //r = response
+        setTemPlayer("");
         restartGameCreator();
         setGameModal(false);
         addGameProgress(true);
 
-        await localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(r.data.data)); //cargar al localstorage como string
+        await localStorage.setItem(
+          KEY_LOCAL_STORAGE,
+          JSON.stringify(r.data.data)
+        ); //cargar al localstorage como string
         const res = await localStorage.getItem(KEY_LOCAL_STORAGE); //recuperando
         const jsonparse = await JSON.parse(res); //convirtiendo a json
         addGameContext(jsonparse);
 
-
         //r.data.data = {game: {name}, players: [1,2,3,4,5]}
         //localstorage.setItem('game', r.data.data)
       });
-  }
+    await updateGlobalContext();
 
+  };
+  const handlePlayerChargeData = (e) => {
+    setTemPlayer(e.target.value);
+  };
   const renderModalGame = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-[rgba(45,45,45,.8)]">
@@ -95,7 +117,7 @@ const GameInProgress = () => {
               <div className="w-10/12">
                 <input
                   value={temPlayer}
-                  onChange={(e) => setTemPlayer(e.target.value)}
+                  onChange={handlePlayerChargeData}
                   type="text"
                   name="player"
                   id="player"
@@ -162,54 +184,46 @@ const GameInProgress = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const renderButtonGame = () => {
-
-    return (
-      !gameInProgress ? (
-        <button disabled={game ? false : true} onClick={() => setGameModal(true)} type="button"
-          className="hover:cursor-pointer h-12 w-32 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br
+    return !gameInProgress ? (
+      <button
+        disabled={game ? false : true}
+        onClick={() => setGameModal(true)}
+        type="button"
+        className="hover:cursor-pointer h-12 w-32 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br
            focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-        >
-          START
-        </button>
-      ) : (
-        <GameStart></GameStart>
-      )
-    )
-  }
+      >
+        START
+      </button>
+    ) : (
+      <GameStart></GameStart>
+    );
+  };
   const handleStartGame = () => {
-    addGameProgress(true)
+    addGameProgress(true);
   };
   const categoryFetch = async () => {
     await fetchGetCategory(addCategorys);
-}
+  };
   const updateGlobalContext = async () => {
-    console.log("object");
     const data = await localStorage.getItem(KEY_LOCAL_STORAGE);
-    if(data){
-      const jsonparse= await JSON.parse(data);
+    if (data) {
+      const jsonparse = await JSON.parse(data);
       addGameContext(jsonparse);
       await updateDataQuestions();
       addGameProgress(true);
       await categoryFetch();
+      await fetchGetGameSaveEnd(addGameQuestions);
     }
-  }
-  const updateDataQuestions = async () => {
-    return toast
-      .promise(FetchAllQuestionsBd(), {
-        loading: "Loading Operation",
-        success: "Uploaded Information.",
-        error: "Operation Error!.",
-      })
-      .then((r) => {
-        addDataQuestions(r.data.data);
-      });
   };
-  useEffect(()=>{
+  const updateDataQuestions = async () => {
+    await FetchAllQuestionsBd(addDataQuestions);
+  };
+  useEffect(() => {
     updateGlobalContext();
-  },[])
+  }, []);
   useEffect(() => {
     const handleUpdate = async () => {
       const response = await selected(id);
@@ -217,22 +231,18 @@ const GameInProgress = () => {
     };
     handleUpdate();
   }, [id, selected]);
-
+   
   return (
-    <div className='grid grid-cols-3 grid-rows-5 p-1 h-screen gradient-blue'>
-      <Bar context={'progress'}></Bar>
-      <div className='col-span-1 flex p-4 rounded-2xl h-full'>
-        {game ? renderHeadSelected() : 'Cargando datos...'}
+    <div className="grid grid-cols-3 grid-rows-5 p-1 h-screen gradient-blue">
+      <Bar context={"progress"}></Bar>
+      <div className="col-span-1 flex p-4 rounded-2xl h-full">
+        {game ? renderHeadSelected() : "Cargando datos..."}
       </div>
-      <div className='flex w-full col-span-3 row-span-4 flex  rounded-2xl justify-center h-full'>
-        {
-          renderButtonGame()
-        }
-        {
-
-          gameModal ? renderModalGame() : null
-        }
-      </div>
+      {/* {JSON.stringify(gameQuestions)} */}
+      <div className="flex w-full col-span-3 row-span-4 flex  rounded-2xl justify-center h-full">
+        {renderButtonGame()}
+        {gameModal ? renderModalGame() : null}
+      </div> 
     </div>
   );
 };
