@@ -24,6 +24,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { removeItemsLocalStorage } from "../utils/functions";
+import { FaClock } from 'react-icons/fa';
 
 const GameStart = () => {
   const {
@@ -35,31 +36,26 @@ const GameStart = () => {
     addGameContext,
     addGameProgress,
   } = useContext(DataContext);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   // 
   const [modalQuestion, setModalQuestion] = useState(false); //Estado del modal
   const [questionGameIn, setQuestinGameIn] = useState(null); //La pregunta con la que estamos jugando
-  const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta
-  //temp  
+  const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta  
   const [error, setError] = useState(false); //Para poder mostrar el error de pregunta no respondida
   const [success, setSuccess] = useState(false); //Para poder mostrar alertas success
-  const [counterSoundState, setCounterSoundState] = useState(false);
-  //btn try
-  const [tap, setTap] = useState(false); //click boton
-  //sound interval
-  const [soundInt, setSoundInt] = useState(false);
-  // const audioRef = useRef(CounterSound);
+  const [counterSoundState, setCounterSoundState] = useState(false);//btn try
+  const [tap, setTap] = useState(false); //click boton//sound interval
+  const [soundInt, setSoundInt] = useState(false);// const audioRef = useRef(CounterSound);
   const audioRef = useRef(new Audio(CounterSound));
   const [usedRadioButton, setUsedRadioButton] = useState(false); //Validar si el boton fue presionado
   // const [playerInGame, setCounter] = useState(0); //Para poner contador de vuelta atrás
   const successSound = new Audio(SuccessSound); //Sonido de audio para Sucess
   const errorSound = new Audio(ErrorSound); //Sonido de audio para Sucess
   const countSound = new Audio(CounterSound); //Sonido de audio para Counter
-  let puntos;
 
   const [counter, setCounter] = useState(VALUE_INTERVAL_COUNTER); //counter
   const [intervalId, setIntervalId] = useState(null); //interval
-  
+
   //logic
   const [rounds, setRounds] = useLocalStorageState(
     KEY_LOCAL_STORAGE_ROUNDS,
@@ -123,7 +119,7 @@ const GameStart = () => {
       return newPoints;
     });
   };
-  
+
   //console.log(counter)
   const checkResponse = () => {
     // setSoundInt(false);
@@ -144,13 +140,12 @@ const GameStart = () => {
       }
       return points;
     }
-
     function calculatePointsForRound(counter, points15, points12, points10, pointsDefault) {
       if (counter >= 15) {
         return points15;
       } else if (counter >= 12) {
         return points12;
-      } else if (counter >= 10) {
+      } else if (counter >= 8) {
         return points10;
       } else {
         return pointsDefault;
@@ -160,8 +155,7 @@ const GameStart = () => {
     setUsedRadioButton();
     if (questionCheck && questionCheck.correct) {
       const points = calculatePoints(currentTurn.round, counter);
-      puntos=points;
-      console.log(puntos)
+
       updatePlayerPoints(currentTurn.player, points);
 
       setSuccess(true);
@@ -182,7 +176,6 @@ const GameStart = () => {
         setModalQuestion(false);
         setCounter(25);
         successSound.pause();
-        puntos=0;
       }, 3000);
     } else {
       setError(true);
@@ -239,26 +232,45 @@ const GameStart = () => {
       clearInterval(intervalId); // Detener el intervalo
     }
   }, [counter, intervalId]);
+  function calculatePoints(round, counter) {
+    let points;
+
+    if (round === 0 || round === 1) {
+      points = calculatePointsForRound(counter, 100, 85, 70, 60);
+    } else if (round === 2 || round === 3) {
+      points = calculatePointsForRound(counter, 200, 185, 170, 160);
+    } else if (round === 4) {
+      points = calculatePointsForRound(counter, 300, 285, 270, 260);
+    }
+    return points;
+  }
+  function calculatePointsForRound(counter, points15, points12, points10, pointsDefault) {
+    if (counter >= 15) {
+      return points15;
+    } else if (counter >= 12) {
+      return points12;
+    } else if (counter >= 8) {
+      return points10;
+    } else {
+      return pointsDefault;
+    }
+  }
+  //let pointsMessage;
+  let pointsMessage = calculatePoints(currentTurn.round, counter);
   const renderPrevCheckQuestion = () => {
     return (
       <div>
-        <p className="font-bold text-red-800">{counter}</p>
-        {/* <audio ref={audioRef} className="hidden" controls>
-          <source src={CounterSound} type="audio/mpeg" />
-        </audio> */}
-        {/* <p>{modalQuestion?"true":"false"}</p> */}
-        <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+        <div className="clock-icon text-2xl">
+          <FaClock />
+          <p className=" text-red-800">Time Remaining {counter}  <strong>   +{pointsMessage}</strong></p>
+        </div>
+        <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-600 md:text-1xl lg:text-2xl ">
           Current Shift: {gameContext.players[currentTurn.player].name_player},
           Round:{rounds[currentTurn.round]}
         </h1>
         <h1 className="text-2xl font-bold ">{questionGameIn.question}</h1>
         <div className="mb-4">
           <h2 className="text-xl font-semibold text-blue-700">Answers</h2>
-          {/* <h1 className="">
-              Turno actual:{" "}
-              {gameContext.players[currentTurn.player].name_player}, Ronda:{" "}
-              {rounds[currentTurn.round]}
-            </h1> */}
           <div className="pl-4">
             {questionGameIn.answer.map((a, index) => {
               return (
@@ -296,11 +308,6 @@ const GameStart = () => {
             Try
           </button>
         ) : null}
-        {/* <button
-            className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
-            onClick={() => setModalQuestion(false)}>
-              Close
-          </button> */}
       </div>
     );
   };
@@ -328,7 +335,7 @@ const GameStart = () => {
                   return (
                     <p
                       key={q.value}
-                      className={`m-w-3/5   p-1 rounded shadow ${q.correct ? "bg-green-200" : "bg-red-200"
+                      className={`m-w-3/5   p-1 rounded shadow ${q.correct ? "bg-green-400" : "bg-red-400"
                         }`}
                     >
                       {q.value}
@@ -428,7 +435,7 @@ const GameStart = () => {
             {renderOrd()}
           </div>
           {/* {JSON.stringify(gameContext.game)} */}
-          <div className="flex px-12 justify-between w-full mt-8">
+          <div className="flex p-1 justify-between w-full mt-8">
             <button
               onClick={handleSubmitGameSave}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
@@ -489,7 +496,7 @@ const GameStart = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 grid-rows-5 w-full h-full"> 
+    <div className="grid grid-cols-3 grid-rows-5 w-full h-full">
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
         turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
         renderWinner()
@@ -497,22 +504,22 @@ const GameStart = () => {
         <>
           <div className="grid grid-cols-3 col-span-3 border bg-white border-none rounded-2xl shadow shadow-2xl">
             <div className="flex justify-center items-center col-span-1   border-r-4 ">
-              <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+              <h1 className="mb-4  font-extrabold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
                 GAME:
                 <span className="text-blue-900">{gameContext.game.name}</span>
               </h1>
             </div>
             <div className="flex col-span-1 py-1 pl-2 overflow-y-auto">
               <div className="w-2/12 justify-center items-center  ">
-                <h1 className="text-sm font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+                <h1 className="text-sm font-extrabold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
                   Players
                 </h1>
               </div>
-              <div className="w-10/12 justify-center items-center">
+              <div className="w-12/12 justify-center items-center">
                 {gameContext.players &&
                   gameContext.players.map((g, index) => {
                     return (
-                      <div key={index} className="flex px-12 rounded-2xl">
+                      <div key={index} className="flex px-1 pl-10 pt-1 pb-1 rounded-2xl">
                         <p className="font-bold text-sm  text-teal-600">
                           <span
                             className={`${gameContext.players[index].name_player ===
@@ -522,32 +529,23 @@ const GameStart = () => {
                               : "text - blue - 800"
                               } `}
                           >
-                            {index + 1 + " "}
+                            {index + 1 + ": "}
                             {gameContext.players[index].name_player}
-                            {" : "}
+                            {" = "}
                             {playerPoints[index]}
-                            {" Fails: "}
-                            {" 0"}
+                            {/* {" Fails: "}
+                            {" 0"} */}
                           </span>
                         </p>
                       </div>
                     );
                   })}
               </div>
-              {/* <div className="w-10/12">
-                {gameContext.players &&
-                  gameContext.players.map((g, index) => {
-                    return (
-                      <p className="text-sm " key={index}>
-                        {playerPoints[index]}
-                      </p>
-                    );
-                  })}
-              </div> */}
+
             </div>
             <div className="flex justify-center items-center col-span-1  border-l-4 pl-2">
               <div className="w-12/12 justify-center items-center">
-                <h1 className="text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+                <h1 className="font-bold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
                   Round:
                   <span className="text-red-400">
                     {rounds[currentTurn.round]}
@@ -560,10 +558,10 @@ const GameStart = () => {
                     </span>
                   </span> <br />
                 </h1>
-                <h1 className="text-4xl font-extrabold leading-none text-blue-700 md:text-2xl lg:text-2xl ">
+                <p className="font-bold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
                   Rules:
-                  <span className="text-red-500"> Be as fast as possible!</span>
-                </h1>
+                  <span className="text-red-500">Be as fast as possible!</span>
+                </p>
               </div>
             </div>
           </div>
@@ -576,7 +574,7 @@ const GameStart = () => {
                       type="button"
                       className="w-full  h-full bg-white rounded-2xl shadow"
                     >
-                      <h1 className="text-4xl font-extrabold leading-none text-red-400 md:text-2xl lg:text-2xl ">
+                      <h1 className="font-extrabold leading-none text-red-400 md:text-1xl lg:text-2xl ">
                         {c.name_category}
                       </h1>
                     </button>
