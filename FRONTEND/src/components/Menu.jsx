@@ -27,7 +27,7 @@ const Menu = () => {
                   Admin
                   <span className="absolute inset-0"></span>
                 </Link>
-                <p className="mt-1 text-gray-600">View game history</p>
+                <p className="mt-1 text-gray-600">Manage questions</p>
               </div>
             </div>
             <div className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50">

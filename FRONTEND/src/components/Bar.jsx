@@ -82,7 +82,7 @@ const {addOpenMenu, menu , addGameContext,addGameProgress,addCategorys}=useConte
         </div>
         <div className="w-5/6 flex bg-white h-full rounded-2xl items-center justify-center">
           <h1 className="mb-4 text-5xl font-extrabold text-gray-800 dark:text-white md:text-5xl lg:text-6xl">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-800 from-sky-400">
               CBA
             </span>
             <span className="text-indigo-800"> GAMES</span>
