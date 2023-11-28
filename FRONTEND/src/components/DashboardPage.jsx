@@ -226,16 +226,18 @@ const DashboardPage = () => {
             value: "",
             correct: false
         });
-    } 
+    }
     useEffect(() => {
-      selected
-        ? setQuestion({
-            ...question,
-            CategoryIdCategory: selected.id_category,
-          })
-        : null;
-      selected ? fetchGetQuestions(addQuestions, selected.id_category) : null;
-    }, [selected]);
+        fetchGetCategory(addCategorys);
+    }, [])
+    useEffect(() => {
+        selected ?
+            setQuestion({
+                ...question,
+                CategoryIdCategory: selected.id_category
+            }) : null;
+        selected ? fetchGetQuestions(addQuestions, selected.id_category) : null;
+    }, [selected])
     const renderModalCategorys = () => {
         return (
             <div className="fixed inset-0 flex items-center justify-center z-50 bg-[rgba(45,45,45,.8)]">
