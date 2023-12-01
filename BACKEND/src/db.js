@@ -36,14 +36,14 @@ const {
     Game
 } = sequelize.models;
 
-Category.hasMany(Question);
-Question.belongsTo(Category);
+Category.hasMany(Question, { onDelete: "CASCADE" });
+Question.belongsTo(Category, { onDelete: "CASCADE" });
 
-Game.belongsToMany(Question, { through: 'GameQuestion' });
-Question.belongsToMany(Game, { through: 'GameQuestion' });
+Game.belongsToMany(Question, { through: "GameQuestion", onDelete: "CASCADE" });
+Question.belongsToMany(Game, { through: "GameQuestion", onDelete: "CASCADE" });
 
-Game.belongsToMany(Player, { through: 'GamePlayer' });
-Player.belongsToMany(Game, { through: 'GamePlayer' });
+Game.belongsToMany(Player, { through: "GamePlayer", onDelete: "CASCADE" });
+Player.belongsToMany(Game, { through: "GamePlayer", onDelete: "CASCADE" });
 
 module.exports = {
     ...sequelize.models,

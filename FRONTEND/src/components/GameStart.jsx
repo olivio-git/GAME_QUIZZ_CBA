@@ -6,8 +6,7 @@ import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
 import CounterSound from "../assets/25segundos.mp3";
 
-import { motion } from "framer-motion";
-
+import { motion } from "framer-motion"; 
 // import dataQuestions from "../utils/exampleQuestions.json";
 import {
   KEY_LOCAL_STORAGE,
@@ -199,17 +198,19 @@ const GameStart = () => {
       }, 3000);
     }
   };
-
+  // const voiceTranslate = () => {  ;
+  //   responsiveVoice.speak(questionGameIn.question);
+  // }
   //Aqui corte
   const stateRender = (question) => {
     setQuestinGameIn(question);
+    // responsiveVoice.speak(question.question); //aqui
     updateQuestionsLocalStorage(question);
     setModalQuestion(true);
-    setSoundInt(true);
+    setSoundInt(true); 
     audioRef.current.play();
   };
-  useEffect(() => {
-    // updateDataQuestions();
+  useEffect(() => { 
   }, []);
   useEffect(() => {
     if (modalQuestion) {
