@@ -24,12 +24,11 @@ const addQuestion = async (req, res) => {
 
 
 const deleteQuestion = async (req, res) => {
-    const id = req.params.id;
-    const iduser = req.query.iduser;
-    const question = await Question.findByPk(id);
-    await question.destroy();
-    const result = await Question.findAll({ where: { CategoryIdCategory: iduser } });
-    response(res, 200, result);
+     const id = req.params.id;
+     const question = await Question.findByPk(id);
+     await question.destroy();
+     const result = await Question.findAll();
+     response(res, 200, result);
 };
 const getAllQuestions = async (req, res) => {
     const result = await findAllQuestions();
