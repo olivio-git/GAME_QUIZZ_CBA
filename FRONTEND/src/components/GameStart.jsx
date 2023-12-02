@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import DataContext from "../context/dataContext";
-import { FetchAllQuestionsBd, fetchGetCategory, fetchPostGameSaveEnd } from "../utils/fetchBackend";
+import { FetchAllQuestionsBd, fetchGetCategory, fetchPostGameSaveEnd, fetchDeleteQuestions, deleteQuestionID } from "../utils/fetchBackend";
 import Confetti from "react-confetti";
 import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
 import CounterSound from "../assets/25segundos.mp3";
-
 import { motion } from "framer-motion";
-
-// import dataQuestions from "../utils/exampleQuestions.json";
 import {
   KEY_LOCAL_STORAGE,
   KEY_LOCAL_STORAGE_ROUNDS,
@@ -37,7 +34,6 @@ const GameStart = () => {
     addGameProgress,
   } = useContext(DataContext);
   const navigate = useNavigate();
-  // 
   const [modalQuestion, setModalQuestion] = useState(false); //Estado del modal
   const [questionGameIn, setQuestinGameIn] = useState(null); //La pregunta con la que estamos jugando
   const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta  
@@ -48,14 +44,18 @@ const GameStart = () => {
   const [soundInt, setSoundInt] = useState(false);// const audioRef = useRef(CounterSound);
   const audioRef = useRef(new Audio(CounterSound));
   const [usedRadioButton, setUsedRadioButton] = useState(false); //Validar si el boton fue presionado
-  // const [playerInGame, setCounter] = useState(0); //Para poner contador de vuelta atrás
   const successSound = new Audio(SuccessSound); //Sonido de audio para Sucess
   const errorSound = new Audio(ErrorSound); //Sonido de audio para Sucess
   const countSound = new Audio(CounterSound); //Sonido de audio para Counter
-
   const [counter, setCounter] = useState(VALUE_INTERVAL_COUNTER); //counter
   const [intervalId, setIntervalId] = useState(null); //interval
+  // Declarar el estado del arreglo
+  const [miArreglo, setMiArreglo] = useState([]);
 
+  // Función para agregar un nuevo elemento al arreglo
+  const agregarElemento = (nuevoElemento) => {
+    setMiArreglo(prevState => [...prevState, nuevoElemento]);
+  };
   //logic
   const [rounds, setRounds] = useLocalStorageState(
     KEY_LOCAL_STORAGE_ROUNDS,
@@ -109,8 +109,6 @@ const GameStart = () => {
       return { ...prevTurn, player: nextPlayer };
     });
   };
-
-  //
   const updatePlayerPoints = (playerIndex, pointsToAdd) => {
     //Actualizar puntaje
     setPlayerPoints((prevPoints) => {
@@ -119,18 +117,13 @@ const GameStart = () => {
       return newPoints;
     });
   };
-
-  //console.log(counter)
   const checkResponse = () => {
-    // setSoundInt(false);
-    // audioRef.current.pause();
     clearInterval(intervalId); // Detener el intervalo
     audioRef.current.currentTime = 0;
     audioRef.current.pause();
     //LIMBERFUNCTIONS
     function calculatePoints(round, counter) {
       let points;
-
       if (round === 0 || round === 1) {
         points = calculatePointsForRound(counter, 100, 85, 70, 60);
       } else if (round === 2 || round === 3) {
@@ -155,9 +148,7 @@ const GameStart = () => {
     setUsedRadioButton();
     if (questionCheck && questionCheck.correct) {
       const points = calculatePoints(currentTurn.round, counter);
-
       updatePlayerPoints(currentTurn.player, points);
-
       setSuccess(true);
       setUsedRadioButton(true);
       successSound.play();
@@ -196,10 +187,13 @@ const GameStart = () => {
         setCounter(VALUE_INTERVAL_COUNTER);
         setModalQuestion(false);
         errorSound.pause();
+
       }, 3000);
     }
+    var cod = questionGameIn.id_question;
+    agregarElemento(`${cod}`);
+    cod = '';
   };
-
   //Aqui corte
   const stateRender = (question) => {
     setQuestinGameIn(question);
@@ -218,14 +212,12 @@ const GameStart = () => {
       }, 1000);
       setIntervalId(id);
     }
-
     // Limpiar el intervalo cuando el componente se desmonta o cuando el modal se cierra
     return () => {
       clearInterval(intervalId);
     };
   }, [modalQuestion]);
   useEffect(() => {
-    // Mostrar alerta cuando el contador llega a cero
     if (counter === 0) {
       checkResponse();
       setCounter(25);
@@ -234,12 +226,13 @@ const GameStart = () => {
   }, [counter, intervalId]);
   function calculatePoints(round, counter) {
     let points;
-
     if (round === 0 || round === 1) {
       points = calculatePointsForRound(counter, 100, 85, 70, 60);
-    } else if (round === 2 || round === 3) {
+    }
+    else if (round === 2 || round === 3) {
       points = calculatePointsForRound(counter, 200, 185, 170, 160);
-    } else if (round === 4) {
+    }
+    else if (round === 4) {
       points = calculatePointsForRound(counter, 300, 285, 270, 260);
     }
     return points;
@@ -255,7 +248,6 @@ const GameStart = () => {
       return pointsDefault;
     }
   }
-  //let pointsMessage;
   let pointsMessage = calculatePoints(currentTurn.round, counter);
   const renderPrevCheckQuestion = () => {
     return (
@@ -269,13 +261,14 @@ const GameStart = () => {
           Round:{rounds[currentTurn.round]}
         </h1>
         <h1 className="text-2xl font-bold ">{questionGameIn.question}</h1>
+
         <div className="mb-4">
           <h2 className="text-xl font-semibold text-blue-700">Answers</h2>
           <div className="pl-4">
             {questionGameIn.answer.map((a, index) => {
               return (
                 <div key={index} className="mb-2">
-                  <label className="inline-flex items-center">
+                  <label className="inline-flex items-centervisua">
                     <input
                       type="radio"
                       name="response"
@@ -300,9 +293,12 @@ const GameStart = () => {
         </div>
         {!usedRadioButton && questionCheck ? (
           <button
+            onClick={() => {
+
+              checkResponse();
+            }}
             disabled={!setQuestionCheck}
             type="button"
-            onClick={checkResponse}
             className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
           >
             Try
@@ -349,7 +345,6 @@ const GameStart = () => {
       </div>
     );
   };
-
   useEffect(() => { });
   const winnerPointsIndex = () => {
     return Math.max(...playerPoints);
@@ -375,10 +370,10 @@ const GameStart = () => {
             return (
               <div key={index} className="flex px-12 rounded-2xl">
                 <p className="font-bold text-sm">
-                  <span className="">
-                    {index + 1 + " "}
+                  <span className=" uppercase">
+                    {index + 1 + ": "}
                     {playersCopy[index].name}
-                    {"  Points: "}
+                    {"  ="}
                     {playersCopy[index].point}
                   </span>
                 </p>
@@ -387,6 +382,18 @@ const GameStart = () => {
           })}
       </h2>
     );
+  }
+  const handleCloseGame = () => {
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_POINTS);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_USEDQUESTIONS);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE);
+    addGameContext(null);
+    addGameProgress(false);
+    addCategorys([]);
+    navigate("/");
   }
   //handleSubmitGameSave
   const handleSubmitGameSave = async () => {
@@ -413,7 +420,11 @@ const GameStart = () => {
           error: "Operation Error!.",
         }
       )
-      .then((response) => {
+      .then(async (response) => {
+
+        for (const questionId of miArreglo) {
+          await deleteQuestionID(questionId);
+        }
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
@@ -429,16 +440,15 @@ const GameStart = () => {
   const renderWinner = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
-        <div className="flex justify-center items-center flex-col bg-white w-1/3 h-[80%] p-8 rounded-2xl shadow-lg">
+        <div className="flex justify-center items-center flex-col bg-white w-1/3 h-[90%] p-10 rounded-2xl shadow-lg">
           <div className="flex flex-col items-center justify-center w-full mb-4">
             <h1 className="text-2xl font-bold text-gray-700">Scoreboard</h1>
             {renderOrd()}
           </div>
-          {/* {JSON.stringify(gameContext.game)} */}
           <div className="flex p-1 justify-between w-full mt-8">
             <button
               onClick={handleSubmitGameSave}
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
+              className="p-1 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -457,8 +467,8 @@ const GameStart = () => {
               Save and exit
             </button>
             <button
-              onClick={() => navigate("/")}
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 flex items-center"
+              onClick={handleCloseGame}
+              className="p-2 bg-red-500 text-white rounded hover:bg-red-600 flex items-center"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -590,11 +600,11 @@ const GameStart = () => {
                     (usedQ) => usedQ.id_question === q.id_question
                   )
               );
-
               // Aleatorizar las preguntas disponibles
               const randomizedQuestions = [...availableQuestions].sort(
                 () => Math.random() - 0.5
               );
+
 
               // Tomar solo las primeras 5 preguntas disponibles siempre
               const renderedQuestions = randomizedQuestions.slice(0, 5);

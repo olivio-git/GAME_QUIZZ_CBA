@@ -128,7 +128,7 @@ const GameInProgress = () => {
                   htmlFor="player"
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-                  player
+                  Player
                 </label>
               </div>
               <div className="w-2-12">
@@ -171,7 +171,7 @@ const GameInProgress = () => {
               disabled={gameCreator.players.length >= 2 ? false : true}
               className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
             >
-              Let's do it
+              Let's do it!
             </button>
             <button
               type="button"
@@ -239,7 +239,7 @@ const GameInProgress = () => {
         {game ? renderHeadSelected() : "Cargando datos..."}
       </div>
       {/* {JSON.stringify(gameQuestions)} */}
-      <div className="flex w-full col-span-3 row-span-4 flex  rounded-2xl justify-center h-full">
+      <div className="flex w-full col-span-3 row-span-4 rounded-2xl justify-center h-full">
         {renderButtonGame()}
         {gameModal ? renderModalGame() : null}
       </div> 

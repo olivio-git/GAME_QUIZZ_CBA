@@ -97,8 +97,8 @@ const DashboardPage = () => {
                             <button
                                 disabled
                                 onClick={() => {
-                                   
-                                        // handleDelete(c.id_category);
+
+                                    handleDelete(c.id_category);
 
                                 }}
                                 className='hover:bg-red-200 rounded-2xl'
@@ -148,9 +148,9 @@ const DashboardPage = () => {
                             {q.difficulty}
                         </td>
                         <td className="px-6 py-4">
-                            <button disabled  onClick={() => {
-                                    // handleDeleteQuestion(q.id_question)
-                          
+                            <button disabled onClick={() => {
+                                handleDeleteQuestion(q.id_question)
+
                             }
                             } className='hover:bg-red-200 rounded-2xl'>
                                 <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="20" height="20" fill='red'>
@@ -463,11 +463,11 @@ const DashboardPage = () => {
             </div>
             {
                 //saco mi modal category
-                modalCat ? renderModalCategorys() : null
+                //modalCat ? renderModalCategorys() : null
             }
             {
                 //saco mi modal questions
-                modalQuest ? renderModalQuestions() : null
+                //modalQuest ? renderModalQuestions() : null
             }
         </div>
     );
