@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import DataContext from "../context/dataContext";
-import { FetchAllQuestionsBd, fetchGetCategory, fetchPostGameSaveEnd, fetchDeleteQuestions, deleteQuestionID } from "../utils/fetchBackend";
+import { FetchAllQuestionsBd, fetchGetCategory, fetchPostGameSaveEnd,fetchDeleteQuestion } from "../utils/fetchBackend";
 import Confetti from "react-confetti";
 import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
 import CounterSound from "../assets/25segundos.mp3";
+
 import { motion } from "framer-motion";
 // import dataQuestions from "../utils/exampleQuestions.json";
 import {
@@ -166,7 +167,7 @@ const GameStart = () => {
         setSuccess(false);
         nextTurn();
         setModalQuestion(false);
-        setCounter(25);
+        setCounter(VALUE_INTERVAL_COUNTER);
         successSound.pause();
       }, 3000);
     } else {
@@ -195,6 +196,7 @@ const GameStart = () => {
     agregarElemento(`${cod}`);
     cod = '';
   };
+  console.log(VALUE_INTERVAL_COUNTER)
   // const voiceTranslate = () => {  ;
   //   responsiveVoice.speak(questionGameIn.question);
   // }
@@ -204,10 +206,10 @@ const GameStart = () => {
     // responsiveVoice.speak(question.question); //aqui
     updateQuestionsLocalStorage(question);
     setModalQuestion(true);
-    setSoundInt(true); 
+    setSoundInt(true);
     audioRef.current.play();
   };
-  useEffect(() => { 
+  useEffect(() => {
   }, []);
   useEffect(() => {
     if (modalQuestion) {
@@ -224,7 +226,7 @@ const GameStart = () => {
   useEffect(() => {
     if (counter === 0) {
       checkResponse();
-      setCounter(25);
+      setCounter(VALUE_INTERVAL_COUNTER);
       clearInterval(intervalId); // Detener el intervalo
     }
   }, [counter, intervalId]);
@@ -401,34 +403,39 @@ const GameStart = () => {
   }
   //handleSubmitGameSave
   const handleSubmitGameSave = async () => {
-    let tempValues = [];
-    gameContext.players.map((g, index) => {
-      tempValues.push({
-        name: gameContext.players[index].name_player,
-        point: playerPoints[index],
+    try {
+      let tempValues = [];
+      gameContext.players.map((g, index) => {
+        tempValues.push({
+          name: gameContext.players[index].name_player,
+          point: playerPoints[index],
+        });
       });
-    });
-    const playersCopy = [...tempValues];
-    playersCopy.sort((a, b) => b.point - a.point);
+      const playersCopy = [...tempValues];
+      playersCopy.sort((a, b) => b.point - a.point);
 
-    await toast
-      .promise(
+      // Espera a que se resuelva la promesa de fetchPostGameSaveEnd
+      const saveResponse = await toast.promise(
         fetchPostGameSaveEnd({
           idGame: gameContext.game.id_game,
           idQuestions: questionUsedValids,
-          top: playersCopy
+          top: playersCopy,
         }),
         {
           loading: "Loading Operation",
           success: "Operation Success!.",
           error: "Operation Error!.",
         }
-      )
-      .then(async (response) => {
+      );
 
+      // Verifica si la operación de guardar fue exitosa
+      if (saveResponse) {
+        // Elimina las preguntas después de guardar
         for (const questionId of miArreglo) {
-          await deleteQuestionID(questionId);
+          await fetchDeleteQuestion(questionId);
         }
+
+        // Limpia el estado y realiza otras acciones después de guardar y eliminar
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
@@ -439,8 +446,13 @@ const GameStart = () => {
         addGameProgress(false);
         addCategorys([]);
         navigate("/");
-      });
-  }
+      }
+    } catch (error) {
+      console.error('Error en handleSubmitGameSave:', error);
+      // Manejar el error, mostrar un mensaje o realizar otras acciones necesarias
+    }
+  };
+
   const renderWinner = () => {
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">

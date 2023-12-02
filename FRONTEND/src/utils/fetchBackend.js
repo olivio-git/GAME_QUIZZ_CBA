@@ -29,14 +29,11 @@ export const fetchGetQuestions = async (fn, id) => {
   fn(response.data.data);
 };
 export const fetchDeleteQuestion = async (props, id) => {
-  return await axios.delete(`/questions/${props}?iduser=${id}`);
-};
-export const fetchDeleteQuestionX = async (id) => {
-  return await axios.delete(`/questionX/X/${id}`);
+  return await axios.delete(`/questions/${props}`);
 };
 export const FetchAllQuestionsBd = async (fn) => {
   const response = await axios.get("questions/as");
-  console.log(response);
+ 
   fn(response.data.data);
 };
 //
