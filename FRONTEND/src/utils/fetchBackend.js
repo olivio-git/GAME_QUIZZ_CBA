@@ -31,8 +31,8 @@ export const fetchGetQuestions = async (fn, id) => {
 export const fetchDeleteQuestion = async (props, id) => {
   return await axios.delete(`/questions/${props}?iduser=${id}`);
 };
-export const fetchDeleteQuestions = async (id) => {
-  return await axios.delete(`/questions/${id}`);
+export const fetchDeleteQuestionX = async (id) => {
+  return await axios.delete(`/questionX/X/${id}`);
 };
 export const FetchAllQuestionsBd = async (fn) => {
   const response = await axios.get("questions/as");
