@@ -45,6 +45,11 @@ const deleteQuestionID = async (req, res) => {
     console.error('Error deleting question:', error);
     response(res, 500, { message: 'Internal Server Error' });
   }
+     const id = req.params.id;
+     const question = await Question.findByPk(id);
+     await question.destroy();
+     const result = await Question.findAll();
+     response(res, 200, result);
 };
 const getAllQuestions = async (req, res) => {
   const result = await findAllQuestions();
