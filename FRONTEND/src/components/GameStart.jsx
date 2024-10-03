@@ -1,6 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import DataContext from "../context/dataContext";
-import { FetchAllQuestionsBd, fetchGetCategory, fetchPostGameSaveEnd,fetchDeleteQuestion } from "../utils/fetchBackend";
+import {
+  FetchAllQuestionsBd,
+  fetchGetCategory,
+  fetchPostGameSaveEnd,
+  fetchDeleteQuestion,
+} from "../utils/fetchBackend";
 import Confetti from "react-confetti";
 import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
@@ -16,14 +21,18 @@ import {
   KEY_LOCAL_STORAGE_USEDQUESTIONS,
   KEY_LOCAL_STORAGE_TURN,
   VALUE_ROUNDS_LOCAL,
-  VALUE_INTERVAL_COUNTER
+  VALUE_INTERVAL_COUNTER,
 } from "../utils/emvironments";
 import { useLocalStorageState } from "../utils/useLocalStorageState";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { removeItemsLocalStorage } from "../utils/functions";
-import { FaClock } from 'react-icons/fa';
+import { FaClock } from "react-icons/fa";
+
+//modularizando
+// import { checkResponses } from "./GameStartSubComponents/checkResponce";
+// import {RenderPrevCheckQuestion} from "./GameStartSubComponents/RenderPrevCheckQuestion";
 
 const GameStart = () => {
   const {
@@ -38,12 +47,12 @@ const GameStart = () => {
   const navigate = useNavigate();
   const [modalQuestion, setModalQuestion] = useState(false); //Estado del modal
   const [questionGameIn, setQuestinGameIn] = useState(null); //La pregunta con la que estamos jugando
-  const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta  
+  const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta
   const [error, setError] = useState(false); //Para poder mostrar el error de pregunta no respondida
   const [success, setSuccess] = useState(false); //Para poder mostrar alertas success
-  const [counterSoundState, setCounterSoundState] = useState(false);//btn try
+  const [counterSoundState, setCounterSoundState] = useState(false); //btn try
   const [tap, setTap] = useState(false); //click boton//sound interval
-  const [soundInt, setSoundInt] = useState(false);// const audioRef = useRef(CounterSound);
+  const [soundInt, setSoundInt] = useState(false); // const audioRef = useRef(CounterSound);
   const audioRef = useRef(new Audio(CounterSound));
   const [usedRadioButton, setUsedRadioButton] = useState(false); //Validar si el boton fue presionado
   const successSound = new Audio(SuccessSound); //Sonido de audio para Sucess
@@ -56,7 +65,7 @@ const GameStart = () => {
 
   // Función para agregar un nuevo elemento al arreglo
   const agregarElemento = (nuevoElemento) => {
-    setMiArreglo(prevState => [...prevState, nuevoElemento]);
+    setMiArreglo((prevState) => [...prevState, nuevoElemento]);
   };
   //logic
   const [rounds, setRounds] = useLocalStorageState(
@@ -92,9 +101,6 @@ const GameStart = () => {
       currentTurn.round === VALUE_ROUNDS_LOCAL &&
       currentTurn.player === gameContext.players.length - 1
     ) {
-      // Realizar cualquier acción necesaria cuando el juego finaliza
-      // Por ejemplo, mostrar un mensaje, finalizar el juego, etc.
-      console.log("Juego finalizado");
     }
   }, [currentTurn]);
   const nextTurn = () => {
@@ -102,12 +108,8 @@ const GameStart = () => {
       //  2===2
       const nextPlayer = (prevTurn.player + 1) % gameContext.players.length; //0+1  2 % 3
       if (nextPlayer === 0) {
-        console.log(
-          `Round: ${(prevTurn.round + 1) % rounds.length}, Player: 0`
-        ); // Agregar este registro
         return { round: (prevTurn.round + 1) % rounds.length, player: 0 }; //saltando de turno
       }
-      // console.log(`Ronda: ${prevTurn.round}, Jugador: ${nextPlayer}`); // Agregar este registro
       return { ...prevTurn, player: nextPlayer };
     });
   };
@@ -196,7 +198,6 @@ const GameStart = () => {
     agregarElemento(`${cod}`);
     cod = '';
   };
-  console.log(VALUE_INTERVAL_COUNTER)
   // const voiceTranslate = () => {  ;
   //   responsiveVoice.speak(questionGameIn.question);
   // }
@@ -234,16 +235,20 @@ const GameStart = () => {
     let points;
     if (round === 0 || round === 1) {
       points = calculatePointsForRound(counter, 100, 85, 70, 60);
-    }
-    else if (round === 2 || round === 3) {
+    } else if (round === 2 || round === 3) {
       points = calculatePointsForRound(counter, 200, 185, 170, 160);
-    }
-    else if (round === 4) {
+    } else if (round === 4) {
       points = calculatePointsForRound(counter, 300, 285, 270, 260);
     }
     return points;
   }
-  function calculatePointsForRound(counter, points15, points12, points10, pointsDefault) {
+  function calculatePointsForRound(
+    counter,
+    points15,
+    points12,
+    points10,
+    pointsDefault
+  ) {
     if (counter >= 15) {
       return points15;
     } else if (counter >= 12) {
@@ -366,7 +371,7 @@ const GameStart = () => {
         name: gameContext.players[index].name_player,
         point: playerPoints[index],
       });
-    })
+    });
     const playersCopy = [...tempValues];
     playersCopy.sort((a, b) => b.point - a.point);
     return (
@@ -448,7 +453,7 @@ const GameStart = () => {
         navigate("/");
       }
     } catch (error) {
-      console.error('Error en handleSubmitGameSave:', error);
+      console.error("Error en handleSubmitGameSave:", error);
       // Manejar el error, mostrar un mensaje o realizar otras acciones necesarias
     }
   };
@@ -567,7 +572,6 @@ const GameStart = () => {
                     );
                   })}
               </div>
-
             </div>
             <div className="flex justify-center items-center col-span-1  border-l-4 pl-2">
               <div className="w-12/12 justify-center items-center">
@@ -579,10 +583,11 @@ const GameStart = () => {
                       {currentTurn.round == 0 || currentTurn.round == 1
                         ? " + 100 points before 15s"
                         : currentTurn.round == 2 || currentTurn.round == 3
-                          ? " + 200 points before 15s"
-                          : " + 300 points before 15s"}
+                        ? " + 200 points before 15s"
+                        : " + 300 points before 15s"}
                     </span>
-                  </span> <br />
+                  </span>{" "}
+                  <br />
                 </h1>
                 <p className="font-bold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
                   Rules:
@@ -620,7 +625,6 @@ const GameStart = () => {
               const randomizedQuestions = [...availableQuestions].sort(
                 () => Math.random() - 0.5
               );
-
 
               // Tomar solo las primeras 5 preguntas disponibles siempre
               const renderedQuestions = randomizedQuestions.slice(0, 5);
