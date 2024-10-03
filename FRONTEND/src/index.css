@@ -7,8 +7,8 @@
   box-sizing: border-box;
 }
 .gradient-blue{
-  background-image: linear-gradient(120deg, rgb(0, 28, 168) 0%, rgba(255, 0, 0, 0.771) 100%);
+  background-image: linear-gradient(120deg, rgb(0, 0, 0) 0%, rgb(0, 40, 86) 100%);
 }
 .gradient-cba{
-  background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);
+  background-image: linear-gradient(to top, #02005d 0%, #453a94 100%);
 } 
