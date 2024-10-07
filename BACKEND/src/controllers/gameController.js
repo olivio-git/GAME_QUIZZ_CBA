@@ -1,50 +1,70 @@
 const { Game, Player, Question } = require("../db");
 const { response } = require("../utils/");
+
+// Agrega un nuevo juego a la base de datos
 const addGame = async (req, res) => {
   console.log(req.body);
   const { name, players } = req.body;
-  let idsPlayer = [];
-  let result = [];
-  let playersContext = [];
-  const game = await Game.create({ name });
 
-  for (let player of players) {
-    const newPlayer = await Player.create({ name_player: player });
-    playersContext.push(newPlayer);
-    idsPlayer.push(newPlayer.id_player);
+  if (!name || !Array.isArray(players) || players.length === 0) {
+    return response(res, 400, { message: "Invalid input data" });
   }
-  for (let ids of idsPlayer) {
-    const relations = await game.addPlayer(ids);
-    result.push(relations);
+
+  try {
+    const game = await Game.create({ name });
+    const playersContext = await Promise.all(
+      players.map(async (player) => {
+        const newPlayer = await Player.create({ name_player: player });
+        await game.addPlayer(newPlayer.id_player);
+        return newPlayer;
+      })
+    );
+
+    const obj = { game, players: playersContext };
+    response(res, 200, obj);
+  } catch (error) {
+    response(res, 500, { message: "Error adding game", error });
   }
-  const obj = { game: game, players: playersContext };
-  response(res, 200, obj);
 };
+
+// Guarda las preguntas del juego
 const addGameSaveQuestions = async (req, res) => {
-  const { idGame, idQuestions,top } = req.body;
+  const { idGame, idQuestions, top } = req.body;
 
-  let idsQuest = [];
-  let result = [];
-  for(let q of idQuestions){
-    idsQuest.push(q.id_question);
-  };
-  const game = await Game.findByPk(idGame);
-  await game.update({ winners: top });
-  for(let id of idsQuest){
-    const relations = await game.addQuestion(id);
-    result.push(relations);
-  };
-  response(res, 200, game);
-};
-const getAllGamesWithQuestions = async (req, res) => {
-    let filter = [];
-  const games = await Game.findAll();
-  for(let g of games ){
-    if(g.winners!=null)filter.push(g);
+  if (!idGame || !Array.isArray(idQuestions) || idQuestions.length === 0) {
+    return response(res, 400, { message: "Invalid input data" });
   }
-  console.log(filter);
-  response(res, 200, filter);
+
+  try {
+    const game = await Game.findByPk(idGame);
+    
+    if (!game) {
+      return response(res, 404, { message: "Game not found" });
+    }
+
+    await game.update({ winners: top });
+
+    const idsQuest = idQuestions.map((q) => q.id_question);
+    await Promise.all(idsQuest.map(async (id) => game.addQuestion(id)));
+
+    response(res, 200, game);
+  } catch (error) {
+    response(res, 500, { message: "Error saving questions", error });
+  }
 };
+
+// Obtiene todos los juegos con preguntas
+const getAllGamesWithQuestions = async (req, res) => {
+  try {
+    const games = await Game.findAll();
+    const filteredGames = games.filter((g) => g.winners !== null);
+
+    response(res, 200, filteredGames);
+  } catch (error) {
+    response(res, 500, { message: "Error retrieving games", error });
+  }
+};
+
 module.exports = {
   addGame,
   addGameSaveQuestions,
