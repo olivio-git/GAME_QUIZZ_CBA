@@ -1,5 +1,6 @@
-import React from 'react';
-import Confetti from "react-confetti";
+// ModalSuccess.js
+import React from "react";
+import Confetti from "react-confetti"; // Asegúrate de que Confetti esté instalado y correctamente importado
 
 const ModalSuccess = ({ success }) => {
   return (
