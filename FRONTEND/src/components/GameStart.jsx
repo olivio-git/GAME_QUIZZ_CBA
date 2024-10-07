@@ -632,7 +632,7 @@ const GameStart = () => {
               return (
                 <div
                   key={index}
-                  className="col-span-1  row-span-5 grid grid-rows-5 gap-2 "
+                  className="col-span-1 row-span-5 grid grid-rows-5 gap-2 "
                 >
                   {renderedQuestions.map((q, ind) => (
                     <motion.div

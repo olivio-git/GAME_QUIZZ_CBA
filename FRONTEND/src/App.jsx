@@ -1,21 +1,17 @@
-import { useContext, useEffect, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import NotFound from "./components/404";
-import DashboardPage from "./components/DashboardPage";
-import DashboardLayout from "./layouts/DashboardLayout";
-import HomeLayout from "./layouts/HomeLayout";
-import GameInProgress from "./components/GameInProgress";
-import GameStart from "./components/GameStart";
-import { Toaster } from "react-hot-toast";
-import DataContext from "./context/dataContext";
-import {
-  FetchAllQuestionsBd,
-  fetchGetCategory,
-  fetchGetGameSaveEnd,
-} from "./utils/fetchBackend";
-import History from "./components/History";
-import ModalUploadQuestions from "./components/ModalUpload/modalUpload";
+import { useContext, useEffect, useState } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import HomePage from './components/HomePage';
+import NotFound from './components/404';
+import DashboardPage from './components/DashboardPage';
+import DashboardLayout from './layouts/DashboardLayout';
+import HomeLayout from './layouts/HomeLayout';
+import GameInProgress from './components/GameInProgress';
+import GameStart from './components/GameStart';
+import { Toaster } from 'react-hot-toast';
+import DataContext from './context/dataContext';
+import { FetchAllQuestionsBd, fetchGetCategory, fetchGetGameSaveEnd } from './utils/fetchBackend';
+import History from './components/History';
+import { Uploader } from './components/uploader/Uploader';
 
 const code = true;
 
@@ -28,15 +24,15 @@ function App() {
     } else {
       return <Navigate to="/" />;
     }
-  };
+  }
   const handleQuest = async () => {
-    await FetchAllQuestionsBd(addDataQuestions);
-  };
+     await FetchAllQuestionsBd(addDataQuestions);
+  }
   useEffect(() => {
     handleQuest();
     fetchGetGameSaveEnd(addGameQuestions);
     fetchGetCategory(addCategorys);
-  }, []);
+  }, [])
 
   return (
     <>
@@ -56,7 +52,8 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
         </Route>
         <Route path="/history" element={<History />} />
-        <Route path="/upload" element={<ModalUploadQuestions />} />
+        <Route path="/upload" element={<Uploader />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster

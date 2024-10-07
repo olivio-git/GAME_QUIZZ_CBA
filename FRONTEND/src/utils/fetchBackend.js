@@ -52,3 +52,7 @@ export const fetchGetGameSaveEnd = async (fn) => {
 
   fn(response.data.data);
 };
+
+export const fetchPostFile = async (file) => {  
+  return await axios.post("/questions/upload", file);
+}
