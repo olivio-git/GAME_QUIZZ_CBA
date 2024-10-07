@@ -28,7 +28,6 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { removeItemsLocalStorage } from "../utils/functions";
-import { FaClock } from "react-icons/fa";
 
 //modularizando
 // import { checkResponses } from "./GameStartSubComponents/checkResponce";
@@ -263,8 +262,7 @@ const GameStart = () => {
   const renderPrevCheckQuestion = () => {
     return (
       <div>
-        <div className="clock-icon text-2xl">
-          <FaClock />
+        <div className="clock-icon text-2xl"> 
           <p className=" text-red-800">Time Remaining {counter}  <strong>   +{pointsMessage}</strong></p>
         </div>
         <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-600 md:text-1xl lg:text-2xl ">
