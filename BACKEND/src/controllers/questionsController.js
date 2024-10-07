@@ -1,12 +1,15 @@
 const { Question, Category } = require("../db");
 const { response  } = require('../utils');
-
+const xlsx = require("xlsx");
+const fs = require("fs");
 // const addQuestion = async (req, res) => {
 //     const question = req.body;
 //     await Question.create(question)
 //     const result = await Question.findAll({ where: { CategoryIdCategory: question.CategoryIdCategory } });
 //     response(res, 200, result);
 // };
+
+
 
 const addQuestion = async (req, res) => {
   const questions = req.body;
@@ -20,6 +23,72 @@ const addQuestion = async (req, res) => {
   });
 
   response(res, 200, result);
+};
+
+const uploadFile = async (req, res) => {
+  try {
+    const isValidXlsx = req.file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    if (!isValidXlsx) {
+      return res.status(400).json({ error: 'Solo se permiten archivos XLSX' });
+    }
+
+    const workbook = xlsx.readFile(req.file.path, {type:"buffer", cellDates: true});
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+
+    const data = await xlsx.utils.sheet_to_json(sheet); 
+    const category = data[0].Category; 
+    let cat = await Category.findOne({ where: { name_category: category } });
+    if (!cat) {
+      cat = await Category.create({ name_category: category });
+    }
+
+    const promises = data.map(async (question) => {
+      if (!question.Question) {
+        return;
+      }
+      const answers = [];
+      const correct = question[question.CorrectAnswer];
+
+      question.CategoryIdCategory = cat.id_category;
+      question.question = question.Question;
+      question.answers = [];
+      answers.push(question.A, question.B, question.C, question.D);
+      answers.forEach((answer, index) => {
+        if (answer) {
+          question.answers.push({
+            value: answer,
+            correct: answer === correct ? true : false
+          });
+        }
+      }); 
+      const find = await Question.findOne({ where: { question: question.question } });
+      if (!find) {
+        await Question.create({
+          question: question.question,
+          answer: question.answers,
+          CategoryIdCategory: question.CategoryIdCategory,
+          type: "",
+          difficulty: "",
+          stage: "",
+          category: ""
+        });
+      }
+    });
+
+    await Promise.all(promises); 
+    const result = await Question.findAll();  
+    fs.unlink(req.file.path, (err) => {
+      if (err) {
+        console.error('Error al eliminar el archivo:', err);
+        return;
+      }
+    });
+    response(res, 200, {message:"Archivo cargado correctamente", data: result});
+  } catch (error) {
+    console.error('Error al cargar el archivo:', error);
+    response(res, 500, { error: 'Ocurrió un error al cargar el archivo' });
+  }
 };
 
 
@@ -63,4 +132,5 @@ module.exports = {
   getAllQuestions,
   getAllQuestionsById,
   findAllQuestionsAsId,
+  uploadFile
 };

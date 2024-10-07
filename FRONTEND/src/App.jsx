@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast';
 import DataContext from './context/dataContext';
 import { FetchAllQuestionsBd, fetchGetCategory, fetchGetGameSaveEnd } from './utils/fetchBackend';
 import History from './components/History';
+import { Uploader } from './components/uploader/Uploader';
 
 const code = true;
 
@@ -51,6 +52,8 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
         </Route>
         <Route path="/history" element={<History />} />
+        <Route path="/upload" element={<Uploader />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster
