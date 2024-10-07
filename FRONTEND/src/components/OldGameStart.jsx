@@ -28,13 +28,11 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { removeItemsLocalStorage } from "../utils/functions";
+import { FaClock } from "react-icons/fa";
 
 //modularizando
-import WinnerModal from "./GameStartSubComponents/WinnerModal";
-import ModalSuccess from "./GameStartSubComponents/ModalSuccess";
-import ModalError from "./GameStartSubComponents/ModalError";
-import PrevCheckQuestion from "./GameStartSubComponents/PrevCheckQuestiom";
-import ModalQuestion from "./GameStartSubComponents/ModalQuestion";
+// import { checkResponses } from "./GameStartSubComponents/checkResponce";
+// import {RenderPrevCheckQuestion} from "./GameStartSubComponents/RenderPrevCheckQuestion";
 
 const GameStart = () => {
   const {
@@ -264,27 +262,98 @@ const GameStart = () => {
   let pointsMessage = calculatePoints(currentTurn.round, counter);
   const renderPrevCheckQuestion = () => {
     return (
-      <PrevCheckQuestion
-          counter={counter}
-          pointsMessage={calculatePoints(currentTurn.round, counter)}
-          gameContext={gameContext}
-          currentTurn={currentTurn}
-          questionGameIn={questionGameIn}
-          setQuestionCheck={setQuestionCheck}
-          usedRadioButton={usedRadioButton}
-          questionCheck={questionCheck}
-          checkResponse={checkResponse}
-        />
+      <div>
+        <div className="clock-icon text-2xl">
+          <FaClock />
+          <p className=" text-red-800">Time Remaining {counter}  <strong>   +{pointsMessage}</strong></p>
+        </div>
+        <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-600 md:text-1xl lg:text-2xl ">
+          Current Shift: {gameContext.players[currentTurn.player].name_player},
+          Round:{rounds[currentTurn.round]}
+        </h1>
+        <h1 className="text-2xl font-bold ">{questionGameIn.question}</h1>
+
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold text-blue-700">Answers</h2>
+          <div className="pl-4">
+            {questionGameIn.answer.map((a, index) => {
+              return (
+                <div key={index} className="mb-2">
+                  <label className="inline-flex items-centervisua">
+                    <input
+                      type="radio"
+                      name="response"
+                      value={a.value}
+                      checked={a.selected}
+                      onChange={() => setQuestionCheck(a)}
+                      disabled={usedRadioButton}
+                      className="mr-2"
+                    />
+                    {index + 1}: {a.value}
+                  </label>
+                </div>
+              );
+            })}
+            <audio className="hidden" controls>
+              <source src={SuccessSound} type="audio/mpeg" />
+            </audio>
+            <audio className="hidden" controls>
+              <source src={ErrorSound} type="audio/mpeg" />
+            </audio>
+          </div>
+        </div>
+        {!usedRadioButton && questionCheck ? (
+          <button
+            onClick={() => {
+   
+              checkResponse();
+            }}
+            disabled={!setQuestionCheck}
+            type="button"
+            className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          >
+            Try
+          </button>
+        ) : null}
+      </div>
     );
   };
   const renderModalSuccess = () => {
     return (
-      <ModalSuccess onSuccess={success}/>
+      <div className="flex flex-col items-center justify-center  text-green-500 p-4 rounded-lg">
+        <i className="fas fa-check-circle text-4xl mb-2"></i>
+        <h2 className="text-2xl mb-2">Correct!</h2>
+        <p>You answered the question correctly.</p>
+        {success ? <Confetti></Confetti> : null}
+      </div>
     );
   };
   const renderModalError = () => {
     return (
-      <ModalError questionCheck={questionCheck} questionGameIn={questionGameIn}/>
+      <div className="flex flex-col items-center justify-center text-red-500 p-4 rounded-lg">
+        <i className="fas fa-times-circle text-4xl mb-2"></i>
+        <h2 className="text-2xl mb-2">Error!</h2>
+        <p>
+          {questionCheck
+            ? <div>
+              <p>The answer is not correct.</p>
+              {
+                questionGameIn.answer.map((q) => {
+                  return (
+                    <p
+                      key={q.value}
+                      className={`m-w-3/5   p-1 rounded shadow ${q.correct ? "bg-green-400" : "bg-red-400"
+                        }`}
+                    >
+                      {q.value}
+                    </p>
+                  );
+                })
+              }
+            </div>
+            : "You must select an answer."}
+        </p>
+      </div>
     );
   };
   useEffect(() => { });
@@ -391,16 +460,69 @@ const GameStart = () => {
 
   const renderWinner = () => {
     return (
-      <WinnerModal
-        renderOrd={renderOrd}
-        handleSubmitGameSave={handleSubmitGameSave}
-        handleCloseGame={handleCloseGame}
-      />
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
+        <div className="flex justify-center items-center flex-col bg-white w-1/3 h-[90%] p-10 rounded-2xl shadow-lg">
+          <div className="flex flex-col items-center justify-center w-full mb-4">
+            <h1 className="text-2xl font-bold text-gray-700">Scoreboard</h1>
+            {renderOrd()}
+          </div>
+          <div className="flex p-1 justify-between w-full mt-8">
+            <button
+              onClick={handleSubmitGameSave}
+              className="p-1 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="h-5 w-5 mr-2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              Save and exit
+            </button>
+            <button
+              onClick={handleCloseGame}
+              className="p-2 bg-red-500 text-white rounded hover:bg-red-600 flex items-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="h-5 w-5 mr-2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
     );
   };
   const renderModalQuestion = () => {
     return (
-      <ModalQuestion success={success} error={error} renderPrevCheckQuestion={renderPrevCheckQuestion} renderModalSuccess={renderModalSuccess} renderModalError={renderModalError}/>
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+        <div className="bg-white w-1/2 p-8 rounded-2xl shadow-lg">
+          <div>
+            {!success && !error ? renderPrevCheckQuestion() : null}
+            {success ? renderModalSuccess() : null}
+            {error ? renderModalError() : null}
+          </div>
+        </div>
+      </div>
     );
   };
 
@@ -510,7 +632,7 @@ const GameStart = () => {
               return (
                 <div
                   key={index}
-                  className="col-span-1 row-span-5 grid grid-rows-5 gap-2 "
+                  className="col-span-1  row-span-5 grid grid-rows-5 gap-2 "
                 >
                   {renderedQuestions.map((q, ind) => (
                     <motion.div

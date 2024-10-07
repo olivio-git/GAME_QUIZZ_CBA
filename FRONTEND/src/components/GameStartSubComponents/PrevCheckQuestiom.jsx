@@ -1,20 +1,33 @@
-import React from 'react';
-import { FaClock } from 'react-icons/fa';
+import React from "react";
+import { FaClock } from "react-icons/fa";
 import SuccessSound from "../../assets/success.mp4";
 import ErrorSound from "../../assets/error.mp4";
 
-const PrevCheckQuestion = ({ counter, pointsMessage, gameContext, currentTurn, questionGameIn, setQuestionCheck, usedRadioButton, checkResponse }) => {
+const PrevCheckQuestion = ({
+  counter,
+  pointsMessage,
+  gameContext,
+  currentTurn,
+  questionGameIn,
+  setQuestionCheck,
+  usedRadioButton,
+  questionCheck,
+  checkResponse,
+}) => {
   return (
     <div>
       <div className="clock-icon text-2xl">
         <FaClock />
-        <p className="text-red-800">Time Remaining {counter} <strong> +{pointsMessage}</strong></p>
+        <p className="text-red-800">
+          Time Remaining {counter} <strong> +{pointsMessage}</strong>
+        </p>
       </div>
-      <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-600 md:text-1xl lg:text-2xl ">
+      <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-600 md:text-1xl lg:text-2xl">
         Current Shift: {gameContext.players[currentTurn.player].name_player},
-        Round: {rounds[currentTurn.round]}
+        Round: {currentTurn.round + 1}
       </h1>
       <h1 className="text-2xl font-bold">{questionGameIn.question}</h1>
+
       <div className="mb-4">
         <h2 className="text-xl font-semibold text-blue-700">Answers</h2>
         <div className="pl-4">

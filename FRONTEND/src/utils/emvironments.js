@@ -6,7 +6,7 @@ export const KEY_LOCAL_STORAGE_POINTS = "points";
 export const KEY_LOCAL_STORAGE_USEDQUESTIONS = "questions";
 export const KEY_LOCAL_STORAGE_TURN = "turnSave";
 
-export const VALUE_ROUNDS_LOCAL = 10;
+export const VALUE_ROUNDS_LOCAL = 2;
 export var VALUE_INTERVAL_COUNTER = 25;
 
 // export const KEY_LOCAL_STORAGE_TURN = "turnSave";
