@@ -40,6 +40,9 @@ const uploadFile = async (req, res) => {
     const sheet = workbook.Sheets[sheetName];
 
     const data = await xlsx.utils.sheet_to_json(sheet); 
+
+    let c
+
     const category = data[0].Category; 
     let cat = await Category.findOne({ where: { name_category: category } });
     if (!cat) {
