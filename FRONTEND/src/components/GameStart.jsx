@@ -69,6 +69,17 @@ const GameStart = () => {
   const agregarElemento = (nuevoElemento) => {
     setMiArreglo((prevState) => [...prevState, nuevoElemento]);
   };
+
+  const handleStartCounter = () => {
+    // Reproducir el sonido del contador
+    audioRef.current.play();
+    // Iniciar el contador
+    setCounter(VALUE_INTERVAL_COUNTER);
+    const id = setInterval(() => {
+      setCounter((prevCounter) => prevCounter - 1);
+    }, 1000);
+    setIntervalId(id);
+  };
   //logic
   const [rounds, setRounds] = useLocalStorageState(
     KEY_LOCAL_STORAGE_ROUNDS,
@@ -226,11 +237,20 @@ const GameStart = () => {
       clearInterval(intervalId);
     };
   }, [modalQuestion]);
+
   useEffect(() => {
+    return () => {
+      clearInterval(intervalId); // Limpiar el intervalo al desmontar
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0; // Reiniciar el audio
+    };
+  }, [intervalId]);
+   // Efectos de ciclo de vida
+   useEffect(() => {
     if (counter === 0) {
       checkResponse();
       setCounter(VALUE_INTERVAL_COUNTER);
-      clearInterval(intervalId); // Detener el intervalo
+      clearInterval(intervalId);
     }
   }, [counter, intervalId]);
   function calculatePoints(round, counter) {
@@ -265,16 +285,17 @@ const GameStart = () => {
   const renderPrevCheckQuestion = () => {
     return (
       <PrevCheckQuestion
-          counter={counter}
-          pointsMessage={calculatePoints(currentTurn.round, counter)}
-          gameContext={gameContext}
-          currentTurn={currentTurn}
-          questionGameIn={questionGameIn}
-          setQuestionCheck={setQuestionCheck}
-          usedRadioButton={usedRadioButton}
-          questionCheck={questionCheck}
-          checkResponse={checkResponse}
-        />
+      counter={counter}
+      pointsMessage={calculatePoints(currentTurn.round, counter)}
+      gameContext={gameContext}
+      currentTurn={currentTurn}
+      questionGameIn={questionGameIn}
+      setQuestionCheck={setQuestionCheck}
+      usedRadioButton={usedRadioButton}
+      questionCheck={questionCheck}
+      checkResponse={checkResponse}
+      onStartCounter={handleStartCounter} // Pasar la función al componente
+    />
     );
   };
   const renderModalSuccess = () => {
