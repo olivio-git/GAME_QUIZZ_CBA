@@ -1,7 +1,7 @@
 // WinnerModal.jsx
 import React from 'react';
 
-const WinnerModal = ({ handleSubmitGameSave, handleCloseGame, renderOrd }) => {
+const WinnerModal = ({ renderOrd, handleSubmitGameSave, handleCloseGame }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
       <div className="flex justify-center items-center flex-col bg-white w-1/3 h-[90%] p-10 rounded-2xl shadow-lg">
