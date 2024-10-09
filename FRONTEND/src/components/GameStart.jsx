@@ -1,18 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import DataContext from "../context/dataContext";
 import {
-  FetchAllQuestionsBd,
-  fetchGetCategory,
   fetchPostGameSaveEnd,
   fetchDeleteQuestion,
 } from "../utils/fetchBackend";
-import Confetti from "react-confetti";
 import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
 import CounterSound from "../assets/25segundos.mp3";
-
 import { motion } from "framer-motion";
-// import dataQuestions from "../utils/exampleQuestions.json";
 import {
   KEY_LOCAL_STORAGE,
   KEY_LOCAL_STORAGE_ROUNDS,
@@ -24,17 +19,14 @@ import {
   VALUE_INTERVAL_COUNTER,
 } from "../utils/emvironments";
 import { useLocalStorageState } from "../utils/useLocalStorageState";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { removeItemsLocalStorage } from "../utils/functions";
-
-//modularizando
 import WinnerModal from "./GameStartSubComponents/WinnerModal";
 import ModalSuccess from "./GameStartSubComponents/ModalSuccess";
 import ModalError from "./GameStartSubComponents/ModalError";
-import PrevCheckQuestion from "./GameStartSubComponents/PrevCheckQuestiom";
 import ModalQuestion from "./GameStartSubComponents/ModalQuestion";
+import { FaClock } from "react-icons/fa";
 
 const GameStart = () => {
   const {
@@ -47,39 +39,86 @@ const GameStart = () => {
     addGameProgress,
   } = useContext(DataContext);
   const navigate = useNavigate();
-  const [modalQuestion, setModalQuestion] = useState(false); //Estado del modal
-  const [questionGameIn, setQuestinGameIn] = useState(null); //La pregunta con la que estamos jugando
-  const [questionCheck, setQuestionCheck] = useState(null); //Verificar si la pregunta es correcta
-  const [error, setError] = useState(false); //Para poder mostrar el error de pregunta no respondida
-  const [success, setSuccess] = useState(false); //Para poder mostrar alertas success
-  const [counterSoundState, setCounterSoundState] = useState(false); //btn try
-  const [tap, setTap] = useState(false); //click boton//sound interval
-  const [soundInt, setSoundInt] = useState(false); // const audioRef = useRef(CounterSound);
+  const [modalQuestion, setModalQuestion] = useState(false);
+  const [questionGameIn, setQuestinGameIn] = useState(null);
+  const [questionCheck, setQuestionCheck] = useState(null);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [soundInt, setSoundInt] = useState(false);
   const audioRef = useRef(new Audio(CounterSound));
-  const [usedRadioButton, setUsedRadioButton] = useState(false); //Validar si el boton fue presionado
-  const successSound = new Audio(SuccessSound); //Sonido de audio para Sucess
-  const errorSound = new Audio(ErrorSound); //Sonido de audio para Sucess
-  const countSound = new Audio(CounterSound); //Sonido de audio para Counter
-  const [counter, setCounter] = useState(VALUE_INTERVAL_COUNTER); //counter
-  const [intervalId, setIntervalId] = useState(null); //interval
-  // Declarar el estado del arreglo
+  const [usedRadioButton, setUsedRadioButton] = useState(false);
+  const successSound = new Audio(SuccessSound);
+  const errorSound = new Audio(ErrorSound);
+  const [counter, setCounter] = useState(VALUE_INTERVAL_COUNTER);
+  const [intervalId, setIntervalId] = useState(null);
   const [miArreglo, setMiArreglo] = useState([]);
+  const [isStarted, setIsStarted] = useState(false);
 
-  // Función para agregar un nuevo elemento al arreglo
+  console.log(counter);
   const agregarElemento = (nuevoElemento) => {
     setMiArreglo((prevState) => [...prevState, nuevoElemento]);
   };
 
-  const handleStartCounter = () => {
-    // Reproducir el sonido del contador
-    audioRef.current.play();
-    // Iniciar el contador
-    setCounter(VALUE_INTERVAL_COUNTER);
-    const id = setInterval(() => {
-      setCounter((prevCounter) => prevCounter - 1);
-    }, 1000);
-    setIntervalId(id);
+  const handleStart = () => {
+    if (!isStarted) {
+      setIsStarted(true);
+      setCounter(VALUE_INTERVAL_COUNTER);
+  
+      // Reproducir el audio
+      audioRef.current.play()
+        .then(() => console.log("Audio is playing"))
+        .catch((error) => console.error("Error al reproducir audio:", error));
+  
+      const id = setInterval(() => {
+        setCounter((prevCounter) => {
+          if (prevCounter <= 1) {
+            clearInterval(id);
+            audioRef.current.pause(); // Pausar el audio
+            audioRef.current.currentTime = 0; // Reiniciar el audio
+            checkResponse(); // Verifica la respuesta al finalizar el contador
+            return 0; // Asegúrate de no bajar de 0
+          }
+          return prevCounter - 1; // Decrementar el contador
+        });
+      }, 1000);
+  
+      setIntervalId(id);
+    }
   };
+  
+
+  const handleTry = () => {
+    checkResponse();
+    resetCounter();
+  };
+  const resetCounter = () => {
+    clearInterval(intervalId); // Limpiar el intervalo
+    setCounter(VALUE_INTERVAL_COUNTER); // Reiniciar el contador
+    audioRef.current.pause(); // Detener el audio
+    audioRef.current.currentTime = 0; // Reiniciar el audio
+    setIsStarted(false); // Reiniciar el estado de inicio
+  };
+  // Efectos de ciclo de vida
+  useEffect(() => {
+    return () => {
+      resetCounter(); // Limpiar al desmontar
+    };
+  }, []);
+  useEffect(() => {
+    let timer;
+
+    if (isStarted && counter > 0) {
+      timer = setInterval(() => {
+        setCounter((prevCounter) => prevCounter - 1);
+      }, 1000);
+    } else if (counter === 0) {
+      clearInterval(timer);
+      audioRef.current.pause();
+    }
+
+    return () => clearInterval(timer);
+  }, [isStarted, counter]);
+
   //logic
   const [rounds, setRounds] = useLocalStorageState(
     KEY_LOCAL_STORAGE_ROUNDS,
@@ -136,8 +175,6 @@ const GameStart = () => {
   };
   const checkResponse = () => {
     clearInterval(intervalId); // Detener el intervalo
-    audioRef.current.currentTime = 0;
-    audioRef.current.pause();
     //LIMBERFUNCTIONS
     function calculatePoints(round, counter) {
       let points;
@@ -150,7 +187,13 @@ const GameStart = () => {
       }
       return points;
     }
-    function calculatePointsForRound(counter, points15, points12, points10, pointsDefault) {
+    function calculatePointsForRound(
+      counter,
+      points15,
+      points12,
+      points10,
+      pointsDefault
+    ) {
       if (counter >= 15) {
         return points15;
       } else if (counter >= 12) {
@@ -204,40 +247,23 @@ const GameStart = () => {
         setCounter(VALUE_INTERVAL_COUNTER);
         setModalQuestion(false);
         errorSound.pause();
-
       }, 3000);
     }
     var cod = questionGameIn.id_question;
     agregarElemento(`${cod}`);
-    cod = '';
+    cod = "";
   };
   // const voiceTranslate = () => {  ;
   //   responsiveVoice.speak(questionGameIn.question);
   // }
-  //Aqui corte
+  //Aqui corte 
+ 
   const stateRender = (question) => {
     setQuestinGameIn(question);
-    // responsiveVoice.speak(question.question); //aqui
     updateQuestionsLocalStorage(question);
     setModalQuestion(true);
     setSoundInt(true);
-    audioRef.current.play();
   };
-  useEffect(() => {
-  }, []);
-  useEffect(() => {
-    if (modalQuestion) {
-      const id = setInterval(() => {
-        setCounter((prevCounter) => prevCounter - 1);
-      }, 1000);
-      setIntervalId(id);
-    }
-    // Limpiar el intervalo cuando el componente se desmonta o cuando el modal se cierra
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [modalQuestion]);
-
   useEffect(() => {
     return () => {
       clearInterval(intervalId); // Limpiar el intervalo al desmontar
@@ -245,14 +271,7 @@ const GameStart = () => {
       audioRef.current.currentTime = 0; // Reiniciar el audio
     };
   }, [intervalId]);
-   // Efectos de ciclo de vida
-   useEffect(() => {
-    if (counter === 0) {
-      checkResponse();
-      setCounter(VALUE_INTERVAL_COUNTER);
-      clearInterval(intervalId);
-    }
-  }, [counter, intervalId]);
+
   function calculatePoints(round, counter) {
     let points;
     if (round === 0 || round === 1) {
@@ -281,34 +300,84 @@ const GameStart = () => {
       return pointsDefault;
     }
   }
-  let pointsMessage = calculatePoints(currentTurn.round, counter);
+
+
+
+  
   const renderPrevCheckQuestion = () => {
+    let pointsMessage = calculatePoints(currentTurn.round, counter);
     return (
-      <PrevCheckQuestion
-      counter={counter}
-      pointsMessage={calculatePoints(currentTurn.round, counter)}
-      gameContext={gameContext}
-      currentTurn={currentTurn}
-      questionGameIn={questionGameIn}
-      setQuestionCheck={setQuestionCheck}
-      usedRadioButton={usedRadioButton}
-      questionCheck={questionCheck}
-      checkResponse={checkResponse}
-      onStartCounter={handleStartCounter} // Pasar la función al componente
-    />
+      <div>
+        <div className="clock-icon text-2xl">
+          <FaClock />
+          <p className="text-red-800">
+            Time Remaining {counter} <strong> +{pointsMessage}</strong>
+          </p>
+        </div>
+        <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-600 md:text-1xl lg:text-2xl">
+          Current Shift: {gameContext.players[currentTurn.player].name_player},
+          Round: {currentTurn.round + 1}
+        </h1>
+        <h1 className="text-2xl font-bold">{questionGameIn.question}</h1>
+
+        {!isStarted ? (
+          <button
+            onClick={handleStart} // Solo aquí comienza el conteo
+            type="button"
+            className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          >
+            Start
+          </button>
+        ) : (
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold text-blue-700">Answers</h2>
+            <div className="pl-4">
+              {questionGameIn.answer.map((a, index) => (
+                <div key={index} className="mb-2">
+                  <label className="inline-flex items-center">
+                    <input
+                      id={`response-${index}`} // Añadir ID único para accesibilidad
+                      type="radio"
+                      name="response"
+                      value={a.value}
+                      checked={a.selected}
+                      onChange={() => setQuestionCheck(a)}
+                      disabled={usedRadioButton}
+                      className="mr-2"
+                    />
+                    {index + 1}: {a.value}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!usedRadioButton && questionCheck ? (
+          <button
+            onClick={handleTry}
+            disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
+            type="button"
+            className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          >
+            Try
+          </button>
+        ) : null}
+      </div>
     );
   };
   const renderModalSuccess = () => {
-    return (
-      <ModalSuccess onSuccess={success}/>
-    );
+    return <ModalSuccess onSuccess={success} />;
   };
   const renderModalError = () => {
     return (
-      <ModalError questionCheck={questionCheck} questionGameIn={questionGameIn}/>
+      <ModalError
+        questionCheck={questionCheck}
+        questionGameIn={questionGameIn}
+      />
     );
   };
-  useEffect(() => { });
+  useEffect(() => {});
   const winnerPointsIndex = () => {
     return Math.max(...playerPoints);
   };
@@ -345,7 +414,7 @@ const GameStart = () => {
           })}
       </h2>
     );
-  }
+  };
   const handleCloseGame = () => {
     removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
     removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
@@ -357,7 +426,7 @@ const GameStart = () => {
     addGameProgress(false);
     addCategorys([]);
     navigate("/");
-  }
+  };
   //handleSubmitGameSave
   const handleSubmitGameSave = async () => {
     try {
@@ -421,14 +490,20 @@ const GameStart = () => {
   };
   const renderModalQuestion = () => {
     return (
-      <ModalQuestion success={success} error={error} renderPrevCheckQuestion={renderPrevCheckQuestion} renderModalSuccess={renderModalSuccess} renderModalError={renderModalError}/>
+      <ModalQuestion
+        success={success}
+        error={error}
+        renderPrevCheckQuestion={renderPrevCheckQuestion}
+        renderModalSuccess={renderModalSuccess}
+        renderModalError={renderModalError}
+      />
     );
   };
 
   return (
     <div className="grid grid-cols-3 grid-rows-5 w-full h-full">
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
-        turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
+      turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
         renderWinner()
       ) : (
         <>
@@ -449,15 +524,19 @@ const GameStart = () => {
                 {gameContext.players &&
                   gameContext.players.map((g, index) => {
                     return (
-                      <div key={index} className="flex px-1 pl-10 pt-1 pb-1 rounded-2xl">
+                      <div
+                        key={index}
+                        className="flex px-1 pl-10 pt-1 pb-1 rounded-2xl"
+                      >
                         <p className="font-bold text-sm  text-teal-600">
                           <span
-                            className={`${gameContext.players[index].name_player ===
+                            className={`${
+                              gameContext.players[index].name_player ===
                               gameContext.players[currentTurn.player]
                                 .name_player
-                              ? "bg-black rounded text-white"
-                              : "text - blue - 800"
-                              } `}
+                                ? "bg-black rounded text-white"
+                                : "text - blue - 800"
+                            } `}
                           >
                             {index + 1 + ": "}
                             {gameContext.players[index].name_player}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaClock } from "react-icons/fa";
-import CounterSound from "../../assets/25segundos.mp3";
+import CounterSound from "../../assets/25segundos.mp3"; // El sonido de 25 segundos
 
 const PrevCheckQuestion = ({
   pointsMessage,
@@ -12,13 +12,13 @@ const PrevCheckQuestion = ({
   questionCheck,
   checkResponse,
 }) => {
-  const [isStarted, setIsStarted] = useState(false);
-  const [counter, setCounter] = useState(25); // Suponiendo que el tiempo total es de 25 segundos
+  const [isStarted, setIsStarted] = useState(false); // Controla el inicio
+  const [counter, setCounter] = useState(25); // Inicia el contador aquí con el valor deseado
   const audioRef = useRef(new Audio(CounterSound));
 
   const handleStart = () => {
-    setIsStarted(true);
-    audioRef.current.play(); // Reproduce el sonido al iniciar
+    setIsStarted(true);  // Solo comienza cuando el usuario presiona "Start"
+    audioRef.current.play(); // Reproduce el sonido cuando comienza el conteo
   };
 
   useEffect(() => {
@@ -30,16 +30,16 @@ const PrevCheckQuestion = ({
       }, 1000);
     } else if (counter === 0) {
       clearInterval(timer);
-      audioRef.current.pause(); // Detener el sonido si es necesario
+      audioRef.current.pause(); // Pausa el sonido si el contador llega a 0
     }
 
     return () => clearInterval(timer);
   }, [isStarted, counter]);
 
   const handleTry = () => {
-    checkResponse(); // Llama a la función checkResponse
-    audioRef.current.pause(); // Detiene el sonido al hacer clic en "Try"
-    audioRef.current.currentTime = 0; // Opcional: reinicia el tiempo del sonido
+    checkResponse(); // Verifica la respuesta
+    audioRef.current.pause(); // Pausa el sonido cuando se hace clic en "Try"
+    audioRef.current.currentTime = 0; // Reinicia el tiempo del sonido
   };
 
   return (
@@ -58,7 +58,7 @@ const PrevCheckQuestion = ({
 
       {!isStarted ? (
         <button
-          onClick={handleStart}
+          onClick={handleStart} // Solo aquí comienza el conteo
           type="button"
           className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
         >
