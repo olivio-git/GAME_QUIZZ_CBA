@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
-import { IMAGE_CLOUDFRONT_QUIZZ } from "../utils/emvironments";
+import { IMAGE_CLOUDFRONT_QUIZZ } from "../utils/emvironments"; 
+
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
@@ -67,7 +68,12 @@ export const DataContextProvider = ({ children }) => {
       players: [...prevState.players, name],
     }));
   };
-
+  const deletePLayer = (name) => {
+    setGame((prevState) => ({
+      ...prevState,
+      players: prevState.players.filter((p) => p !== name),
+    }));
+  }
   const restartGameCreator = () => {
     setGame({
       ...gameCreator,
@@ -108,6 +114,7 @@ export const DataContextProvider = ({ children }) => {
     gameQuestions,
     stateModalHistory,
     setStateModalHistory,
+    deletePLayer,
   };
   return (
     <DataContext.Provider value={STATES_MODIFIC}>
