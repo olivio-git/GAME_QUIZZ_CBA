@@ -1,3 +1,5 @@
+import Image from "../assets/cba_bar-40371a12.png";
+import ImageGame from "../assets/LOGOTIPOGAME.png"
 export const KEY_LOCAL_STORAGE = "game";
 
 export const KEY_LOCAL_STORAGE_ROUNDS = "round";
@@ -13,5 +15,5 @@ export var VALUE_INTERVAL_COUNTER = 25;
 
 
 
-export const IMAGE_CLOUDFRONT_QUIZZ = "https://i.ibb.co/8zc0Bn3/logo1.jpg";
-export const IMAGE_CLOUDFRONT_STUDENTS = "https://i.ibb.co/8zc0Bn3/logo1.jpg";
+export const IMAGE_CLOUDFRONT_QUIZZ = ImageGame;
+export const IMAGE_CLOUDFRONT_STUDENTS = Image;
