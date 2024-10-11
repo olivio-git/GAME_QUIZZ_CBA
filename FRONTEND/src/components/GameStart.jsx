@@ -26,7 +26,16 @@ import WinnerModal from "./GameStartSubComponents/WinnerModal";
 import ModalSuccess from "./GameStartSubComponents/ModalSuccess";
 import ModalError from "./GameStartSubComponents/ModalError";
 import ModalQuestion from "./GameStartSubComponents/ModalQuestion";
-import { FaClock, FaCube, FaUser } from "react-icons/fa";
+import {
+  FaClock,
+  FaCube,
+  FaUser,
+  FaBasketballBall,
+  FaBook,
+  FaLaptop,
+  FaFilm,
+  FaHistory,
+} from "react-icons/fa";
 
 const GameStart = () => {
   const {
@@ -324,7 +333,14 @@ const GameStart = () => {
         <div className="flex items-center mb-4">
           <FaClock className="text-2xl text-yellow-500" />
           <h1 className="ml-2 text-2xl text-green-600 font-semibold">
-            Time Remaining: <strong className="ml-2 text-2xl  text-red-900 font-extrabold">{counter}s</strong> <strong className="ml-2 text-2xl text-green-800 font-extrabold"> + {pointsMessage}</strong>
+            Time Remaining:{" "}
+            <strong className="ml-2 text-2xl  text-red-900 font-extrabold">
+              {counter}s
+            </strong>{" "}
+            <strong className="ml-2 text-2xl text-green-800 font-extrabold">
+              {" "}
+              + {pointsMessage}
+            </strong>
           </h1>
         </div>
         <h1 className="mb-4 text-2xl font-extrabold text-green-600 md:text-2xl lg:text-2xl">
@@ -349,7 +365,9 @@ const GameStart = () => {
           </button>
         ) : (
           <div className="mt-4 mb-4">
-            <h2 className="text-xl font-semibold text-blue-800">Select correct answer:</h2>
+            <h2 className="text-xl font-semibold text-blue-800">
+              Select correct answer:
+            </h2>
             <div className="grid grid-cols-2 gap-4 mt-2">
               {questionGameIn.answer.map((a, index) => (
                 <div
@@ -611,15 +629,40 @@ const GameStart = () => {
               </div>
             </div>
           </div>
-
-          {/* Sección de categorias */}
-          <div className="col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 gap-2 py-1 m-4 rounded-2xl bg-gray-100 shadow-lg border-brown-800 bg-opacity-5">
+          {/* Category Section */}
+          <div className="col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 gap-2 m-4 rounded-2xl bg-gray-100 shadow-lg border-brown-800 bg-opacity-5">
             {categorys &&
               categorys.map((c) => {
+                let icon; // Define a variable for the icon
+
+                // Map categories to their respective icons
+                switch (c.name_category) {
+                  case "Sports":
+                    icon = (
+                      <FaBasketballBall size={15} className="text-purple-600" />
+                    );
+                    break;
+                  case "History and geography":
+                    icon = <FaHistory size={15} className="text-purple-600" />;
+                    break;
+                  case "Literature":
+                    icon = <FaBook size={15} className="text-purple-600" />;
+                    break;
+                  case "Science and technology ":
+                    icon = <FaLaptop size={15} className="text-purple-600" />;
+                    break;
+                  case "Music and entertainment":
+                    icon = <FaFilm size={15} className="text-purple-600" />;
+                    break;
+                  default:
+                    icon = null; // Fallback if no category matches
+                }
+
                 return (
                   <div key={c.id_category} className="col-span-1 row-span-1">
-                    <button className="w-full h-full bg-white rounded-xl shadow-md ">
-                      <h1 className="font-extrabold text-red-600 text-xs sm:text-sm md:text-sm lg:text-xl pixelify-sans text-center overflow-hidden text-ellipsis whitespace-nowrap">
+                    <button className="w-full h-full bg-green-400 text-white rounded-xl shadow-md flex flex-col items-center justify-center hover:bg-red-700">
+                      {icon} {/* Render the icon */}
+                      <h1 className="font-extrabold text-purple-900 text-xs sm:text-sm md:text-sm lg:text-xl pixelify-sans text-center overflow-hidden text-ellipsis whitespace-nowrap">
                         {c.name_category}
                       </h1>
                     </button>
@@ -628,7 +671,7 @@ const GameStart = () => {
               })}
 
             {categorys.map((c, index) => {
-              // Filtrar las preguntas disponibles que no han sido usadas
+              // Filter available questions that have not been used
               const availableQuestions = dataQuestions.filter(
                 (q) =>
                   q.CategoryIdCategory === categorys[index].id_category &&
@@ -637,7 +680,7 @@ const GameStart = () => {
                   )
               );
 
-              // Aleatorizar las preguntas disponibles
+              // Randomize available questions
               const randomizedQuestions = [...availableQuestions].sort(
                 () => Math.random() - 0.5
               );
