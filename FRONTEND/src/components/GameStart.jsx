@@ -26,7 +26,7 @@ import WinnerModal from "./GameStartSubComponents/WinnerModal";
 import ModalSuccess from "./GameStartSubComponents/ModalSuccess";
 import ModalError from "./GameStartSubComponents/ModalError";
 import ModalQuestion from "./GameStartSubComponents/ModalQuestion";
-import { FaClock } from "react-icons/fa";
+import { FaClock, FaCube, FaUser } from "react-icons/fa";
 
 const GameStart = () => {
   const {
@@ -54,7 +54,8 @@ const GameStart = () => {
   const [miArreglo, setMiArreglo] = useState([]);
   const [isStarted, setIsStarted] = useState(false);
 
-  console.log(counter);
+  // Dentro de tu componente
+  const playerListRef = useRef(null);
   const agregarElemento = (nuevoElemento) => {
     setMiArreglo((prevState) => [...prevState, nuevoElemento]);
   };
@@ -63,12 +64,13 @@ const GameStart = () => {
     if (!isStarted) {
       setIsStarted(true);
       setCounter(VALUE_INTERVAL_COUNTER);
-  
+
       // Reproducir el audio
-      audioRef.current.play()
+      audioRef.current
+        .play()
         .then(() => console.log("Audio is playing"))
         .catch((error) => console.error("Error al reproducir audio:", error));
-  
+
       const id = setInterval(() => {
         setCounter((prevCounter) => {
           if (prevCounter <= 1) {
@@ -81,11 +83,10 @@ const GameStart = () => {
           return prevCounter - 1; // Decrementar el contador
         });
       }, 1000);
-  
+
       setIntervalId(id);
     }
   };
-  
 
   const handleTry = () => {
     checkResponse();
@@ -155,6 +156,21 @@ const GameStart = () => {
     ) {
     }
   }, [currentTurn]);
+
+  // Lógica para manejar el cambio de jugador
+  useEffect(() => {
+    if (playerListRef.current) {
+      const currentPlayerElement =
+        playerListRef.current.querySelector(".current-player");
+      if (currentPlayerElement) {
+        currentPlayerElement.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest", // Esto asegura que el jugador actual sea visible en la parte superior del contenedor
+        });
+      }
+    }
+  }, [currentTurn.player]); // Dependencia para el efecto: se ejecuta cuando el jugador actual cambia
+
   const nextTurn = () => {
     setCurrentTurn((prevTurn) => {
       //  2===2
@@ -256,8 +272,8 @@ const GameStart = () => {
   // const voiceTranslate = () => {  ;
   //   responsiveVoice.speak(questionGameIn.question);
   // }
-  //Aqui corte 
- 
+  //Aqui corte
+
   const stateRender = (question) => {
     setQuestinGameIn(question);
     updateQuestionsLocalStorage(question);
@@ -301,52 +317,56 @@ const GameStart = () => {
     }
   }
 
-
-
-  
   const renderPrevCheckQuestion = () => {
     let pointsMessage = calculatePoints(currentTurn.round, counter);
     return (
-      <div>
-        <div className="clock-icon text-2xl">
-          <FaClock />
-          <p className="text-red-800">
-            Time Remaining {counter} <strong> +{pointsMessage}</strong>
-          </p>
+      <div className="p-4 bg-gray-200 rounded-lg shadow-md">
+        <div className="flex items-center mb-4">
+          <FaClock className="text-2xl text-yellow-500" />
+          <h1 className="ml-2 text-2xl text-green-600 font-semibold">
+            Time Remaining: <strong className="ml-2 text-2xl  text-red-900 font-extrabold">{counter}s</strong> <strong className="ml-2 text-2xl text-green-800 font-extrabold"> + {pointsMessage}</strong>
+          </h1>
         </div>
-        <h1 className="mb-4 text-4xl font-extrabold leading-none text-blue-600 md:text-1xl lg:text-2xl">
-          Current Shift: {gameContext.players[currentTurn.player].name_player},
-          Round: {currentTurn.round + 1}
+        <h1 className="mb-4 text-2xl font-extrabold text-green-600 md:text-2xl lg:text-2xl">
+          Current Shift:
+          <span className="text-blue-900">
+            {" "}
+            {gameContext.players[currentTurn.player].name_player}
+          </span>
+          , Round: {currentTurn.round + 1}
         </h1>
-        <h1 className="text-2xl font-bold">{questionGameIn.question}</h1>
+        <h1 className="text-3xl font-extrabold text-blue-900">
+          {questionGameIn.question}
+        </h1>
 
         {!isStarted ? (
           <button
             onClick={handleStart} // Solo aquí comienza el conteo
             type="button"
-            className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            className="mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
           >
             Start
           </button>
         ) : (
-          <div className="mb-4">
-            <h2 className="text-xl font-semibold text-blue-700">Answers</h2>
-            <div className="pl-4">
+          <div className="mt-4 mb-4">
+            <h2 className="text-xl font-semibold text-blue-800">Select correct answer:</h2>
+            <div className="grid grid-cols-2 gap-4 mt-2">
               {questionGameIn.answer.map((a, index) => (
-                <div key={index} className="mb-2">
-                  <label className="inline-flex items-center">
-                    <input
-                      id={`response-${index}`} // Añadir ID único para accesibilidad
-                      type="radio"
-                      name="response"
-                      value={a.value}
-                      checked={a.selected}
-                      onChange={() => setQuestionCheck(a)}
-                      disabled={usedRadioButton}
-                      className="mr-2"
-                    />
+                <div
+                  key={index}
+                  className="flex items-center justify-center mb-2"
+                >
+                  <button
+                    onClick={() => setQuestionCheck(a)} // Acción al hacer clic en la opción
+                    disabled={usedRadioButton}
+                    className={`flex items-center justify-center w-full text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md hover:bg-green-400 transition-colors duration-200 ${
+                      questionCheck && questionCheck.value === a.value
+                        ? "bg-green-600"
+                        : ""
+                    }`}
+                  >
                     {index + 1}: {a.value}
-                  </label>
+                  </button>
                 </div>
               ))}
             </div>
@@ -358,7 +378,7 @@ const GameStart = () => {
             onClick={handleTry}
             disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
             type="button"
-            className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            className="mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
           >
             Try
           </button>
@@ -507,55 +527,74 @@ const GameStart = () => {
         renderWinner()
       ) : (
         <>
-          <div className="grid grid-cols-3 col-span-3 border bg-white border-none rounded-2xl shadow shadow-2xl">
-            <div className="flex justify-center items-center col-span-1   border-r-4 ">
-              <h1 className="mb-4  font-extrabold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
+          <div className="grid grid-cols-3 col-span-3 border-4 bg-white border-none rounded-2xl shadow-2xl p-0 bg-opacity-20 gap-1">
+            {/* Sección del Juego */}
+            <div className="flex justify-center items-center col-span-1 border-r-4 border-brown-800 bg-white rounded-xl shadow-md p-4">
+              <h1 className="mb-0 font-extrabold text-blue-700 text-lg lg:text-xl pixelify-sans">
                 GAME:
-                <span className="text-blue-900">{gameContext.game.name}</span>
+                <span className="text-blue-900 px-2 border-b-4 border-blue-600">
+                  {gameContext.game.name}
+                </span>
               </h1>
             </div>
-            <div className="flex col-span-1 py-1 pl-2 overflow-y-auto">
-              <div className="w-2/12 justify-center items-center  ">
-                <h1 className="text-sm font-extrabold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
-                  Players
-                </h1>
-              </div>
-              <div className="w-12/12 justify-center items-center">
-                {gameContext.players &&
-                  gameContext.players.map((g, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className="flex px-1 pl-10 pt-1 pb-1 rounded-2xl"
-                      >
-                        <p className="font-bold text-sm  text-teal-600">
-                          <span
-                            className={`${
-                              gameContext.players[index].name_player ===
-                              gameContext.players[currentTurn.player]
-                                .name_player
-                                ? "bg-black rounded text-white"
-                                : "text - blue - 800"
-                            } `}
-                          >
-                            {index + 1 + ": "}
-                            {gameContext.players[index].name_player}
-                            {" = "}
-                            {playerPoints[index]}
-                            {/* {" Fails: "}
-                            {" 0"} */}
-                          </span>
-                        </p>
-                      </div>
-                    );
-                  })}
+
+            {/* Sección de Jugadores */}
+            <div className="flex col-span-1 py-1 pl-2 overflow-y-auto border-brown-800 bg-white rounded-xl shadow-md">
+              <div className="flex flex-col w-full">
+                {/* Título de Jugadores */}
+                <div className="flex items-center justify-center max-h-24 mb-0">
+                  <h1 className="text-lg font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 pixelify-sans tracking-widest uppercase">
+                    Players
+                  </h1>
+                </div>
+
+                {/* Lista de Jugadores */}
+                <div
+                  ref={playerListRef}
+                  className="flex flex-col w-full max-h-60 overflow-y-auto"
+                >
+                  {gameContext.players &&
+                    gameContext.players.map((g, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className={`flex items-center px-3 py-2 rounded-xl bg-gray-50 shadow-inner mb-2 ${
+                            gameContext.players[index].name_player ===
+                            gameContext.players[currentTurn.player].name_player
+                              ? "current-player" // Clase para el jugador actual
+                              : ""
+                          }`}
+                        >
+                          {/* Icono de usuario */}
+                          <FaUser size={20} className="text-teal-600 mr-2" />
+                          <p className="font-bold text-sm text-teal-600">
+                            <span
+                              className={`${
+                                gameContext.players[index].name_player ===
+                                gameContext.players[currentTurn.player]
+                                  .name_player
+                                  ? "bg-black text-white rounded-lg px-2"
+                                  : "text-blue-800"
+                              } `}
+                            >
+                              {index + 1 + ": "}
+                              {gameContext.players[index].name_player} {" = "}
+                              {playerPoints[index]}
+                            </span>
+                          </p>
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
             </div>
-            <div className="flex justify-center items-center col-span-1  border-l-4 pl-2">
-              <div className="w-12/12 justify-center items-center">
-                <h1 className="font-bold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
+
+            {/* Sección de Rondas */}
+            <div className="flex justify-center items-center col-span-1 border-l-4 border-brown-800 bg-white rounded-xl shadow-md p-4">
+              <div className="w-full flex flex-col items-center">
+                <h1 className="font-bold text-blue-700 text-lg lg:text-xl pixelify-sans mb-2">
                   Round:
-                  <span className="text-red-400">
+                  <span className="text-red-400 px-2 border-b-4 border-red-500">
                     {rounds[currentTurn.round]}
                     <span className="text-green-500">
                       {currentTurn.round == 0 || currentTurn.round == 1
@@ -564,34 +603,32 @@ const GameStart = () => {
                         ? " + 200 points before 15s"
                         : " + 300 points before 15s"}
                     </span>
-                  </span>{" "}
-                  <br />
+                  </span>
                 </h1>
-                <p className="font-bold leading-none text-blue-700 md:text-1xl lg:text-2xl ">
-                  Rules:
-                  <span className="text-red-500">Be as fast as possible!</span>
+                <p className="font-bold text-blue-700 text-lg lg:text-xl pixelify-sans mt-2">
+                  <span className="text-red-500 ">Be as fast as possible!</span>
                 </p>
               </div>
             </div>
           </div>
-          <div className="col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 justify-center py-2 gap-2 rounded-2xl  ">
+
+          {/* Sección de categorias */}
+          <div className="col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 gap-2 py-1 m-4 rounded-2xl bg-gray-100 shadow-lg border-brown-800 bg-opacity-5">
             {categorys &&
               categorys.map((c) => {
                 return (
                   <div key={c.id_category} className="col-span-1 row-span-1">
-                    <button
-                      type="button"
-                      className="w-full  h-full bg-white rounded-2xl shadow"
-                    >
-                      <h1 className="font-extrabold leading-none text-red-400 md:text-1xl lg:text-2xl ">
+                    <button className="w-full h-full bg-white rounded-xl shadow-md ">
+                      <h1 className="font-extrabold text-red-600 text-xs sm:text-sm md:text-sm lg:text-xl pixelify-sans text-center overflow-hidden text-ellipsis whitespace-nowrap">
                         {c.name_category}
                       </h1>
                     </button>
                   </div>
                 );
               })}
+
             {categorys.map((c, index) => {
-              // Filtrar las preguntas disponibles que no han sido usadas desde el localstorage
+              // Filtrar las preguntas disponibles que no han sido usadas
               const availableQuestions = dataQuestions.filter(
                 (q) =>
                   q.CategoryIdCategory === categorys[index].id_category &&
@@ -599,48 +636,35 @@ const GameStart = () => {
                     (usedQ) => usedQ.id_question === q.id_question
                   )
               );
+
               // Aleatorizar las preguntas disponibles
               const randomizedQuestions = [...availableQuestions].sort(
                 () => Math.random() - 0.5
               );
-
-              // Tomar solo las primeras 5 preguntas disponibles siempre
               const renderedQuestions = randomizedQuestions.slice(0, 5);
 
               return (
                 <div
                   key={index}
-                  className="col-span-1 row-span-5 grid grid-rows-5 gap-2 "
+                  className="col-span-1 row-span-5 grid grid-rows-5 gap-2"
                 >
                   {renderedQuestions.map((q, ind) => (
                     <motion.div
                       key={ind + 1}
                       onClick={() => stateRender(q)}
-                      className={`flex items-center justify-center 
-                  font-bold text-gray-600 bg-white row-span-1 rounded-2xl shadow-2xl 
-                  cursor-pointer hover:bg-green-400 hover:text-white hover:shadow-lg`}
+                      className="flex items-center justify-center font-bold text-gray-600 bg-white row-span-1 rounded-xl shadow-md cursor-pointer hover:bg-green-400 hover:text-white transition-colors duration-900"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.1 }}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        id="Layer_1"
-                        data-name="Layer 1"
-                        viewBox="0 0 24 24"
-                        width="35"
-                        fill="purple"
-                        height="35"
-                      >
-                        <path d="M12,19c-.829,0-1.5-.672-1.5-1.5,0-1.938,1.352-3.709,3.909-5.118,1.905-1.05,2.891-3.131,2.51-5.301-.352-2.003-1.997-3.648-4-4-1.445-.254-2.865,.092-4.001,.974-1.115,.867-1.816,2.164-1.922,3.559-.063,.825-.785,1.445-1.609,1.382-.826-.063-1.445-.783-1.382-1.609,.17-2.237,1.29-4.315,3.073-5.7C8.89,.278,11.149-.275,13.437,.126c3.224,.566,5.871,3.213,6.437,6.437,.597,3.399-1.018,6.794-4.017,8.447-1.476,.813-2.357,1.744-2.357,2.49,0,.828-.671,1.5-1.5,1.5Zm-1.5,3.5c0,.828,.672,1.5,1.5,1.5s1.5-.672,1.5-1.5-.672-1.5-1.5-1.5-1.5,.672-1.5,1.5Z" />
-                      </svg>
+                      <FaCube size={25} color="purple" />
                     </motion.div>
                   ))}
                 </div>
               );
             })}
+
             {modalQuestion ? renderModalQuestion() : null}
-            {/* {console.log(questionUsedValids)} */}
           </div>
         </>
       )}
