@@ -1,53 +1,28 @@
 // WinnerModal.jsx
 import React from 'react';
+import { FaUserCheck, FaUserTimes } from 'react-icons/fa'; // Import user icons
 
 const WinnerModal = ({ renderOrd, handleSubmitGameSave, handleCloseGame }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
-      <div className="flex justify-center items-center flex-col bg-white w-1/3 h-[90%] p-10 rounded-2xl shadow-lg">
+      <div className="flex justify-center items-center flex-col bg-green-200 w-11/12 md:w-1/3 h-auto p-8 rounded-2xl shadow-lg border-4 border-green-800">
         <div className="flex flex-col items-center justify-center w-full mb-4">
-          <h1 className="text-2xl font-bold text-gray-700">Scoreboard</h1>
+          <h1 className="text-2xl font-extrabold text-green-800">Scoreboard</h1>
           {renderOrd()}
         </div>
         <div className="flex p-1 justify-between w-full mt-8">
           <button
             onClick={handleSubmitGameSave}
-            className="p-1 bg-green-500 text-white rounded hover:bg-green-600 flex items-center"
+            className="flex items-center justify-center p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 shadow-md"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="h-5 w-5 mr-2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-            Save and exit
+            <FaUserCheck className="h-5 w-5 mr-2" /> {/* User icon for success */}
+            Save and Exit
           </button>
           <button
             onClick={handleCloseGame}
-            className="p-2 bg-red-500 text-white rounded hover:bg-red-600 flex items-center"
+            className="flex items-center justify-center p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300 shadow-md"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="h-5 w-5 mr-2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <FaUserTimes className="h-5 w-5 mr-2" /> {/* User icon for cancel */}
             Cancel
           </button>
         </div>

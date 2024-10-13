@@ -188,8 +188,8 @@ const GameInProgress = () => {
           <div id="stars"></div>
         </div>
         <div id="glow">
-          <div class="circle"></div>
-          <div class="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
         </div>
       </button>
     ) : (
