@@ -228,7 +228,7 @@ const GameInProgress = () => {
   }, [id, selected]);
 
   return (
-    <div className="grid grid-cols-3 grid-rows-5 p-1 h-screen gradient-blue">
+    <div className="grid grid-cols-3 grid-rows-5 p-1 h-screen gradient-abc">
       <Bar context={"progress"}></Bar>
       <div className="col-span-1 flex p-4 rounded-2xl h-full">
         {game ? renderHeadSelected() : "Cargando datos..."}
