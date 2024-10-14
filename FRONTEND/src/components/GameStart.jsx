@@ -17,6 +17,7 @@ import {
   KEY_LOCAL_STORAGE_TURN,
   VALUE_ROUNDS_LOCAL,
   VALUE_INTERVAL_COUNTER,
+  VALUE_ROUNDS_LOCAL_DEV,
 } from "../utils/emvironments";
 import { useLocalStorageState } from "../utils/useLocalStorageState";
 import toast, { Toaster } from "react-hot-toast";
@@ -35,6 +36,8 @@ import {
   FaLaptop,
   FaFilm,
   FaHistory,
+  FaBomb,
+  FaTrophy,
 } from "react-icons/fa";
 
 const GameStart = () => {
@@ -75,11 +78,7 @@ const GameStart = () => {
       setCounter(VALUE_INTERVAL_COUNTER);
 
       // Reproducir el audio
-      audioRef.current
-        .play()
-        .then(() => console.log("Audio is playing"))
-        .catch((error) => console.error("Error al reproducir audio:", error));
-
+      audioRef.current.play() 
       const id = setInterval(() => {
         setCounter((prevCounter) => {
           if (prevCounter <= 1) {
@@ -132,7 +131,7 @@ const GameStart = () => {
   //logic
   const [rounds, setRounds] = useLocalStorageState(
     KEY_LOCAL_STORAGE_ROUNDS,
-    Array.from({ length: 5 }, (_, i) => i + 1)
+    Array.from({ length: VALUE_ROUNDS_LOCAL_DEV }, (_, i) => i + 1)
   );
   const [turnIndexSave, SetTurnIndexSave] = useLocalStorageState(
     KEY_LOCAL_STORAGE_TURN,
@@ -539,130 +538,90 @@ const GameStart = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 grid-rows-5 w-full h-full">
+    <div className="grid grid-cols-4 grid-rows-5 w-full h-full gap-2">
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
       turnIndexSave.player == gameContext.players.length ? ( // [0,1] //1 0,1
         renderWinner()
       ) : (
         <>
-          <div className="grid grid-cols-3 col-span-3 border-4 bg-white border-none rounded-2xl shadow-2xl p-0 bg-opacity-20 gap-1">
+          <div className="grid grid-cols-2 col-span-3 border-4  border-none rounded-2xl p-2 gap-1">
             {/* Sección del Juego */}
-            <div className="flex justify-center items-center col-span-1 border-r-4 border-brown-800 bg-white rounded-xl shadow-md p-4">
-              <h1 className="mb-0 font-extrabold text-blue-700 text-lg lg:text-xl pixelify-sans">
+            <div className="flex justify-center items-center col-span-1   rounded-lg shadow-xl p-8">
+              <h1 className="font-extrabold text-3xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-400 to-pink-500 tracking-wider uppercase">
                 GAME:
-                <span className="text-blue-900 px-2 border-b-4 border-blue-600">
+                <span className="text-white px-4 lg:text-3xl font-black tracking-tighter">
                   {gameContext.game.name}
                 </span>
               </h1>
             </div>
 
-            {/* Sección de Jugadores */}
-            <div className="flex col-span-1 py-1 pl-2 overflow-y-auto border-brown-800 bg-white rounded-xl shadow-md">
-              <div className="flex flex-col w-full">
-                {/* Título de Jugadores */}
-                <div className="flex items-center justify-center max-h-24 mb-0">
-                  <h1 className="text-lg font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-purple-600 pixelify-sans tracking-widest uppercase">
-                    Players
-                  </h1>
-                </div>
-
-                {/* Lista de Jugadores */}
-                <div
-                  ref={playerListRef}
-                  className="flex flex-col w-full max-h-60 overflow-y-auto"
-                >
-                  {gameContext.players &&
-                    gameContext.players.map((g, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className={`flex items-center px-3 py-2 rounded-xl bg-gray-50 shadow-inner mb-2 ${
-                            gameContext.players[index].name_player ===
-                            gameContext.players[currentTurn.player].name_player
-                              ? "current-player" // Clase para el jugador actual
-                              : ""
-                          }`}
-                        >
-                          {/* Icono de usuario */}
-                          <FaUser size={20} className="text-teal-600 mr-2" />
-                          <p className="font-bold text-sm text-teal-600">
-                            <span
-                              className={`${
-                                gameContext.players[index].name_player ===
-                                gameContext.players[currentTurn.player]
-                                  .name_player
-                                  ? "bg-black text-white rounded-lg px-2"
-                                  : "text-blue-800"
-                              } `}
-                            >
-                              {index + 1 + ": "}
-                              {gameContext.players[index].name_player} {" = "}
-                              {playerPoints[index]}
-                            </span>
-                          </p>
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
-            </div>
-
             {/* Sección de Rondas */}
-            <div className="flex justify-center items-center col-span-1 border-l-4 border-brown-800 bg-white rounded-xl shadow-md p-4">
+            <div className="flex justify-center items-center col-span-1 shadow-lg p-6">
               <div className="w-full flex flex-col items-center">
-                <h1 className="font-bold text-blue-700 text-lg lg:text-xl pixelify-sans mb-2">
+                {/* Título de la Ronda */}
+                <h1 className="font-extrabold text-white text-2xl lg:text-4xl mb-3 tracking-wide uppercase">
                   Round:
-                  <span className="text-red-400 px-2 border-b-4 border-red-500">
-                    {rounds[currentTurn.round]}
-                    <span className="text-green-500">
-                      {currentTurn.round == 0 || currentTurn.round == 1
-                        ? " + 100 points before 15s"
-                        : currentTurn.round == 2 || currentTurn.round == 3
-                        ? " + 200 points before 15s"
-                        : " + 300 points before 15s"}
-                    </span>
+                  <span className="ml-2 text-yellow-400">
+                    {rounds[currentTurn.round]} 
+                    of
+                    {VALUE_ROUNDS_LOCAL}
                   </span>
                 </h1>
-                <p className="font-bold text-blue-700 text-lg lg:text-xl pixelify-sans mt-2">
-                  <span className="text-red-500 ">Be as fast as possible!</span>
+
+                {/* Información de puntos según la ronda */}
+                <p className="text-white text-lg lg:text-xl font-medium bg-black bg-opacity-30 rounded-lg px-4 py-2 mt-2">
+                  {currentTurn.round === 0 || currentTurn.round === 1
+                    ? "+ 100 points before 15s"
+                    : currentTurn.round === 2 || currentTurn.round === 3
+                    ? "+ 200 points before 15s"
+                    : "+ 300 points before 15s"}
                 </p>
               </div>
             </div>
           </div>
+          <div className="flex justify-center items-center col-span-1  rounded-lg shadow-lg p-6">
+            {/* Sección de Jugadores */}
+            {/* Título de Jugadores */}
+            <div className="flex items-center justify-center w-full">
+              <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 tracking-wide uppercase">
+                Players
+              </h1>
+            </div>
+          </div>
+
           {/* Category Section */}
           <div className="col-span-3 row-span-4 grid grid-cols-5 grid-rows-6 gap-2 m-4 rounded-2xl bg-gray-100 shadow-lg border-brown-800 bg-opacity-5">
             {categorys &&
               categorys.map((c) => {
-                let icon; // Define a variable for the icon
+                let icon;
 
-                // Map categories to their respective icons
                 switch (c.name_category) {
                   case "Sports":
                     icon = (
-                      <FaBasketballBall size={15} className="text-purple-600" />
+                      <FaBasketballBall size={25} className="text-blue-500" />
                     );
                     break;
                   case "History and geography":
-                    icon = <FaHistory size={15} className="text-purple-600" />;
+                    icon = <FaHistory size={25} className="text-red-500" />;
                     break;
                   case "Literature":
-                    icon = <FaBook size={15} className="text-purple-600" />;
+                    icon = <FaBook size={25} className="text-green-500" />;
                     break;
                   case "Science and technology ":
-                    icon = <FaLaptop size={15} className="text-purple-600" />;
+                    icon = <FaLaptop size={25} className="text-purple-500" />;
                     break;
                   case "Music and entertainment":
-                    icon = <FaFilm size={15} className="text-purple-600" />;
+                    icon = <FaFilm size={25} className="text-yellow-500" />;
                     break;
                   default:
-                    icon = null; // Fallback if no category matches
+                    icon = null;
                 }
 
                 return (
                   <div key={c.id_category} className="col-span-1 row-span-1">
-                    <button className="w-full h-full bg-green-400 text-white rounded-xl shadow-md flex flex-col items-center justify-center hover:bg-red-700">
-                      {icon} {/* Render the icon */}
-                      <h1 className="font-extrabold text-purple-900 text-xs sm:text-sm md:text-sm lg:text-xl pixelify-sans text-center overflow-hidden text-ellipsis whitespace-nowrap">
+                    <button className="w-full h-full text-white rounded-lg shadow-2xl flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-300">
+                      {icon}
+                      <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-sm text-center mt-2 px-2 overflow-hidden text-ellipsis whitespace-nowrap">
                         {c.name_category}
                       </h1>
                     </button>
@@ -671,7 +630,6 @@ const GameStart = () => {
               })}
 
             {categorys.map((c, index) => {
-              // Filter available questions that have not been used
               const availableQuestions = dataQuestions.filter(
                 (q) =>
                   q.CategoryIdCategory === categorys[index].id_category &&
@@ -679,8 +637,6 @@ const GameStart = () => {
                     (usedQ) => usedQ.id_question === q.id_question
                   )
               );
-
-              // Randomize available questions
               const randomizedQuestions = [...availableQuestions].sort(
                 () => Math.random() - 0.5
               );
@@ -695,12 +651,12 @@ const GameStart = () => {
                     <motion.div
                       key={ind + 1}
                       onClick={() => stateRender(q)}
-                      className="flex items-center justify-center font-bold text-gray-600 bg-white row-span-1 rounded-xl shadow-md cursor-pointer hover:bg-green-400 hover:text-white transition-colors duration-900"
+                      className="flex items-center justify-center font-bold text-gray-600 bg-white row-span-1 rounded-lg shadow-md cursor-pointer hover:bg-green-400 hover:text-white transition-colors duration-900"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.1 }}
                     >
-                      <FaCube size={25} color="purple" />
+                      <FaBomb size={25} className="text-[#001E41]" />
                     </motion.div>
                   ))}
                 </div>
@@ -711,6 +667,48 @@ const GameStart = () => {
           </div>
         </>
       )}
+      <div
+        ref={playerListRef}
+        className="flex flex-col w-full h-max overflow-y-auto p-1"
+      >
+        {gameContext.players &&
+          gameContext.players.map((g, index) => {
+            return (
+              <div
+                key={index}
+                className={`flex justify-between items-center px-3 py-2 rounded-lg shadow-inner mb-2 ${
+                  gameContext.players[index].name_player ===
+                  gameContext.players[currentTurn.player].name_player
+                    ? " border-2 border-green-200"
+                    : " "
+                }`}
+              >
+                {/* Nombre del Jugador con ícono */}
+                <div className="flex items-center">
+                  <FaUser size={20} className="text-purple-300 mr-2" />
+                  <span
+                    className={`font-bold text-sm ${
+                      gameContext.players[index].name_player ===
+                      gameContext.players[currentTurn.player].name_player
+                        ? "text-white rounded-lg px-2"
+                        : "text-white"
+                    }`}
+                  >
+                    {index + 1}. {gameContext.players[index].name_player}
+                  </span>
+                </div>
+
+                {/* Puntuación del Jugador con ícono */}
+                <div className="flex items-center">
+                  <FaTrophy size={20} className="text-yellow-500 mr-2" />
+                  <span className="font-bold text-white">
+                    {playerPoints[index]}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };
