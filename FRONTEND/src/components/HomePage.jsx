@@ -45,17 +45,8 @@ const HomePage = () => {
 
   return (
     <> 
-      <div className="absolute inset-0 h-screen w-full bg-[#151515] z-0"></div> 
-      <div
-        className="h-[90vh] w-full
-          bg-gradient-to-r
-          from-[#1E1C48]
-          via-gray-800
-          to-[#312152]
-          flex items-center justify-center
-          rounded-tl-[60%] rounded-bl-[60%] rounded-tr-[60%] rounded-br-[60%]
-          z-1 absolute blur-3xl"border
-      ></div> 
+      <div className="absolute inset-0 h-screen w-full bg-[#151515] z-0 gradient-abc"></div> 
+      
       <div className="relative grid grid-cols-3 grid-rows-4 gap-4 p-4 h-screen z-10">
         <Bar context={"home"}></Bar>
         <div className="col-span-3 flex p-4 rounded-lg h-full gap-2 h-max">

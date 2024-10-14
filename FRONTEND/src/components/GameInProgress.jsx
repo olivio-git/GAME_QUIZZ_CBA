@@ -8,6 +8,7 @@ import { PiPushPinBold } from "react-icons/pi";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FaUserPlus } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 import {
   FetchAllQuestionsBd,
@@ -19,6 +20,7 @@ import { KEY_LOCAL_STORAGE } from "../utils/emvironments";
 
 const GameInProgress = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
   const {
     data,
     selected,
@@ -35,7 +37,7 @@ const GameInProgress = () => {
     gameQuestions,
     stateModalHistory,
     setStateModalHistory,
-    deletePLayer
+    deletePLayer,
   } = useContext(DataContext);
   const [game, setGame] = useState(null);
   const [gameSrc, setGameSrc] = useState(null);
@@ -64,7 +66,7 @@ const GameInProgress = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await updateGlobalContext();
-
+    setLoading(true);
     await toast
       .promise(fetchPostGame(gameCreator), {
         loading: "Loading Operation",
@@ -77,6 +79,7 @@ const GameInProgress = () => {
         restartGameCreator();
         setGameModal(false);
         addGameProgress(true);
+        setLoading(false);
 
         await localStorage.setItem(
           KEY_LOCAL_STORAGE,
@@ -92,18 +95,27 @@ const GameInProgress = () => {
     setTemPlayer(e.target.value);
   };
   const renderModalGame = () => (
-    <div className="flex flex-col gap-4 min-h-screen items-center justify-center w-full inset-0 z-50 fixed">
-      <form
+    <motion.div
+      initial={{ x: "100%" }}
+      animate={{ x: "calc(100vw - 100%)" }}
+      exit={{ x: "100%" }}
+      transition={{ duration: 0.2 }}
+      className="flex flex-col gap-4 min-h-screen items-center justify-center w-full inset-0 z-50 fixed"
+    >
+      <motion.form
+        initial={{ x: "100%" }}
+        animate={{ x: "0" }}
+        exit={{ x: "100%" }}
         onSubmit={handleSubmit}
         className="rounded-lg bg-white dark:dark:bg-slate-200 p-6 shadow-lg flex flex-col w-72 sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[700px]"
       >
-        <div className="block mb-8 flex flex-row items-center justify-start w-full text-sm font-medium text-slate-800 dark:text-white">
+        <motion.div className="block mb-8 flex flex-row items-center justify-start w-full text-sm font-medium text-slate-800 dark:text-white">
           <span className="flex items-center justify-center h-8 w-8 border rounded-full border-gray-300 mr-2">
             <PiPushPinBold className="text-gray-900" />
           </span>
           <h1 className="text-gray-900">Create Game</h1>
-        </div>
-        <div className="gap-2 flex flex-col">
+        </motion.div>
+        <motion.div className="gap-2 flex flex-col">
           <input
             value={gameCreator.name}
             onChange={(e) => addGameName(e.target.value)}
@@ -125,43 +137,60 @@ const GameInProgress = () => {
               onClick={addPlayer}
               className="ml-2 bg-white text-white rounded-lg px-4 py-2 border border-gray-300 hover:bg-gray-300"
             >
-              <FaUserPlus className="text-gray-700 text-2xl"/>
-
+              <FaUserPlus className="text-gray-700 text-2xl" />
             </button>
           </div>
-          {
-            gameCreator.players.length > 0 && (
-              <div className="flex flex-wrap gap-2 border p-2 rounded-lg border-gray-300
+          {gameCreator.players.length > 0 && (
+            <div
+              className="flex flex-wrap gap-2 border p-2 rounded-lg border-gray-300
                 max-h-72 overflow-y-auto w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500
-              ">
+              "
+            >
               {gameCreator.players.map((p) => (
-                <div key={p}
-                className="inline-flex min-w-32 gap-2 justify-between items-center rounded-lg px-2 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:min-w-32"
+                <div
+                  key={p}
+                  className="inline-flex min-w-32 gap-2 justify-between items-center rounded-lg px-2 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:min-w-32"
                 >
-                  <span 
-                  className="text-gray-900"
-                  >{p}</span>
+                  <span className="text-gray-900">{p}</span>
                   <button
-                    type="button" 
-                    onClick={() =>{
+                    type="button"
+                    onClick={() => {
                       //delete player
-                      deletePLayer(p)
+                      deletePLayer(p);
                     }}
                     className="bg-white text-white rounded-lg px-2 py-2 border border-gray-300 hover:bg-white bg-opacity-900"
                   >
-                  <FaRegTrashCan className="text-[#F0003C]" />
+                    <FaRegTrashCan className="text-[#F0003C]" />
                   </button>
                 </div>
               ))}
             </div>
-            )
-          }
+          )}
           <div className="bg-gray-50 sm:flex sm:flex-row-reverse  ">
             <button
               type="submit"
               className="inline-flex w-full justify-center rounded-md bg-[#1ED760] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 sm:ml-3 sm:w-full"
             >
-              Start
+              {loading ? (
+                <svg
+                  aria-hidden="true"
+                  class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                  viewBox="0 0 100 101"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="currentFill"
+                  />
+                </svg>
+              ) : (
+                "Start Game"
+              )}
             </button>
             <button
               type="button"
@@ -171,9 +200,9 @@ const GameInProgress = () => {
               Cancel
             </button>
           </div>
-        </div>
-      </form>
-    </div>
+        </motion.div>
+      </motion.form>
+    </motion.div>
   );
   const renderButtonGame = () => {
     return !gameInProgress ? (
@@ -228,15 +257,15 @@ const GameInProgress = () => {
   }, [id, selected]);
 
   return (
-    <div className="grid grid-cols-3 grid-rows-5 p-1 h-screen gradient-blue">
+    <div className="grid grid-cols-3 grid-rows-5 p-1 h-screen gradient-abc">
       <Bar context={"progress"}></Bar>
       <div className="col-span-1 flex p-4 rounded-2xl h-full">
         {game ? renderHeadSelected() : "Cargando datos..."}
       </div>
       {/* {JSON.stringify(gameQuestions)} */}
       <div className="flex w-full col-span-3 row-span-4 justify-center h-full items-center">
-        {renderButtonGame()}
-        {gameModal ? renderModalGame() : null}
+        {renderButtonGame()} {/*renderizar boton de juego*/}
+        {gameModal ? renderModalGame() : null} {/*renderizar modal de juego*/}
       </div>
     </div>
   );
