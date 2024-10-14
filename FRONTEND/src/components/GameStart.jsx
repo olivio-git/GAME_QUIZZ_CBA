@@ -4,6 +4,8 @@ import {
   fetchPostGameSaveEnd,
   fetchDeleteQuestion,
 } from "../utils/fetchBackend";
+import "./styles.css"; // Asegúrate de que la ruta sea correcta
+
 import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
 import CounterSound from "../assets/25segundos.mp3";
@@ -78,7 +80,7 @@ const GameStart = () => {
       setCounter(VALUE_INTERVAL_COUNTER);
 
       // Reproducir el audio
-      audioRef.current.play() 
+      audioRef.current.play();
       const id = setInterval(() => {
         setCounter((prevCounter) => {
           if (prevCounter <= 1) {
@@ -562,7 +564,7 @@ const GameStart = () => {
                 <h1 className="font-extrabold text-white text-2xl lg:text-4xl mb-3 tracking-wide uppercase">
                   Round:
                   <span className="ml-2 text-yellow-400">
-                    {rounds[currentTurn.round]} 
+                    {rounds[currentTurn.round]}
                     of
                     {VALUE_ROUNDS_LOCAL}
                   </span>
@@ -667,9 +669,10 @@ const GameStart = () => {
           </div>
         </>
       )}
+      {/* Lista de jugadores */}
       <div
         ref={playerListRef}
-        className="flex flex-col w-full h-max overflow-y-auto p-1"
+        className="flex flex-col w-full h-[61vh] overflow-y-auto p-2 scrollbar-custom" // Ajusta a la mitad de la altura de la ventana
       >
         {gameContext.players &&
           gameContext.players.map((g, index) => {
@@ -679,8 +682,8 @@ const GameStart = () => {
                 className={`flex justify-between items-center px-3 py-2 rounded-lg shadow-inner mb-2 ${
                   gameContext.players[index].name_player ===
                   gameContext.players[currentTurn.player].name_player
-                    ? " border-2 border-green-200"
-                    : " "
+                    ? "border-2 border-green-200"
+                    : ""
                 }`}
               >
                 {/* Nombre del Jugador con ícono */}

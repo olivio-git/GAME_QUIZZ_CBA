@@ -1,0 +1,25 @@
+/* Estilos de Scrollbar */
+.scrollbar-custom::-webkit-scrollbar {
+    width: 5px; /* Ancho del scrollbar */
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: rgb(231, 65, 249); /* Color de fondo del track */
+    border-radius: 10px; /* Radio de los bordes del track */
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #6a5acd; /* Color del scrollbar (lila) */
+    border-radius: 20px; /* Radio de los bordes del thumb */
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #ff5eec; /* Color del scrollbar al hacer hover */
+  }
+  
+  /* Estilo para Firefox */
+  .scrollbar-custom {
+    scrollbar-width: thin; /* Hacer el scrollbar más delgado */
+    scrollbar-color: #40003a90 rgba(255, 255, 255, 0.3); /* Color del thumb y del track */
+  }
+  
