@@ -5,7 +5,9 @@ const {
   addQuestion,
   getAllQuestionsById,
   findAllQuestionsAsId,
-  uploadFile
+  uploadFile,
+  ChangeFase,
+  UpdateFase
 } = require("../controllers/questionsController");
 const { catchedAsync } = require('../utils');
 const router = express();
@@ -27,6 +29,10 @@ router.delete('/:id', catchedAsync(deleteQuestion));
 router.post('/', catchedAsync(addQuestion));
 router.get("/as", catchedAsync(findAllQuestionsAsId));
 
+
+///newFase
+router.post("/fase", catchedAsync(ChangeFase));
+router.put("/fase", catchedAsync(UpdateFase));
 router.post('/upload',upload.single('file') , catchedAsync(uploadFile));
 
 module.exports = router;
