@@ -21,7 +21,7 @@ server.use((err, req, res, next) => {
         message: message
     })
 })
-conn.sync({ force: false }).then(() => {
+conn.sync({ alter: true }).then(() => {
     server.listen(PORT, () => {
         console.log(`Server listening local on port: http://localhost:${PORT}`);
     })

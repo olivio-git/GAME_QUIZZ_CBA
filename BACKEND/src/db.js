@@ -33,7 +33,8 @@ const {
     Question,
     Category,
     Player,
-    Game
+    Game,
+    Stage
 } = sequelize.models;
 
 Category.hasMany(Question, { onDelete: "CASCADE" });
@@ -44,6 +45,8 @@ Question.belongsToMany(Game, { through: "GameQuestion", onDelete: "CASCADE" });
 
 Game.belongsToMany(Player, { through: "GamePlayer", onDelete: "CASCADE" });
 Player.belongsToMany(Game, { through: "GamePlayer", onDelete: "CASCADE" });
+
+
 
 module.exports = {
     ...sequelize.models,
