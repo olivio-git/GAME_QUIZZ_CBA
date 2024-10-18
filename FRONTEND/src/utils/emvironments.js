@@ -8,8 +8,8 @@ export const KEY_LOCAL_STORAGE_POINTS = "points";
 export const KEY_LOCAL_STORAGE_USEDQUESTIONS = "questions";
 export const KEY_LOCAL_STORAGE_TURN = "turnSave";
 
-export const VALUE_ROUNDS_LOCAL = 4;
-export const VALUE_ROUNDS_LOCAL_DEV = 2;
+export const VALUE_ROUNDS_LOCAL = 5;
+export const VALUE_ROUNDS_LOCAL_DEV = 5;
 
 export var VALUE_INTERVAL_COUNTER = 20;
 
