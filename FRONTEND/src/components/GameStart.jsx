@@ -68,35 +68,36 @@ const GameStart = () => {
   const [miArreglo, setMiArreglo] = useState([]);
   const [isStarted, setIsStarted] = useState(false);
   const intervalRef = useRef(null);
-  
+
   // Dentro de tu componente
   const playerListRef = useRef(null);
   const agregarElemento = (nuevoElemento) => {
     setMiArreglo((prevState) => [...prevState, nuevoElemento]);
   };
 
-  const handleStart = () => {
-    if (!isStarted) {
-      setIsStarted(true);
-      setCounter(VALUE_INTERVAL_COUNTER);
+  const startSound = async () => {
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(audioRef.current.play());
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+  const handleStart = async () => {
+    const Sound = await startSound();
+    //if (!isStarted) {
+    setIsStarted(true);
+    //setCounter(VALUE_INTERVAL_COUNTER);
 
-      // Reproducir el audio
-      audioRef.current.play();
-      const id = setInterval(() => {
-        setCounter((prevCounter) => {
-          if (prevCounter <= 1) {
-            clearInterval(id);
-            audioRef.current.pause(); // Pausar el audio
-            audioRef.current.currentTime = 0; // Reiniciar el audio
-            checkResponse(); // Verifica la respuesta al finalizar el contador
-            return 0; // Asegúrate de no bajar de 0
-          }
-          return prevCounter - 1; // Decrementar el contador
-        });
-      }, 1000);
-
-      setIntervalId(id);
-    }
+    // Reproducir el audio
+    console.log(Sound);
+    const id = setInterval(() => {
+      setCounter((prev) => prev - 1);
+    }, 1000);
+    audioRef.current.play();
+    return setIntervalId(id);
+    // }
   };
 
   const handleTry = () => {
@@ -510,7 +511,10 @@ const GameStart = () => {
                   className="flex items-center justify-center mb-2"
                 >
                   <button
-                    onClick={() => setQuestionCheck(a)} // Acción al hacer clic en la opción
+                    onClick={() => {
+                      setQuestionCheck(a);
+                      clearInterval(intervalId);
+                    }} // Acción al hacer clic en la opción
                     disabled={usedRadioButton}
                     className={`flex items-center justify-center w-full text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md hover:bg-green-400 transition-colors duration-200 ${
                       questionCheck && questionCheck.value === a.value
