@@ -67,7 +67,8 @@ const GameStart = () => {
   const [intervalId, setIntervalId] = useState(null);
   const [miArreglo, setMiArreglo] = useState([]);
   const [isStarted, setIsStarted] = useState(false);
-
+  const intervalRef = useRef(null);
+  
   // Dentro de tu componente
   const playerListRef = useRef(null);
   const agregarElemento = (nuevoElemento) => {
@@ -133,7 +134,7 @@ const GameStart = () => {
   //logic
   const [rounds, setRounds] = useLocalStorageState(
     KEY_LOCAL_STORAGE_ROUNDS,
-    Array.from({ length: VALUE_ROUNDS_LOCAL_DEV }, (_, i) => i + 1)
+    Array.from({ length: VALUE_ROUNDS_LOCAL }, (_, i) => i + 1)
   );
   const [turnIndexSave, SetTurnIndexSave] = useLocalStorageState(
     KEY_LOCAL_STORAGE_TURN,
@@ -183,7 +184,6 @@ const GameStart = () => {
 
   const nextTurn = () => {
     setCurrentTurn((prevTurn) => {
-      //  2===2
       const nextPlayer = (prevTurn.player + 1) % gameContext.players.length; //0+1  2 % 3
       if (nextPlayer === 0) {
         return { round: (prevTurn.round + 1) % rounds.length, player: 0 }; //saltando de turno
@@ -201,6 +201,8 @@ const GameStart = () => {
   };
   const checkResponse = () => {
     clearInterval(intervalId); // Detener el intervalo
+    audioRef.current.currentTime = 0;
+    audioRef.current.pause();
     //LIMBERFUNCTIONS
     function calculatePoints(round, counter) {
       let points;
@@ -279,16 +281,13 @@ const GameStart = () => {
     agregarElemento(`${cod}`);
     cod = "";
   };
-  // const voiceTranslate = () => {  ;
-  //   responsiveVoice.speak(questionGameIn.question);
-  // }
-  //Aqui corte
 
   const stateRender = (question) => {
     setQuestinGameIn(question);
     updateQuestionsLocalStorage(question);
     setModalQuestion(true);
     setSoundInt(true);
+    //audioRef.current.play();
   };
   useEffect(() => {
     return () => {
@@ -326,85 +325,6 @@ const GameStart = () => {
       return pointsDefault;
     }
   }
-
-  const renderPrevCheckQuestion = () => {
-    let pointsMessage = calculatePoints(currentTurn.round, counter);
-    return (
-      <div className="p-4 bg-gray-200 rounded-lg shadow-md">
-        <div className="flex items-center mb-4">
-          <FaClock className="text-2xl text-yellow-500" />
-          <h1 className="ml-2 text-2xl text-green-600 font-semibold">
-            Time Remaining:{" "}
-            <strong className="ml-2 text-2xl  text-red-900 font-extrabold">
-              {counter}s
-            </strong>{" "}
-            <strong className="ml-2 text-2xl text-green-800 font-extrabold">
-              {" "}
-              + {pointsMessage}
-            </strong>
-          </h1>
-        </div>
-        <h1 className="mb-4 text-2xl font-extrabold text-green-600 md:text-2xl lg:text-2xl">
-          Current Shift:
-          <span className="text-blue-900">
-            {" "}
-            {gameContext.players[currentTurn.player].name_player}
-          </span>
-          , Round: {currentTurn.round + 1}
-        </h1>
-        <h1 className="text-3xl font-extrabold text-blue-900">
-          {questionGameIn.question}
-        </h1>
-
-        {!isStarted ? (
-          <button
-            onClick={handleStart} // Solo aquí comienza el conteo
-            type="button"
-            className="mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            Start
-          </button>
-        ) : (
-          <div className="mt-4 mb-4">
-            <h2 className="text-xl font-semibold text-blue-800">
-              Select correct answer:
-            </h2>
-            <div className="grid grid-cols-2 gap-4 mt-2">
-              {questionGameIn.answer.map((a, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center mb-2"
-                >
-                  <button
-                    onClick={() => setQuestionCheck(a)} // Acción al hacer clic en la opción
-                    disabled={usedRadioButton}
-                    className={`flex items-center justify-center w-full text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md hover:bg-green-400 transition-colors duration-200 ${
-                      questionCheck && questionCheck.value === a.value
-                        ? "bg-green-600"
-                        : ""
-                    }`}
-                  >
-                    {index + 1}: {a.value}
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {!usedRadioButton && questionCheck ? (
-          <button
-            onClick={handleTry}
-            disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
-            type="button"
-            className="mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            Try
-          </button>
-        ) : null}
-      </div>
-    );
-  };
   const renderModalSuccess = () => {
     return <ModalSuccess onSuccess={success} />;
   };
@@ -499,7 +419,6 @@ const GameStart = () => {
         for (const questionId of miArreglo) {
           await fetchDeleteQuestion(questionId);
         }
-
         // Limpia el estado y realiza otras acciones después de guardar y eliminar
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
@@ -538,7 +457,88 @@ const GameStart = () => {
       />
     );
   };
+  const freezeAndSetCheckedQuestion = (answer) => {
+    clearInterval(intervalId);
+    setQuestionCheck(answer);
+  };
+  const renderPrevCheckQuestion = () => {
+    let pointsMessage = calculatePoints(currentTurn.round, counter);
+    return (
+      <div className="p-4 bg-gray-200 rounded-lg shadow-md">
+        <div className="flex items-center mb-4">
+          <FaClock className="text-2xl text-yellow-500" />
+          <h1 className="ml-2 text-2xl text-green-600 font-semibold">
+            Time Remaining:{" "}
+            <strong className="ml-2 text-2xl  text-red-900 font-extrabold">
+              {counter}s
+            </strong>{" "}
+            <strong className="ml-2 text-2xl text-green-800 font-extrabold">
+              {" "}
+              + {pointsMessage}
+            </strong>
+          </h1>
+        </div>
+        <h1 className="mb-4 text-2xl font-extrabold text-green-600 md:text-2xl lg:text-2xl">
+          Current Shift:
+          <span className="text-blue-900">
+            {" "}
+            {gameContext.players[currentTurn.player].name_player}
+          </span>
+          , Round:{rounds[currentTurn.round]}
+        </h1>
+        <h1 className="text-3xl font-extrabold text-blue-900">
+          {questionGameIn.question}
+        </h1>
 
+        {!isStarted ? (
+          <button
+            onClick={handleStart} // Solo aquí comienza el conteo
+            type="button"
+            className="mt-4 w-full text-white bg-gradient-to-r from-purple-800 via-orange-400 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          >
+            Start
+          </button>
+        ) : (
+          <div className="mt-4 mb-4">
+            <h2 className="text-xl font-semibold text-blue-800">
+              Select correct answer:
+            </h2>
+            <div className="grid grid-cols-2 gap-4 mt-2">
+              {questionGameIn.answer.map((a, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-center mb-2"
+                >
+                  <button
+                    onClick={() => setQuestionCheck(a)} // Acción al hacer clic en la opción
+                    disabled={usedRadioButton}
+                    className={`flex items-center justify-center w-full text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md hover:bg-green-400 transition-colors duration-200 ${
+                      questionCheck && questionCheck.value === a.value
+                        ? "bg-green-600"
+                        : ""
+                    }`}
+                  >
+                    {index + 1}: {a.value}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!usedRadioButton && questionCheck ? (
+          <button
+            onClick={handleTry}
+            disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
+            type="button"
+            className="mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          >
+            Try
+          </button>
+        ) : null}
+      </div>
+    );
+  };
   return (
     <div className="grid grid-cols-4 grid-rows-5 w-full h-full gap-2">
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
@@ -556,7 +556,6 @@ const GameStart = () => {
                 </span>
               </h1>
             </div>
-
             {/* Sección de Rondas */}
             <div className="flex justify-center items-center col-span-1 shadow-lg p-6">
               <div className="w-full flex flex-col items-center">
@@ -564,9 +563,8 @@ const GameStart = () => {
                 <h1 className="font-extrabold text-white text-2xl lg:text-4xl mb-3 tracking-wide uppercase">
                   Round:
                   <span className="ml-2 text-yellow-400">
-                    {rounds[currentTurn.round]}
-                    of
-                    {VALUE_ROUNDS_LOCAL}
+                    {rounds[currentTurn.round]} {""}
+                    of {VALUE_ROUNDS_LOCAL}
                   </span>
                 </h1>
 
