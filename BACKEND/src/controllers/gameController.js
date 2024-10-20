@@ -49,6 +49,7 @@ const addGameSaveQuestions = async (req, res) => {
 
     response(res, 200, game);
   } catch (error) {
+    console.log(error)
     response(res, 500, { message: "Error saving questions", error });
   }
 };

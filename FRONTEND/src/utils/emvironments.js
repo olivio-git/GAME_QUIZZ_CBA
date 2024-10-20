@@ -11,7 +11,7 @@ export const KEY_LOCAL_STORAGE_TURN = "turnSave";
 export const VALUE_ROUNDS_LOCAL = 5;
 export const VALUE_ROUNDS_LOCAL_DEV = 5;
 
-export var VALUE_INTERVAL_COUNTER = 20;
+export var VALUE_INTERVAL_COUNTER = 25;
 
 // export const KEY_LOCAL_STORAGE_TURN = "turnSave";
 
