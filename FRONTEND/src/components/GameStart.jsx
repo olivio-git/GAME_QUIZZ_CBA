@@ -6,10 +6,13 @@ import {
 } from "../utils/fetchBackend";
 import "./styles.css"; // Asegúrate de que la ruta sea correcta
 
+// Importación de sonidos
 import SuccessSound from "../assets/success.mp4";
 import ErrorSound from "../assets/error.mp4";
 import CounterSound from "../assets/25segundos.mp3";
 import { motion } from "framer-motion";
+
+// Importación de constantes y funciones
 import {
   KEY_LOCAL_STORAGE,
   KEY_LOCAL_STORAGE_ROUNDS,
@@ -25,10 +28,14 @@ import { useLocalStorageState } from "../utils/useLocalStorageState";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { removeItemsLocalStorage } from "../utils/functions";
+
+// Importación de componentes de modal
 import WinnerModal from "./GameStartSubComponents/WinnerModal";
 import ModalSuccess from "./GameStartSubComponents/ModalSuccess";
 import ModalError from "./GameStartSubComponents/ModalError";
 import ModalQuestion from "./GameStartSubComponents/ModalQuestion";
+
+// Importación de iconos
 import {
   FaClock,
   FaCube,
@@ -43,6 +50,7 @@ import {
 } from "react-icons/fa";
 
 const GameStart = () => {
+  // Contexto de datos
   const {
     gameContext,
     categorys,
@@ -52,7 +60,10 @@ const GameStart = () => {
     addGameContext,
     addGameProgress,
   } = useContext(DataContext);
+
   const navigate = useNavigate();
+
+  // Estados del componente
   const [modalQuestion, setModalQuestion] = useState(false);
   const [questionGameIn, setQuestinGameIn] = useState(null);
   const [questionCheck, setQuestionCheck] = useState(null);
@@ -60,89 +71,24 @@ const GameStart = () => {
   const [success, setSuccess] = useState(false);
   const [soundInt, setSoundInt] = useState(false);
   const audioRef = useRef(new Audio(CounterSound));
-  const [usedRadioButton, setUsedRadioButton] = useState(false);
   const successSound = new Audio(SuccessSound);
   const errorSound = new Audio(ErrorSound);
+  const [usedRadioButton, setUsedRadioButton] = useState(false);
   const [counter, setCounter] = useState(VALUE_INTERVAL_COUNTER);
   const [intervalId, setIntervalId] = useState(null);
   const [miArreglo, setMiArreglo] = useState([]);
   const [isStarted, setIsStarted] = useState(false);
   const intervalRef = useRef(null);
-
-  // Dentro de tu componente
   const playerListRef = useRef(null);
-  const agregarElemento = (nuevoElemento) => {
-    setMiArreglo((prevState) => [...prevState, nuevoElemento]);
-  };
 
-  const startSound = async () => {
-    return new Promise((resolve, reject) => {
-      try {
-        resolve(audioRef.current.play());
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
-  const handleStart = async () => {
-    const Sound = await startSound();
-    //if (!isStarted) {
-    setIsStarted(true);
-    //setCounter(VALUE_INTERVAL_COUNTER);
-
-    // Reproducir el audio
-    console.log(Sound);
-    const id = setInterval(() => {
-      setCounter((prev) => prev - 1);
-    }, 1000);
-    audioRef.current.play();
-    return setIntervalId(id);
-    // }
-  };
-
-  const handleTry = () => {
-    checkResponse();
-    resetCounter();
-  };
-  const resetCounter = () => {
-    clearInterval(intervalId); // Limpiar el intervalo
-    setCounter(VALUE_INTERVAL_COUNTER); // Reiniciar el contador
-    audioRef.current.pause(); // Detener el audio
-    audioRef.current.currentTime = 0; // Reiniciar el audio
-    setIsStarted(false); // Reiniciar el estado de inicio
-  };
-  // Efectos de ciclo de vida
-  useEffect(() => {
-    return () => {
-      resetCounter(); // Limpiar al desmontar
-    };
-  }, []);
-  useEffect(() => {
-    let timer;
-
-    if (isStarted && counter > 0) {
-      timer = setInterval(() => {
-        setCounter((prevCounter) => prevCounter - 1);
-      }, 1000);
-    } else if (counter === 0) {
-      clearInterval(timer);
-      audioRef.current.pause();
-    }
-
-    return () => clearInterval(timer);
-  }, [isStarted, counter]);
-
-  //logic
+  // Estado para rondas y turnos
   const [rounds, setRounds] = useLocalStorageState(
     KEY_LOCAL_STORAGE_ROUNDS,
     Array.from({ length: VALUE_ROUNDS_LOCAL }, (_, i) => i + 1)
   );
   const [turnIndexSave, SetTurnIndexSave] = useLocalStorageState(
     KEY_LOCAL_STORAGE_TURN,
-    {
-      round: 1,
-      player: 1,
-    }
+    { round: 1, player: 1 }
   );
   const [currentTurn, setCurrentTurn] = useLocalStorageState(
     KEY_LOCAL_STORAGE_TURNS,
@@ -152,24 +98,92 @@ const GameStart = () => {
     KEY_LOCAL_STORAGE_POINTS,
     Array(gameContext.players.length).fill(0)
   );
-
   const [questionUsedValids, setQuestionUsedValids] = useLocalStorageState(
     KEY_LOCAL_STORAGE_USEDQUESTIONS,
     []
   );
+
+  // Agregar elemento al arreglo
+  const agregarElemento = (nuevoElemento) => {
+    setMiArreglo((prevState) => [...prevState, nuevoElemento]);
+  };
+
+  // Función para iniciar el sonido
+  const startSound = async () => {
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(audioRef.current.play());
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  // Manejar el inicio del juego
+  const handleStart = async () => {
+    const Sound = await startSound();
+    setIsStarted(true);
+
+    const id = setInterval(() => {
+      setCounter((prev) => prev - 1);
+    }, 1000);
+    audioRef.current.play();
+    return setIntervalId(id);
+  };
+
+  // Manejar el intento de respuesta
+  const handleTry = () => {
+    checkResponse();
+    resetCounter();
+  };
+
+  // Reiniciar el contador
+  const resetCounter = () => {
+    clearInterval(intervalId); // Limpiar el intervalo
+    setCounter(VALUE_INTERVAL_COUNTER); // Reiniciar el contador
+    audioRef.current.pause(); // Detener el audio
+    audioRef.current.currentTime = 0; // Reiniciar el audio
+    setIsStarted(false); // Reiniciar el estado de inicio
+  };
+
+  // Efectos de ciclo de vida
+  useEffect(() => {
+    return () => {
+      resetCounter(); // Limpiar al desmontar
+    };
+  }, []);
+
+  useEffect(() => {
+    let timer;
+
+    if (isStarted && counter > 0) {
+      timer = setInterval(() => {
+        setCounter((prevCounter) => prevCounter - 1);
+      }, 1000);
+    } else if (counter === 0) {
+      clearInterval(timer);
+      checkResponse();
+    }
+
+    return () => clearInterval(timer);
+  }, [isStarted, counter]);
+
+  // Lógica del juego
   const updateQuestionsLocalStorage = (value) => {
     setQuestionUsedValids((prevQuestions) => [...prevQuestions, value]);
   };
+
   useEffect(() => {
     // Verificar el final del juego después de cada actualización de turno
     if (
       currentTurn.round === VALUE_ROUNDS_LOCAL &&
       currentTurn.player === gameContext.players.length - 1
     ) {
+      // Lógica para manejar el final del juego (puedes agregar aquí lo que necesites)
     }
   }, [currentTurn]);
 
-  // Lógica para manejar el cambio de jugador
+  // Manejo del cambio de jugador
   useEffect(() => {
     if (playerListRef.current) {
       const currentPlayerElement =
@@ -181,19 +195,20 @@ const GameStart = () => {
         });
       }
     }
-  }, [currentTurn.player]); // Dependencia para el efecto: se ejecuta cuando el jugador actual cambia
-
+  }, [currentTurn.player]);
+  // Pasar al siguiente turno
   const nextTurn = () => {
     setCurrentTurn((prevTurn) => {
-      const nextPlayer = (prevTurn.player + 1) % gameContext.players.length; //0+1  2 % 3
+      const nextPlayer = (prevTurn.player + 1) % gameContext.players.length; // Incrementar el jugador
       if (nextPlayer === 0) {
-        return { round: (prevTurn.round + 1) % rounds.length, player: 0 }; //saltando de turno
+        return { round: (prevTurn.round + 1) % rounds.length, player: 0 }; // Saltar de turno
       }
       return { ...prevTurn, player: nextPlayer };
     });
   };
+
+  // Actualizar puntos del jugador
   const updatePlayerPoints = (playerIndex, pointsToAdd) => {
-    //Actualizar puntaje
     setPlayerPoints((prevPoints) => {
       const newPoints = [...prevPoints];
       newPoints[playerIndex] += pointsToAdd;
@@ -233,7 +248,17 @@ const GameStart = () => {
         return pointsDefault;
       }
     }
-
+    // Verificar si se seleccionó una pregunta
+    if (!questionCheck) {
+      // Si no se seleccionó una pregunta, detén el contador y muestra un mensaje de error
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+        resetCounter(); // Detener el contador y reiniciar
+        nextTurn(); // Pasar al siguiente turno
+        setModalQuestion(false); // Cerrar modal de pregunta
+      }, 3000);
+    }
     setUsedRadioButton();
     if (questionCheck && questionCheck.correct) {
       const points = calculatePoints(currentTurn.round, counter);
@@ -252,6 +277,7 @@ const GameStart = () => {
         setQuestionCheck(null);
         setUsedRadioButton(false);
         setSuccess(false);
+        resetCounter(); // Detener el contador y reiniciar
         nextTurn();
         setModalQuestion(false);
         setCounter(VALUE_INTERVAL_COUNTER);
@@ -272,6 +298,7 @@ const GameStart = () => {
         });
         setUsedRadioButton(false);
         setError(false);
+        resetCounter(); // Detener el contador y reiniciar
         nextTurn();
         setCounter(VALUE_INTERVAL_COUNTER);
         setModalQuestion(false);
@@ -326,17 +353,7 @@ const GameStart = () => {
       return pointsDefault;
     }
   }
-  const renderModalSuccess = () => {
-    return <ModalSuccess onSuccess={success} />;
-  };
-  const renderModalError = () => {
-    return (
-      <ModalError
-        questionCheck={questionCheck}
-        questionGameIn={questionGameIn}
-      />
-    );
-  };
+
   useEffect(() => {});
   const winnerPointsIndex = () => {
     return Math.max(...playerPoints);
@@ -375,18 +392,7 @@ const GameStart = () => {
       </h2>
     );
   };
-  const handleCloseGame = () => {
-    removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
-    removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
-    removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
-    removeItemsLocalStorage(KEY_LOCAL_STORAGE_POINTS);
-    removeItemsLocalStorage(KEY_LOCAL_STORAGE_USEDQUESTIONS);
-    removeItemsLocalStorage(KEY_LOCAL_STORAGE);
-    addGameContext(null);
-    addGameProgress(false);
-    addCategorys([]);
-    navigate("/");
-  };
+
   //handleSubmitGameSave
   const handleSubmitGameSave = async () => {
     try {
@@ -416,11 +422,9 @@ const GameStart = () => {
 
       // Verifica si la operación de guardar fue exitosa
       if (saveResponse) {
-        // Elimina las preguntas después de guardar
         for (const questionId of miArreglo) {
           await fetchDeleteQuestion(questionId);
         }
-        // Limpia el estado y realiza otras acciones después de guardar y eliminar
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
         removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
@@ -434,10 +438,31 @@ const GameStart = () => {
       }
     } catch (error) {
       console.error("Error en handleSubmitGameSave:", error);
-      // Manejar el error, mostrar un mensaje o realizar otras acciones necesarias
     }
   };
-
+  const handleCloseGame = () => {
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURN);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_ROUNDS);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_TURNS);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_POINTS);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE_USEDQUESTIONS);
+    removeItemsLocalStorage(KEY_LOCAL_STORAGE);
+    addGameContext(null);
+    addGameProgress(false);
+    addCategorys([]);
+    navigate("/");
+  };
+  const renderModalSuccess = () => {
+    return <ModalSuccess onSuccess={success} />;
+  };
+  const renderModalError = () => {
+    return (
+      <ModalError
+        questionCheck={questionCheck}
+        questionGameIn={questionGameIn}
+      />
+    );
+  };
   const renderWinner = () => {
     return (
       <WinnerModal
@@ -458,10 +483,10 @@ const GameStart = () => {
       />
     );
   };
-  const freezeAndSetCheckedQuestion = (answer) => {
-    clearInterval(intervalId);
-    setQuestionCheck(answer);
-  };
+  // const freezeAndSetCheckedQuestion = (answer) => {
+  //   clearInterval(intervalId);
+  //   setQuestionCheck(answer);
+  // };
   const renderPrevCheckQuestion = () => {
     let pointsMessage = calculatePoints(currentTurn.round, counter);
     return (
@@ -505,27 +530,30 @@ const GameStart = () => {
               Select correct answer:
             </h2>
             <div className="grid grid-cols-2 gap-4 mt-2">
-              {questionGameIn.answer.map((a, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center mb-2"
-                >
-                  <button
-                    onClick={() => {
-                      setQuestionCheck(a);
-                      clearInterval(intervalId);
-                    }} // Acción al hacer clic en la opción
-                    disabled={usedRadioButton}
-                    className={`flex items-center justify-center w-full text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md hover:bg-green-400 transition-colors duration-200 ${
-                      questionCheck && questionCheck.value === a.value
-                        ? "bg-green-600"
-                        : ""
-                    }`}
+              {questionGameIn.answer.map((a, index) => {
+                const letter = String.fromCharCode(65 + index); // Convertir el índice a letras A, B, C, D
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center justify-center mb-2"
                   >
-                    {index + 1}: {a.value}
-                  </button>
-                </div>
-              ))}
+                    <button
+                      onClick={() => {
+                        setQuestionCheck(a);
+                        clearInterval(intervalId);
+                      }} // Acción al hacer clic en la opción
+                      disabled={usedRadioButton}
+                      className={`flex items-center justify-center w-full text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md hover:bg-green-400 transition-colors duration-200 ${
+                        questionCheck && questionCheck.value === a.value
+                          ? "bg-green-600"
+                          : ""
+                      }`}
+                    >
+                      {letter}: {a.value} {/* Cambiado a letras A, B, C, D */}
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
@@ -625,7 +653,7 @@ const GameStart = () => {
                   <div key={c.id_category} className="col-span-1 row-span-1">
                     <button className="w-full h-full text-white rounded-lg shadow-2xl flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-300">
                       {icon}
-                      <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-sm text-center mt-2 px-2 overflow-hidden text-ellipsis whitespace-nowrap">
+                      <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-sm text-center mt-2 px-2 overflow-hidden text-ellipsis whitespace-nowrap uppercase">
                         {c.name_category}
                       </h1>
                     </button>
