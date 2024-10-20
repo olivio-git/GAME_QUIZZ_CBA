@@ -19,19 +19,20 @@ module.exports = (sequelize) => {
     },
     category: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     type: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     difficulty: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     stage: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
+      defaultValue : 1,
     },
     status: {
       type: DataTypes.BOOLEAN,

@@ -67,6 +67,11 @@ const GameInProgress = () => {
     e.preventDefault();
     await updateGlobalContext();
     setLoading(true);
+    if (gameCreator.players.length <= 1) {
+      setLoading(false);
+      toast.error("You must add at least 2 players");
+      return;
+    }
     await toast
       .promise(fetchPostGame(gameCreator), {
         loading: "Loading Operation",
@@ -89,7 +94,9 @@ const GameInProgress = () => {
         const jsonparse = await JSON.parse(res); //convirtiendo a json
         addGameContext(jsonparse);
       });
-    await updateGlobalContext();
+      await updateGlobalContext();
+      setLoading(false);
+
   };
   const handlePlayerChargeData = (e) => {
     setTemPlayer(e.target.value);

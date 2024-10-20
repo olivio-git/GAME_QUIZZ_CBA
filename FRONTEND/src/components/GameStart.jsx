@@ -29,6 +29,7 @@ import WinnerModal from "./GameStartSubComponents/WinnerModal";
 import ModalSuccess from "./GameStartSubComponents/ModalSuccess";
 import ModalError from "./GameStartSubComponents/ModalError";
 import ModalQuestion from "./GameStartSubComponents/ModalQuestion";
+
 import {
   FaClock,
   FaCube,
@@ -40,7 +41,10 @@ import {
   FaHistory,
   FaBomb,
   FaTrophy,
+  FaGamepad,
+  FaPlay,
 } from "react-icons/fa";
+import { AiFillQuestionCircle } from "react-icons/ai";
 
 const GameStart = () => {
   const {
@@ -67,42 +71,72 @@ const GameStart = () => {
   const [intervalId, setIntervalId] = useState(null);
   const [miArreglo, setMiArreglo] = useState([]);
   const [isStarted, setIsStarted] = useState(false);
-  const intervalRef = useRef(null);
+  const [isSelected, setIsSelected] = useState(false);
 
+  const intervalRef = useRef(null);
+  const [colorIcon, setColorIcon] = useState("text-red-600");
   // Dentro de tu componente
   const playerListRef = useRef(null);
   const agregarElemento = (nuevoElemento) => {
     setMiArreglo((prevState) => [...prevState, nuevoElemento]);
   };
 
-  const startSound = async () => {
-    return new Promise((resolve, reject) => {
-      try {
-        resolve(audioRef.current.play());
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
-  const handleStart = async () => {
-    const Sound = await startSound();
-    //if (!isStarted) {
-    setIsStarted(true);
-    //setCounter(VALUE_INTERVAL_COUNTER);
+  const handleStart = () => {
+    if (!isStarted) {
+      setIsStarted(true);
+      setCounter(VALUE_INTERVAL_COUNTER);
 
-    // Reproducir el audio
-    console.log(Sound);
-    const id = setInterval(() => {
-      setCounter((prev) => prev - 1);
-    }, 1000);
-    audioRef.current.play();
-    return setIntervalId(id);
-    // }
+      const id = setInterval(() => {
+        setCounter((prev) => {
+          if (isSelected) {
+            console.log("selected");
+            clearInterval(id);
+            return 0;
+          }
+          if (prev <= 1) {
+            clearInterval(id); // Detener el intervalo cuando llega a 0
+            checkResponse(); // Realizar alguna acción después
+            resetCounter(); // Reiniciar el contador
+            return 0; // Asegurarse de que no baje de 0
+          } else {
+            return prev - 1; // Reducir el contador en 1
+          }
+        });
+
+        // Alternar el color del icono entre rojo y verde
+        setColorIcon((prev) =>
+          prev === "text-red-600" ? "text-green-500" : "text-red-600"
+        );
+      }, 1000); // Ejecutar cada segundo
+
+      setIntervalId(id); // Guardar el ID del intervalo en el estado
+    }
+  };
+  const clearAllIntervals = () => {
+    clearInterval(intervalId);
+    // setCounter(VALUE_INTERVAL_COUNTER);
+    // audioRef.current.pause();
+    // audioRef.current.currentTime = 0;
+    setIsStarted(false);
   };
 
   const handleTry = () => {
     checkResponse();
     resetCounter();
+  };
+  const handleTrySelect = (fn) => {
+    clearInterval(intervalId);
+    fn();
+    setIsSelected(true);
+  };
+  const resetSelect = async () => {
+    await clearInterval(intervalId); // Limpiar el intervalo
+    // let prevCounter = counter;
+    // setCounter(prevCounter); // Reiniciar el contador
+    // setCounter(VALUE_INTERVAL_COUNTER); // Reiniciar el contador
+    // audioRef.current.pause(); // Detener el audio
+    // audioRef.current.currentTime = 0; // Reiniciar el audio
+    // setIsStarted(false); // Reiniciar el estado de inicio
   };
   const resetCounter = () => {
     clearInterval(intervalId); // Limpiar el intervalo
@@ -117,20 +151,20 @@ const GameStart = () => {
       resetCounter(); // Limpiar al desmontar
     };
   }, []);
-  useEffect(() => {
-    let timer;
+  // useEffect(() => {
+  //   let timer;
 
-    if (isStarted && counter > 0) {
-      timer = setInterval(() => {
-        setCounter((prevCounter) => prevCounter - 1);
-      }, 1000);
-    } else if (counter === 0) {
-      clearInterval(timer);
-      audioRef.current.pause();
-    }
+  //   if (isStarted && counter > 0) {
+  //     timer = setInterval(() => {
+  //       setCounter((prevCounter) => prevCounter - 1);
+  //     }, 1000);
+  //   } else if (counter === 0) {
+  //     clearInterval(timer);
+  //     audioRef.current.pause();
+  //   }
 
-    return () => clearInterval(timer);
-  }, [isStarted, counter]);
+  //   return () => clearInterval(timer);
+  // }, [isStarted, counter]);
 
   //logic
   const [rounds, setRounds] = useLocalStorageState(
@@ -281,6 +315,7 @@ const GameStart = () => {
     var cod = questionGameIn.id_question;
     agregarElemento(`${cod}`);
     cod = "";
+    setIsSelected(false);
   };
 
   const stateRender = (question) => {
@@ -464,61 +499,98 @@ const GameStart = () => {
   };
   const renderPrevCheckQuestion = () => {
     let pointsMessage = calculatePoints(currentTurn.round, counter);
+    const soundRef = useRef(new Audio(CounterSound));
+    const startSound = async () => {
+      return new Promise((resolve, reject) => {
+        try {
+          resolve(soundRef.current.play());
+        } catch (error) {
+          reject(error);
+        }
+      });
+    };
+    const stopSound = async () => {
+      return new Promise((resolve, reject) => {
+        try {
+          clearInterval(intervalId);
+          resolve(soundRef.current.pause());
+        } catch (error) {
+          reject(error);
+        }
+      });
+    };
+
     return (
-      <div className="p-4 bg-gray-200 rounded-lg shadow-md">
-        <div className="flex items-center mb-4">
-          <FaClock className="text-2xl text-yellow-500" />
-          <h1 className="ml-2 text-2xl text-green-600 font-semibold">
-            Time Remaining:{" "}
-            <strong className="ml-2 text-2xl  text-red-900 font-extrabold">
-              {counter}s
-            </strong>{" "}
-            <strong className="ml-2 text-2xl text-green-800 font-extrabold">
-              {" "}
-              + {pointsMessage}
-            </strong>
-          </h1>
+      <div className="p-6 bg-gray-900 rounded-lg shadow-xl border border-gray-900">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center">
+            <FaClock className="text-3xl text-yellow-400" />
+            <h1 className="ml-3 text-xl text-gray-100 font-bold">
+              Time Remaining:{" "}
+              <strong className="ml-2 text-red-600">{counter}s</strong>
+              <strong className="ml-2 text-green-500">
+                {" "}
+                + {pointsMessage}
+              </strong>
+            </h1>
+          </div>
         </div>
-        <h1 className="mb-4 text-2xl font-extrabold text-green-600 md:text-2xl lg:text-2xl">
-          Current Shift:
-          <span className="text-blue-900">
-            {" "}
+
+        <h1 className="mb-6 text-2xl font-bold text-white">
+          Current Shift:{" "}
+          <span className="text-blue-400">
             {gameContext.players[currentTurn.player].name_player}
           </span>
-          , Round:{rounds[currentTurn.round]}
+          , Round:{" "}
+          <span className="text-blue-400">{rounds[currentTurn.round]}</span>
         </h1>
-        <h1 className="text-3xl font-extrabold text-blue-900">
-          {questionGameIn.question}
-        </h1>
+        <div className="flex flex-col items-center w-full justify-center">
+          <AiFillQuestionCircle
+            className={`${colorIcon} duration-200 transition ease-in-out`}
+            size={100}
+          />
+          <h1 className="text-4xl font-extrabold text-blue-300 mb-8 text-center">
+            {questionGameIn.question}
+          </h1>
+        </div>
 
         {!isStarted ? (
           <button
-            onClick={handleStart} // Solo aquí comienza el conteo
+            onClick={async () => {
+              await startSound();
+              handleStart();
+            }}
             type="button"
-            className="mt-4 w-full text-white bg-gradient-to-r from-purple-800 via-orange-400 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            className="w-full flex gap-2 items-center justify-center py-3 text-2xl text-white bg-gradient-to-r shadow-lg shadow-indigo-600/50 roboto-condensed font-bold from-indigo-600 via-purple-500 to-pink-600 hover:bg-gradient-to-br rounded-lg   transition-all duration-300"
           >
             Start
+            {"     "}
+            <FaPlay className=" " size={20} />
           </button>
         ) : (
-          <div className="mt-4 mb-4">
-            <h2 className="text-xl font-semibold text-blue-800">
+          <div className="mt-4 mb-6">
+            <h2 className="text-2xl font-semibold text-gray-200 mb-4">
               Select correct answer:
             </h2>
-            <div className="grid grid-cols-2 gap-4 mt-2">
+            <div className="grid grid-cols-2 gap-4">
               {questionGameIn.answer.map((a, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-center mb-2"
+                  onClick={() => {
+                    handleTrySelect(stopSound);
+                    setQuestionCheck(a);
+                  }}
+                  className="flex items-center justify-center"
                 >
                   <button
                     onClick={() => {
                       setQuestionCheck(a);
                       clearInterval(intervalId);
-                    }} // Acción al hacer clic en la opción
+                    }}
                     disabled={usedRadioButton}
-                    className={`flex items-center justify-center w-full text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md hover:bg-green-400 transition-colors duration-200 ${
+                    className={`w-full py-4 px-6 text-lg font-semibold text-gray-900 bg-gray-200 rounded-xl hover:bg-blue-500 hover:text-white transition-all duration-200 ${
                       questionCheck && questionCheck.value === a.value
-                        ? "bg-green-600"
+                        ? "bg-green-500 text-white"
                         : ""
                     }`}
                   >
@@ -529,20 +601,35 @@ const GameStart = () => {
             </div>
           </div>
         )}
-
+        <div>
+          {isSelected && (
+            <h2 className="text-2xl font-semibold text-gray-200 mb-4">
+              Are you sure?
+            </h2>
+          )}
+        </div>
         {!usedRadioButton && questionCheck ? (
-          <button
-            onClick={handleTry}
-            disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
-            type="button"
-            className="mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            Try
-          </button>
+         <button
+         onClick={async () => {
+           await stopSound();
+           handleTry();
+           clearAllIntervals();
+         }}
+         disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
+         type="button"
+         className="mt-4 w-full text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:bg-gradient-to-br 
+         focus:ring-4 focus:outline-none focus:ring-indigo-400 shadow-lg shadow-indigo-600/50  roboto-condensed font-bold 
+         font-semibold rounded-xl text-2xl px-6 py-3 text-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+       >
+         Try 
+       </button>
+       
         ) : null}
       </div>
     );
   };
+
+
   return (
     <div className="grid grid-cols-4 grid-rows-5 w-full h-full gap-2">
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
@@ -666,7 +753,7 @@ const GameStart = () => {
                 </div>
               );
             })}
-
+            
             {modalQuestion ? renderModalQuestion() : null}
           </div>
         </>

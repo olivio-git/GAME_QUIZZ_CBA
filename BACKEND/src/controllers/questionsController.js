@@ -158,10 +158,10 @@ const findAllQuestions = async () => {
 // Obtiene todas las preguntas junto con sus categorías
 const findAllQuestionsAsId = async (req, res) => {
   try {
-    const fase = await Stage.findAll();
-    console.log("hola soy la pinche fase", fase[0].fase);
-    if (fase.length == 0)
-      return response(res, 200, { message: "Fases does not exist" });
+    // const fase = await Stage.findAll();
+    // console.log("hola soy la pinche fase", fase[0].fase);
+    // if (fase.length == 0)
+    // return response(res, 200, { message: "Fases does not exist" });
     const result = await Question.findAll({
       include: [
         {
