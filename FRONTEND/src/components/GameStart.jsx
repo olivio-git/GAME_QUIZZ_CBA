@@ -529,27 +529,32 @@ const GameStart = () => {
             <h2 className="text-xl font-semibold text-blue-800">
               Select correct answer:
             </h2>
-            <div className="grid grid-cols-2 gap-4 mt-2">
+            <div className="grid grid-cols-2 gap-4">
               {questionGameIn.answer.map((a, index) => {
-                const letter = String.fromCharCode(65 + index); // Convertir el índice a letras A, B, C, D
+                const letters = ["A", "B", "C", "D"]; // Array con las letras
                 return (
                   <div
                     key={index}
-                    className="flex items-center justify-center mb-2"
+                    onClick={() => {
+                      handleTrySelect(stopSound);
+                      setQuestionCheck(a);
+                    }}
+                    className="flex items-center justify-center"
                   >
                     <button
                       onClick={() => {
                         setQuestionCheck(a);
                         clearInterval(intervalId);
-                      }} // Acción al hacer clic en la opción
-                      disabled={usedRadioButton}
-                      className={`flex items-center justify-center w-full text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md hover:bg-green-400 transition-colors duration-200 ${
+                      }}
+                      disabled={isSelected}
+                      className={`w-full py-4 px-6 text-lg font-semibold text-gray-900 bg-gray-200 rounded-xl hover:bg-blue-500 hover:text-white transition-all duration-200 ${
                         questionCheck && questionCheck.value === a.value
-                          ? "bg-green-600"
+                          ? "bg-green-500 text-white"
                           : ""
                       }`}
                     >
-                      {letter}: {a.value} {/* Cambiado a letras A, B, C, D */}
+                      {letters[index]}: {a.value}{" "}
+                      {/* Mostramos la letra en lugar del número */}
                     </button>
                   </div>
                 );
@@ -559,18 +564,27 @@ const GameStart = () => {
         )}
 
         {!usedRadioButton && questionCheck ? (
-          <button
-            onClick={handleTry}
-            disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
-            type="button"
-            className="mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            Try
-          </button>
+         <button
+         onClick={async () => {
+           await stopSound();
+           handleTry();
+           clearAllIntervals();
+         }}
+         disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
+         type="button"
+         className="mt-4 w-full text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:bg-gradient-to-br 
+         focus:ring-4 focus:outline-none focus:ring-indigo-400 shadow-lg shadow-indigo-600/50  roboto-condensed font-bold 
+         font-semibold rounded-xl text-2xl px-6 py-3 text-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+       >
+         Try 
+       </button>
+       
         ) : null}
       </div>
     );
   };
+
+
   return (
     <div className="grid grid-cols-4 grid-rows-5 w-full h-full gap-2">
       {turnIndexSave.round == VALUE_ROUNDS_LOCAL && // 2
