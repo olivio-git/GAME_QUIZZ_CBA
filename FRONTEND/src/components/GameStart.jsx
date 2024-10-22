@@ -241,12 +241,15 @@ const GameStart = () => {
     //LIMBERFUNCTIONS
     function calculatePoints(round, counter) {
       let points;
-      if (round === 0 || round === 1) {
-        points = calculatePointsForRound(counter, 100, 85, 70, 60);
-      } else if (round === 2 || round === 3) {
-        points = calculatePointsForRound(counter, 200, 185, 170, 160);
-      } else if (round === 4) {
-        points = calculatePointsForRound(counter, 300, 285, 270, 260);
+      if (round === 0) {
+        // Primera ronda
+        points = calculatePointsForRound(counter, 100, 85, 75, 65);
+      } else if (round === 1 || round === 2) {
+        // Segunda y tercera ronda
+        points = calculatePointsForRound(counter, 200, 185, 175, 165);
+      } else if (round === 3 || round === 4) {
+        // Cuarta y quinta ronda
+        points = calculatePointsForRound(counter, 300, 285, 275, 265);
       }
       return points;
     }
@@ -271,6 +274,7 @@ const GameStart = () => {
     setUsedRadioButton();
     if (questionCheck && questionCheck.correct) {
       const points = calculatePoints(currentTurn.round, counter);
+      console.log(currentTurn.round);
       updatePlayerPoints(currentTurn.player, points);
       setSuccess(true);
       setUsedRadioButton(true);
@@ -335,12 +339,15 @@ const GameStart = () => {
 
   function calculatePoints(round, counter) {
     let points;
-    if (round === 0 || round === 1) {
-      points = calculatePointsForRound(counter, 100, 85, 70, 60);
-    } else if (round === 2 || round === 3) {
-      points = calculatePointsForRound(counter, 200, 185, 170, 160);
-    } else if (round === 4) {
-      points = calculatePointsForRound(counter, 300, 285, 270, 260);
+    if (round === 0) {
+      // Primera ronda
+      points = calculatePointsForRound(counter, 100, 85, 75, 65);
+    } else if (round === 1 || round === 2) {
+      // Segunda y tercera ronda
+      points = calculatePointsForRound(counter, 200, 185, 175, 165);
+    } else if (round === 3 || round === 4) {
+      // Cuarta y quinta ronda
+      points = calculatePointsForRound(counter, 300, 285, 275, 265);
     }
     return points;
   }
@@ -521,11 +528,11 @@ const GameStart = () => {
     };
 
     return (
-      <div className="p-6 bg-gray-900 rounded-lg shadow-xl border border-gray-900">
+      <div className="p-6 bg-gray-900 rounded-lg shadow-xl border border-gray-900 max-w-[90vw] max-h-[90vh] w-full h-full sm:w-4/5 sm:h-auto overflow-y-auto">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
-            <FaClock className="text-3xl text-yellow-400" />
-            <h1 className="ml-3 text-xl text-gray-100 font-bold">
+            <FaClock className="text-[clamp(1.5rem, 2.5vw, 3rem)] text-yellow-400" />
+            <h1 className="ml-3 text-[clamp(1rem, 2vw, 1.5rem)] text-gray-100 font-bold">
               Time Remaining:{" "}
               <strong className="ml-2 text-red-600">{counter}s</strong>
               <strong className="ml-2 text-green-500">
@@ -536,7 +543,7 @@ const GameStart = () => {
           </div>
         </div>
 
-        <h1 className="mb-6 text-2xl font-bold text-white">
+        <h1 className="mb-6 text-[clamp(1.25rem, 2vw, 2rem)] font-bold text-white">
           Current Shift:{" "}
           <span className="text-blue-400">
             {gameContext.players[currentTurn.player].name_player}
@@ -544,12 +551,13 @@ const GameStart = () => {
           , Round:{" "}
           <span className="text-blue-400">{rounds[currentTurn.round]}</span>
         </h1>
+
         <div className="flex flex-col items-center w-full justify-center">
           <AiFillQuestionCircle
             className={`${colorIcon} duration-200 transition ease-in-out`}
-            size={100}
+            size={40}
           />
-          <h1 className="text-4xl font-extrabold text-blue-300 mb-8 text-center">
+          <h1 className="text-[clamp(2rem, 3vw, 4rem)] font-extrabold text-blue-300 mb-8 text-center uppercase">
             {questionGameIn.question}
           </h1>
         </div>
@@ -561,74 +569,64 @@ const GameStart = () => {
               handleStart();
             }}
             type="button"
-            className="w-full flex gap-2 items-center justify-center py-3 text-2xl text-white bg-gradient-to-r shadow-lg shadow-indigo-600/50 roboto-condensed font-bold from-indigo-600 via-purple-500 to-pink-600 hover:bg-gradient-to-br rounded-lg   transition-all duration-300"
+            className="w-full flex gap-2 items-center justify-center py-3 text-[clamp(1rem, 2vw, 2rem)] text-white bg-gradient-to-r shadow-lg shadow-indigo-600/50 roboto-condensed font-bold from-indigo-600 via-purple-500 to-pink-600 hover:bg-gradient-to-br rounded-lg transition-all duration-300"
           >
-            Start
-            {"     "}
-            <FaPlay className=" " size={20} />
+            Start <FaPlay size={20} />
           </button>
         ) : (
           <div className="mt-4 mb-6">
-            <h2 className="text-2xl font-semibold text-gray-200 mb-4">
-              Select correct answer:
-            </h2>
-            <div className="grid grid-cols-2 gap-4">
-              {questionGameIn.answer.map((a, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    handleTrySelect(stopSound);
-                    setQuestionCheck(a);
-                  }}
-                  className="flex items-center justify-center"
-                >
-                  <button
+            <div className="grid grid-cols-2 gap-4 ">
+              {questionGameIn.answer.map((a, index) => {
+                // Array de letras para representar A, B, C, D
+                const letters = ["A", "B", "C", "D"];
+
+                return (
+                  <div
+                    key={index}
                     onClick={() => {
+                      handleTrySelect(stopSound);
                       setQuestionCheck(a);
-                      clearInterval(intervalId);
                     }}
-                    disabled={usedRadioButton}
-                    className={`w-full py-4 px-6 text-lg font-semibold text-gray-900 bg-gray-200 rounded-xl hover:bg-blue-500 hover:text-white transition-all duration-200 ${
-                      questionCheck && questionCheck.value === a.value
-                        ? "bg-green-500 text-white"
-                        : ""
-                    }`}
                   >
-                    {index + 1}: {a.value}
-                  </button>
-                </div>
-              ))}
+                    <button
+                      onClick={() => {
+                        setQuestionCheck(a);
+                        clearInterval(intervalId);
+                      }}
+                      disabled={isSelected}
+                      className={`w-full py-4 px-6 text-lg font-semibold text-gray-900 bg-gray-200 rounded-xl hover:bg-blue-500 hover:text-white transition-all duration-200 ${
+                        questionCheck && questionCheck.value === a.value
+                          ? "bg-green-500 text-white"
+                          : ""
+                      }`}
+                    >
+                      {/* Mostrar la letra correspondiente en lugar del índice numérico */}
+                      {letters[index]}: {a.value}
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
-        <div>
-          {isSelected && (
-            <h2 className="text-2xl font-semibold text-gray-200 mb-4">
-              Are you sure?
-            </h2>
-          )}
-        </div>
+
         {!usedRadioButton && questionCheck ? (
-         <button
-         onClick={async () => {
-           await stopSound();
-           handleTry();
-           clearAllIntervals();
-         }}
-         disabled={!questionCheck} // Verifica si hay una respuesta seleccionada
-         type="button"
-         className="mt-4 w-full text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:bg-gradient-to-br 
-         focus:ring-4 focus:outline-none focus:ring-indigo-400 shadow-lg shadow-indigo-600/50  roboto-condensed font-bold 
-         font-semibold rounded-xl text-2xl px-6 py-3 text-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-       >
-         Try 
-       </button>
-       
+          <button
+            onClick={async () => {
+              await stopSound();
+              handleTry();
+              clearAllIntervals();
+            }}
+            disabled={!questionCheck}
+            type="button"
+            className="mt-4 w-full text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-indigo-400 shadow-lg shadow-indigo-600/50 roboto-condensed font-bold font-semibold rounded-xl text-2xl px-6 py-3 text-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Try
+          </button>
         ) : null}
       </div>
     );
   };
-
 
   return (
     <div className="grid grid-cols-4 grid-rows-5 w-full h-full gap-2">
@@ -637,10 +635,10 @@ const GameStart = () => {
         renderWinner()
       ) : (
         <>
-          <div className="grid grid-cols-2 col-span-3 border-4  border-none rounded-2xl p-2 gap-1">
+          <div className="grid grid-cols-2 col-span-3 border-4  border-none rounded-2xl p-1 gap-1">
             {/* Sección del Juego */}
-            <div className="flex justify-center items-center col-span-1   rounded-lg shadow-xl p-8">
-              <h1 className="font-extrabold text-3xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-400 to-pink-500 tracking-wider uppercase">
+            <div className="flex justify-center items-center col-span-1   rounded-lg shadow-xl p-1">
+              <h1 className="font-extrabold text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-400 to-pink-500 tracking-wider uppercase">
                 GAME:
                 <span className="text-white px-4 lg:text-3xl font-black tracking-tighter">
                   {gameContext.game.name}
@@ -648,10 +646,10 @@ const GameStart = () => {
               </h1>
             </div>
             {/* Sección de Rondas */}
-            <div className="flex justify-center items-center col-span-1 shadow-lg p-6">
+            <div className="flex justify-center items-center col-span-1 shadow-lg p-1">
               <div className="w-full flex flex-col items-center">
                 {/* Título de la Ronda */}
-                <h1 className="font-extrabold text-white text-2xl lg:text-4xl mb-3 tracking-wide uppercase">
+                <h1 className="font-extrabold text-white text-2xl lg:text-3xl mb-1 tracking-wide uppercase">
                   Round:
                   <span className="ml-2 text-yellow-400">
                     {rounds[currentTurn.round]} {""}
@@ -660,10 +658,10 @@ const GameStart = () => {
                 </h1>
 
                 {/* Información de puntos según la ronda */}
-                <p className="text-white text-lg lg:text-xl font-medium bg-black bg-opacity-30 rounded-lg px-4 py-2 mt-2">
-                  {currentTurn.round === 0 || currentTurn.round === 1
+                <p className="text-white text-lg lg:text-xl font-medium bg-black bg-opacity-30 rounded-lg px-0 py-0 mt-2">
+                  {currentTurn.round === 0
                     ? "+ 100 points before 15s"
-                    : currentTurn.round === 2 || currentTurn.round === 3
+                    : currentTurn.round === 1 || currentTurn.round === 2
                     ? "+ 200 points before 15s"
                     : "+ 300 points before 15s"}
                 </p>
@@ -689,20 +687,20 @@ const GameStart = () => {
                 switch (c.name_category) {
                   case "Sports":
                     icon = (
-                      <FaBasketballBall size={25} className="text-blue-500" />
+                      <FaBasketballBall size={20} className="text-blue-500" />
                     );
                     break;
                   case "History and geography":
-                    icon = <FaHistory size={25} className="text-red-500" />;
+                    icon = <FaHistory size={20} className="text-red-500" />;
                     break;
                   case "Literature":
-                    icon = <FaBook size={25} className="text-green-500" />;
+                    icon = <FaBook size={20} className="text-green-500" />;
                     break;
-                  case "Science and technology ":
-                    icon = <FaLaptop size={25} className="text-purple-500" />;
+                  case "Science and technology":
+                    icon = <FaLaptop size={20} className="text-purple-500" />;
                     break;
                   case "Music and entertainment":
-                    icon = <FaFilm size={25} className="text-yellow-500" />;
+                    icon = <FaFilm size={20} className="text-yellow-500" />;
                     break;
                   default:
                     icon = null;
@@ -710,11 +708,13 @@ const GameStart = () => {
 
                 return (
                   <div key={c.id_category} className="col-span-1 row-span-1">
-                    <button className="w-full h-full text-white rounded-lg shadow-2xl flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-300">
+                    <button className="w-full h-full text-white rounded-lg shadow-2xl flex flex-col items-center justify-center transform transition-transform duration-300">
                       {icon}
-                      <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-sm text-center mt-2 px-2 overflow-hidden text-ellipsis whitespace-nowrap">
-                        {c.name_category}
-                      </h1>
+                      <div className="max-w-full min-w-0 w-full px-0">
+                        <h1 className="font-bold text-[clamp(1rem, 1.5vw, 1.25rem)] text-center mt-0 overflow-hidden text-ellipsis whitespace-nowrap uppercase">
+                          {c.name_category}
+                        </h1>
+                      </div>
                     </button>
                   </div>
                 );
@@ -753,7 +753,7 @@ const GameStart = () => {
                 </div>
               );
             })}
-            
+
             {modalQuestion ? renderModalQuestion() : null}
           </div>
         </>

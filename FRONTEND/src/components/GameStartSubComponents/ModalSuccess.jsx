@@ -7,7 +7,7 @@ const ModalSuccess = ({ success }) => {
   return (
     <div className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-lg shadow-lg border border-green-300">
       <FaCheckCircle className="text-6xl text-green-500 mb-2" />
-      <h2 className="text-3xl font-bold text-green-700 mb-2">You're a genious!</h2>
+      <h2 className="text-3xl font-bold text-green-700 mb-2 uppercase">You're a genius!</h2>
       <p className="text-lg text-gray-800">The answer is correct</p>
       <Confetti />
       {success ? <Confetti /> : null}
